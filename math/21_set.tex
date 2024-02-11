@@ -1,0 +1,543 @@
+\lsection{集合論}
+
+述語記号$\in$を定義する。
+
+略記$\notin$を以下のように定義する。
+\eq*{
+  a \notin A \defiff \lnot \qty(a \in A)
+}
+
+略記$\forall \in, \exists \in$を以下のように定義する。
+\eqa*{
+  \forall x \in X \qty(p(x)) &\defiff \forall x \qty(x \in X \rightarrow p(x)) \\*
+  \exists x \in X \qty(p(x)) &\defiff \exists x \qty(x \in X \land p(x)) \\*
+}
+否定については、量化子の否定と同様の規則が課される。
+
+\dfn{集合}{
+  本\secref{集合論}の全ての公理を満たすものを集合（set、集まりcollectionとは区別される）と呼ぶ。
+}
+
+以下、変項は集合であり、集合は変項である。
+
+\dfn{要素}{
+  集合$a, A$について、$a \in A$であるとき、$a$は$A$の要素または元と言う。
+}
+
+\dfn{集合系}{
+  集合を要素としている集合であることを強調したい時、この集合を集合系と呼ぶ。
+}
+
+\dfn{包含}{
+  集合$A, B$が以下を満たす時、$A$は$B$の部分集合であると言い、$A \subset B$と表す。
+  \eq*{
+    \forall A \forall B \qty(A \subset B \defiff \forall x \qty(x \in A \rightarrow x \in B))
+  }
+
+  略記$\supset, \subsetneq, \supsetneq$を以下のように定義する。
+  \eqg*{
+    \forall A \forall B \qty(A \subsetneq B \defiff A \subset B \land A \neq B) \\*
+    \forall A \forall B \qty(A \supset B \defiff B \subset A) \\*
+    \forall A \forall B \qty(A \supsetneq B \defiff B \subsetneq A)
+  }
+}
+
+
+\lsubsection{外延性の公理}
+
+\axi{外延性の公理}{
+  \eq*{
+    \forall A \forall B \qty(\forall x \qty(x \in A \leftrightarrow x \in B) \rightarrow A = B)
+  }
+}
+
+\cor{相当の定義}{
+  \eq*{
+    \forall A \forall B \qty(A = B \leftrightarrow \forall x \qty(x \in A \leftrightarrow x \in B))
+  }
+}
+
+\cor{包含の半順序性}{
+  包含は半順序的である。すなわち以下を全て満たす。
+  \eqg*{
+    \forall X \qty(X \subset X) \\*
+    \forall X \forall Y \qty(X \subset Y \land Y \subset X \rightarrow X = Y) \\*
+    \forall X \forall Y \forall Z \qty(X \subset Y \land Y \subset Z \rightarrow X \subset Z)
+  }
+}
+
+\rem{集合の外延的定義}{
+  \axiref{外延性の公理}より、全ての要素を書き下せば集合は一意に定まる。
+  全ての要素を書き下す集合の定義方法を、外延的定義と呼ぶ。
+  具体的には、要素が$a, b, c$でありそれのみである集合$A$に対して以下のような定義をする。
+  \eq*{
+    A = \qty{a, b, c}
+  }
+}
+
+
+\lsubsection{空集合の公理}
+
+\axi{空集合の公理}{
+  \eq*{
+    \exists A \forall x \qty(x \notin A)
+  }
+}
+
+\dfn{空集合}{
+  \axiref{外延性の公理}から、\axiref{空集合の公理}が主張する集合が一意であることが言えて、空集合$\varnothing$と呼ぶ。外延的に$\qty{}$とも表す。
+}
+
+\cor*{
+  \eq*{
+    \forall X \qty(\varnothing \subset X)
+  }
+}
+
+
+\lsubsection{対の公理}
+
+\axi{対の公理}{
+  \eq*{
+    \forall x \forall y \exists A \forall t \qty(t \in A \leftrightarrow t = x \lor t = y)
+  }
+}
+
+\dfn{単集合}{
+  $x = y$を考えることで、集合$\qty{x, x}$が存在することが言える。\axiref{外延性の公理}から一意に定まるので、$\qty{x}$と表記して良い。\\*
+  このような単一の元からなる集合を単集合（singleton）と呼ぶ。
+}
+
+\dfn{順序対}{
+  \axiref{対の公理}から、$\qty{\qty{x}, \qty{x, y}}$が存在する。\\*
+  このような集合を、順序対$\qty(x, y) \coloneqq \qty{\qty{x}, \qty{x, y}}$と呼ぶ。
+}
+
+\cor{順序対の相等}{
+  \eq*{
+    \forall a \forall b \forall c \forall d \qty(\qty(a, b) = \qty(c, d) \leftrightarrow a = c \land b = d)
+  }
+}
+
+\cor{順序対の順序性}{
+  \eq*{
+    \forall x \forall y \qty(x \neq y \rightarrow \qty(x, y) \neq \qty(y, x))
+  }
+}
+
+
+\lsubsection{和集合の公理}
+
+\axi{和集合の公理}{
+  \eq*{
+    \forall X \exists A \forall t \qty(t \in A \leftrightarrow \exists Y \qty(t \in Y \land Y \in X))
+  }
+}
+
+\dfn{和集合}{
+  集合系$X$について、\axiref{和集合の公理}の主張する集合$A$が存在して、これは\axiref{外延性の公理}から一意に定まる。\\*
+  このような集合Aを、和集合$\bigcup X$と呼ぶ。
+  特に、$X = \qty{x, y}$のとき、この和集合を$x \cup y$とも表す。
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall A \qty(A \in X \rightarrow A \subset \bigcup X)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \qty(X \subset Y \rightarrow \bigcup X \subset \bigcup Y)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall x \forall y \forall z \qty(x \subset y \rightarrow x \cup z \subset y \cup z)
+  }
+}
+
+\cor*{
+  \eq*{
+    \bigcup \varnothing = \varnothing
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall x \qty(\bigcup \qty{x} = x)
+  }
+}
+
+
+\lsubsection{無限の公理}
+
+\axi{無限の公理}{
+  \eq*{
+    \exists A \qty(\varnothing \in A \land \forall x \in A \qty(x \cup \qty{x} \in A))
+  }
+}
+
+
+\lsubsection{冪集合の公理}
+
+\axi{冪集合の公理}{
+  \eq*{
+    \forall X \exists A \forall t \qty(t \in A \leftrightarrow t \subset X)
+  }
+}
+
+\dfn{冪集合}{
+  集合$X$について、\axiref{冪集合の公理}の主張する集合$A$が存在して、これは\axiref{外延性の公理}から一意に定まる。\\*
+  このような集合Aを、冪集合$2^X$と呼ぶ。
+}
+
+\cor*{
+  \eq*{
+    \forall X \qty(\varnothing \in 2^X \land X \in 2^X)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \qty(X \subset Y \rightarrow 2^X \subset 2^Y)
+  }
+}
+
+\cor*{
+  \eq*{
+    2^\varnothing = \qty{\varnothing}
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall x \qty(2^\qty{x} = \qty{\varnothing, \qty{x}})
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \qty(\bigcup 2^X = X)
+  }
+}
+
+\dfn{被覆}{
+  集合$A$について、以下を満たす集合$X$を$A$の被覆と呼ぶ。
+  \eq*{
+    X \subset 2^A \land A = \bigcup X
+  }
+}
+
+
+\lsubsection{置換の公理}
+
+\axi{置換の公理図式}{
+  アリティ2の述語記号$\psi$をパラメータとする以下の公理図式を考える。
+  \eq*{
+    \forall x \forall y \forall z \qty(\psi(x, y) \land \psi(x, z) \rightarrow y = z) \rightarrow \forall X \exists A \forall y \qty(y \in A \leftrightarrow \exists x \qty(x \in X \land \psi(x, y)))
+  }
+}
+
+\rem{集合の内包的定義１}{
+  \axiref{外延性の公理}より、\axiref{置換の公理図式}より主張される集合は一意に定まる。\axiref{置換の公理図式}に基づく定義方法を、内包的定義と呼び以下のように表す。
+
+  \axiref{置換の公理図式}の前件を満たす述語記号$\psi$について、
+  \eq*{
+    A = \qty{y \mid \exists x \in X \qty(\psi(x, y))}
+  }
+}
+
+\thm{分出の公理図式}{
+  アリティ1の述語記号$\psi$をパラメータとする以下の公理図式を考える。
+  \eq*{
+    \forall X \exists A \forall t \qty(t \in A \leftrightarrow t \in X \land \psi(t))
+  }
+}{
+  アリティ1の述語記号$P$を考える。排中律より、
+  \eq*{
+    \forall X \qty(\exists a \qty(a \in X \land P(a)) \lor \forall a \lnot \qty(a \in X \land P(a)))
+  }
+
+  $\exists a \qty(a \in X \land P(a))$のとき、以下のようなアリティ2の述語記号$\psi$を考える。
+  \eq*{
+    \psi(x, y) \defiff \qty(P(x) \land y = x) \lor \qty(\lnot P(x) \land y = a)
+  }
+
+  \axiref{置換の公理図式}より、
+  \eq*{
+    \exists A \forall y \qty(y \in A \leftrightarrow \exists x \qty(x \in X \land \qty(\qty(P(x) \land y = x) \lor \qty(\lnot P(x) \land y = a))))
+  }
+
+  すなわち、
+  \eq*{
+    \exists A \forall t \qty(t \in A \leftrightarrow \exists x \qty(\qty(x \in X \land P(x) \land t = x) \lor \qty(x \in X \land \lnot P(x) \land t = a)))
+  }
+
+  $\exists$を除去して、
+  \eq*{
+    \exists A \forall t \qty(t \in A \leftrightarrow \qty(t \in X \land P(t)) \lor t = a)
+  }
+
+  $t = a \rightarrow \qty(a \in X \land P(a))$より、
+  \eq*{
+    \exists A \forall t \qty(t \in A \leftrightarrow t \in X \land P(t))
+  }
+
+  $\forall a \lnot \qty(a \in X \land P(a))$のとき、$A = \varnothing$で示される。
+}
+
+分出の公理図式は今回は定理として証明したが、公理系によっては公理図式として採用される。
+
+\rem{集合の内包的定義２}{
+  \axiref{外延性の公理}より、\thmref{分出の公理図式}より主張される集合は一意に定まる。
+  \thmref{分出の公理図式}に基づく定義方法も、内包的定義と呼び以下のように表す。
+  \eq*{
+    A = \qty{t \mid t \in X \land \psi(t)}
+  }
+  または、以下のようにも表す。
+  \eq*{
+    A = \qty{t \in X \mid \psi(t)}
+  }
+}
+
+\dfn{共通集合}{
+  集合系$X$について、以下のように定義された集合を共通集合と呼ぶ。
+  \eq*{
+    \bigcap X \coloneqq \qty{x \mid x \in \bigcup X \land \forall Y \qty(Y \in X \rightarrow x \in Y)}
+  }
+  特に、$X = \qty{x, y}$のとき、この共通集合を$x \cap y$とも表す。
+}
+
+共通集合のこの定義は一般的ではないことに注意せよ。
+
+\thm{共通集合}{
+  \eqg*{
+    \bigcap \varnothing = \varnothing \\*
+    X \neq \varnothing \rightarrow \bigcap X = \qty{x \mid \forall Y \qty(Y \in X \rightarrow x \in Y)}
+  }
+}{
+  第1式は、定義より自明。
+
+  第2式について考える。以下が成り立つ。
+  \eqg*{
+    \forall X \forall x \forall Y \qty(Y \in X \rightarrow x \in Y) \\*
+    \forall X \forall x \qty(X = \varnothing \lor \exists Y \qty(Y \in X \land x \in Y)) \\*
+    \forall X \forall x \qty(X = \varnothing \lor x \in \bigcup X)
+  }
+  ゆえに示される。
+}
+
+\cor*{
+  \eq*{
+    \forall A \forall X \qty(A \in X \rightarrow \bigcap X \subset A)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall x \forall y \forall z \qty(x \subset y \rightarrow x \cap z \subset y \cap z)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \qty(X \neq \varnothing \land X \subset Y \rightarrow \bigcap Y \subset \bigcap X)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall x \qty(\bigcap \qty{x} = x)
+  }
+}
+
+\cor{吸収法則}{
+  \eqg*{
+    \forall x \forall y \qty(x \cup \qty(x \cap y) = x) \\*
+    \forall x \forall y \qty(x \cap \qty(x \cup y) = x)
+  }
+}
+
+\cor{分配法則}{
+  \eqg*{
+    \forall x \forall y \forall z \qty(x \cup \qty(y \cap z) = \qty(x \cup y) \cap \qty(x \cup z)) \\*
+    \forall x \forall y \forall z \qty(x \cap \qty(y \cup z) = \qty(x \cap y) \cup \qty(x \cap z))
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \qty(\bigcap X \subset \bigcup X)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \qty(2^X \cap 2^Y = 2^{X \cap Y})
+  }
+}
+
+\dfn{差集合}{
+  集合$X, Y$について、以下のように定義された集合を$X$と$Y$の差集合と呼ぶ。
+  \eq*{
+    X \setminus Y \coloneqq \qty{x \mid x \in X \land x \notin Y}
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \qty(X \setminus Y \subset X \land X \setminus Y \in 2^X)
+  }
+}
+
+\cor*{
+  \eqg*{
+    \forall X \qty(X \setminus X  = \varnothing) \\*
+    \forall X \qty(X \setminus \varnothing = X) \\*
+    \forall X \qty(\varnothing \setminus X = \varnothing)
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \forall Z \qty(X \setminus \qty(Y \setminus Z) = \qty(X \setminus Y) \cup \qty(X \cap Z))
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \forall Y \forall Z \qty(Y \subset Z \rightarrow X \setminus Z \subset X \setminus Y)
+  }
+}
+
+\thm{De Morganの法則}{
+  集合$X$と空でない集合系$A$について、以下が成り立つ。
+  \eqg*{
+    X \setminus \bigcup A = \bigcap \qty{X \setminus Y \mid Y \in A} \\*
+    X \setminus \bigcap A = \bigcup \qty{X \setminus Y \mid Y \in A}
+  }
+}{
+  第一の定理を示す。
+  \eq*{
+    x \in X \setminus \bigcup A \leftrightarrow \qty(x \in X \land x \notin \bigcup A) \leftrightarrow \qty(x \in X \land \forall Y \qty(Y \in A \rightarrow x \notin Y)) \leftrightarrow \qty(x \in X \land \forall Y \qty(Y \in A \rightarrow x \notin X \setminus Y))
+  }
+  $A \neq \varnothing$より、
+  \eq*{
+    \leftrightarrow \qty(x \in X \land x \in \bigcap \qty{X \setminus Y \mid Y \in A}) \leftrightarrow x \in \bigcap \qty{X \setminus Y \mid Y \in A}
+  }\\*
+
+  第二の定理を示す。
+  \eqa*{
+    x \in X \setminus \bigcap A &\leftrightarrow \qty(x \in X \land x \notin \bigcap A) \leftrightarrow \qty(x \in X \land \qty(x \notin \bigcup A \lor \exists Y \qty(Y \in A \land x \notin Y))) \\*
+    &\leftrightarrow \qty(x \in X \setminus \bigcup A \lor \exists Y \qty(Y \in A \land x \in X \setminus Y)) \\*
+    &\leftrightarrow \qty(x \in X \setminus \bigcup A \lor x \in \bigcup \qty{X \setminus Y \mid Y \in A}) \\*
+    &\leftrightarrow x \in \bigcup \qty{X \setminus Y \mid Y \in A}
+  }
+  最後の変形には、第一の定理を用いた。
+}
+
+\cor{順序対の取り出し}{
+  \eqg*{
+    \forall x \forall y \qty(x = \bigcup \bigcap \qty(x, y)) \\*
+    \forall x \forall y \qty(y = \bigcup \bigcap \qty(x, y) \land \qty(\bigcap \qty(x, y) = \bigcap \qty(x, y))) \lor \qty(y = \bigcup \qty(\bigcup \qty(x, y) \setminus \bigcap \qty(x, y)) \land \qty(\bigcap \qty(x, y) \neq \bigcap \qty(x, y)))
+  }
+}
+
+\lem*{
+  \eq*{
+    \forall X \forall Y \forall x \forall y \qty(x \in X \land y \in Y \rightarrow \qty(x, y) \in 2^{2^{X \cup Y}})
+  }
+}{
+  \eqg*{
+    x \in X \land y \in Y \\*
+    \qty{x} \in 2^{X \cup Y} \land \qty{x, y} \in 2^{X \cup Y} \\*
+    \qty(x, y) \in 2^{2^{X \cup Y}}
+  }
+  よって従う。
+}
+
+\dfn{直積集合}{
+  集合$X, Y$について、以下を満たす集合を$X$と$Y$の直積集合と呼ぶ。
+  \eq*{
+    X \times Y \coloneqq \qty{z \in 2^{2^{X \cup Y}} \mid \exists x \exists y \qty(x \in X \land y \in Y \land z = \qty(x, y))}
+  }
+}
+
+\cor*{
+  \eq*{
+    \forall X \qty(X \times \varnothing = \varnothing \times X = \varnothing)
+  }
+}
+
+\cor{共通と直積}{
+  \eq*{
+    \forall X_1, X_2, Y_1, Y_2 \qty(\qty(X_1 \times X_2) \cap \qty(Y_1 \times Y_2) = \qty(X_1 \cap X_2) \times \qty(Y_1 \cap Y_2))
+  }
+}
+
+\dfn{分割}{
+  集合$A$について、以下を満たす$A$の被覆$X$を$A$の分割と呼ぶ。
+  \eq*{
+    \forall x, y \in X \qty(x \neq y \rightarrow x \cap y = \varnothing)
+  }
+
+  分割であることを示すために、以下のような記号を用いる。
+  \eq*{
+    A = \bigsqcup X
+  }
+}
+
+
+\lsubsection{正則性の公理}
+
+\axi{正則性の公理}{
+  \eq*{
+    \forall X \qty(X \neq \varnothing \rightarrow \exists x \qty(x \in X \land \forall t \qty(t \in X \land t \notin x)))
+  }
+}
+
+\thm*{
+  \eq*{
+    \forall x \forall y \lnot \qty(x \in y \land y \in x)
+  }
+}{
+  対の公理より、$\qty{x, y}$が存在する。
+
+  \axiref{正則性の公理}より、
+  \eq*{
+    \exists z \qty(z \in \qty{x, y} \land \forall t \qty(t \in \qty{x, y} \land t \notin z))
+  }
+
+  よって、
+  \eq*{
+    \forall t \qty(t \in \qty{x, y} \land t \notin x) \lor \forall t \qty(t \in \qty{x, y} \land t \notin y)
+  }
+
+  ゆえに、
+  \eq*{
+    \qty(x \notin x \land y \notin x) \lor \qty(x \notin y \land y \notin y)
+  }
+
+  したがって、
+  \eq*{
+    y \notin x \lor x \notin y
+  }
+  示される。
+}
+
+\cor*{
+  \eq*{
+    \forall x \qty(x \notin x)
+  }
+}
+
+
+\lsubsection{選択公理}
+
+\axi{選択公理}{
+  \eq*{
+    \forall X \qty(\varnothing \notin X \land \forall x \forall y \qty(x \in X \land y \in X \land x \neq y \rightarrow x \cap y = \varnothing) \rightarrow \exists A \forall x \qty(x \in X \rightarrow \exists t \qty(x \cap A = \qty{t})))
+  }
+}

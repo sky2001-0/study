@@ -1,0 +1,44 @@
+\lsection{距離空間}
+
+\lsubsection{距離空間}
+
+\dfn{距離空間}{
+  空でない集合$X$と、以下を満たす写像$d \colon X \times X \rightarrow \R_{\geq 0}$について、順序対$\qty(X, d)$を距離空間と呼ぶ。
+  \eqg*{
+    \forall x, y \in X \qty(d(x, y) = d(y, x)) \\*
+    \forall x, y \in X \qty(x = y \leftrightarrow d(x, y) = 0) \\*
+    \forall x, y, z \in X \qty(d(x, z) \leq d(x, y) + d(y, z))
+  }
+
+  または単に$X$と書き、距離空間と集合どちらも表すものとする。
+}
+
+$\R$は、距離$d(x, y) \coloneqq \abs{x - y}$について、距離空間である。
+
+\thm{距離から定まる基本近縁系}{
+  距離空間$\qty(X, d)$を考える。
+  以下で定める集合系$\mathcal{V}$は基本近傍系である。
+  \eq*{
+    \mathcal{V} \coloneqq \qty{B_r \coloneqq \qty{\qty(x, y) \in X \times X \mid d(x, y) < r} \mid r \in \R^+}
+  }
+}{
+  第一式を示す。$\qty{\qty(x, y) \in X \times X \mid d(x, y) < 1} \in \mathcal{V}$より成り立つ。\\*
+
+  第二式を示す。$\forall x \in X \forall r \in \R^+$を考える。\dfnref{距離空間}第二式から、$d(x, x) = 0 < r$すなわち、$\qty(x, x) \in B_r$である。\\*
+
+  第三式を示す。$\forall r_1, r_2 \in \R^+ \qty(B_{\min \qty{r_1, r_2}} = B_{r_1} \cap B_{r_2} \in \mathcal{V})$より成り立つ。\\*
+
+  第四式を示す。\dfnref{距離空間}第三式から、$\forall r \in \R^+ \qty(B_{r / 2} \circ B_{r / 2} \subset B_r)$である。\\*
+
+  第五式を示す。\dfnref{距離空間}第一式から、$\forall V \in \mathcal{V} \qty(V = V^{-1})$より成り立つ。
+}
+
+\thmf{距離空間は\textit{Hausdorff}}{距離空間はHausdorff}{
+  距離空間$X$は\textit{Hausdorff}である。
+}{
+  $\forall x, y \in X \qty(x \neq y)$を考える。
+
+  $r \coloneqq d(x, y) / 2$について、\dfnref{距離空間}第二式より、$r \in \R^+$である。
+
+  $B_r[x] \cap B_r[y] = \varnothing$より、\textit{Hausdorff}である。
+}

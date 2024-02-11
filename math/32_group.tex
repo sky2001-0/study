@@ -1,0 +1,286 @@
+\lsection{群}
+
+\lsubsection{群}
+
+\dfn{群}{
+  モノイド$\qty(G, \cdot)$が以下を満たすとき、群と呼ぶ。
+  \eq*{
+    G = G^\times
+  }
+
+  以降、誤解のない範囲で、$x \cdot y$を$x y$と略記する。
+}
+
+\cor*{
+  モノイド$M$について、$M^\times$は群である。
+}
+
+\dfn{自明群}{
+  要素数が$1$の群を自明群と呼ぶ。
+}
+
+\dfn{可換群}{
+  群が可換マグマであるとき、可換群と呼ぶ。
+}
+
+\thm{群の条件}{
+  以下を満たすマグマ$G$は群である。
+  \eqg*{
+    \exists e \in G \forall x \in G \qty(x e = x) \\*
+    \forall x \in G \exists x' \in G \qty(x x' = e)
+  }
+}{
+  $e$が単位元であることを示す。
+  \eq*{
+    e x = e \qty(x e) = e \qty(x \qty(x' x'')) = e \qty(x x') x'' = e e x'' = \qty(x x') e x'' = x \qty(x' e) x'' = x x' x'' = x \qty(x' x'') = x e = x
+  }
+
+  左逆元であることを示す。
+  \eq*{
+    x' x = x' \qty(x e) = x' \qty(x \qty(x' x'')) = x' \qty(x x') x'' = x' e x'' = y z = e
+  }
+}
+
+
+\lsubsection{群と準同型}
+
+\dfn{群準同型}{
+  群$G, G'$について以下を満たすモノイド準同型$\varphi \colon G \rightarrow G'$が存在するとき、$\varphi$を群準同型写像、または単に群準同型と呼ぶ。
+  \eq*{
+    \forall x \in G \qty(\varphi(x)^{-1} = \varphi(x^{-1}))
+  }
+}
+
+\lem{マグマ準同型は群準同型}{
+  群$G, G'$について、マグマ準同型$\varphi \colon G \rightarrow G'$は群準同型である。
+}{
+  モノイド準同型であることを示す。
+  \eqg*{
+    e' = \varphi(e) \varphi(e)^{-1} = \varphi(e) \varphi(e^{-1}) = \varphi(e e^{-1}) = \varphi(e)
+  }
+
+  群準同型であることを示す。
+  \eq*{
+    \varphi(x)^{-1}  = \varphi(e) \varphi(x)^{-1}  = \varphi(x^{-1} x) \varphi(x)^{-1}  = \varphi(x^{-1}) \varphi(x) \varphi(x)^{-1} = \varphi(x^{-1}) \varphi(e) = \varphi(x^{-1})
+  }
+}
+
+\thm{群準同型の単射性}{
+  群準同型$\varphi \colon G \rightarrow G'$が単射であることは、以下と必要十分である。
+  \eq*{
+    \Ker(\varphi) = \qty{e}
+  }
+}{
+  十分性は、単射性より示される。
+
+  必要性を示す。$\forall x, y \in G \land \varphi(x) = \varphi(y)$について、
+  \eq*{
+    e' = \varphi(e) = \varphi(x) \varphi(x^{-1}) = \varphi(y) \varphi(x^{-1}) = \varphi(y x^{-1})
+  }
+
+  ゆえに$x y^{-1} \in \Ker(\varphi)$で、$x = y$。すなわち単射。
+}
+
+\dfn{群同型}{
+  群準同型$\varphi \colon G \rightarrow G'$が全単射であるとき、これを群同型写像、または単に群同型と呼ぶ。
+
+  また、$G$から$G'$への群同型写像が存在するとき、$G \cong G'$と表す。
+}
+
+\dfn{自己同型群}{
+  マグマ$M$について、$\End(M)^\times$をは群をなす。これを自己同型群と呼び、$\Aut(M)$と表す。
+}
+
+\thm{可換群上の準同型全体}{
+  可換群$G, H$について、$\Hom(G, H)$上の以下の演算$+'$を考える。このとき、順序対$\qty(\Hom(G, H), +')$は可換群をなす。
+  \eq*{
+    \qty(f +' g)(x) \coloneqq f(x) + g(x)
+  }
+}{
+  $H$が可換マグマであることから、$\Hom(G, H)$は可換マグマである。
+
+  写像$0_{\Hom(G, H)} \colon G \ni x \mapsto 0_H \in H$は群準同型であるので、単位元。
+
+  写像$-f \colon G \ni x \mapsto -f(x) \in H$は群準同型であるので、逆元。
+}
+
+
+\lsubsection{群と準同型定理}
+
+\dfn{部分群}{
+  群$G$の部分モノイド$H$が以下を満たすとき、$H$は群となり、群$H$を群$G$の部分群と呼ぶ。
+  \eq*{
+    \forall x \in H \qty(x^{-1} \in H)
+  }
+}
+
+\lem{部分群の判定}{
+  群$G$の部分集合$H$が部分群であることは、以下と必要十分である。
+  \eq*{
+    H \neq \varnothing \land \forall x, y \in H \qty(x y^{-1} \in H)
+  }
+}{
+  必要性を示す。
+
+  空でないので、$\exists x \in H \qty(e = x x^{-1} \in H)$
+
+  ゆえに、$\forall x \in H \qty(x^{-1} = e x^{-1} \in H)$
+
+  したがって、$\forall x, y \in H \qty(x y = x \qty(y^{-1})^{-1} \in H)$
+
+  結合法則も自明に満たす。\\*
+
+  十分性を示す。
+
+  単位元の存在より、空でない。部分群より、$\forall y \in H \qty(y^{-1} \in H)$。ただちに、$\forall x, y \in H \qty(x y^{-1}) \in H$
+}
+
+\cor*{
+  群の商マグマは群である。$\qty[x^{-1}]$を逆元として持つ。
+}
+
+\lem{部分群の定める同値関係}{
+  群$G$とその部分群$H$について、以下で定める関係$\sim$は同値関係である。
+  \eq*{
+    \forall x, y \in G \qty(x \sim y \defiff x^{-1} y \in H)
+  }
+}{
+  $x^{-1} x = e \in H$より反射律を満たす。
+
+  $x^{-1} y \in H \rightarrow y^{-1} x = \qty(x^{-1} y)^{-1} \in H$より対称律を満たす。
+
+  $x^{-1} y, y^{-1} z \in H \rightarrow x^{-1} z = \qty(x^{-1} y) \qty(y^{-1} z) \in H$より推移律を満たす。
+}
+
+\dfn{正規部分群}{
+  群$G$とその部分群$H$について、以下を満たすとき、$H$を$G$の正規部分群と呼ぶ。
+  \eq*{
+    \forall g \in G \forall h \in H \qty(g^{-1} h g \in H)
+  }
+}
+
+\cor*{
+  核は正規部分群である。
+}
+
+\cor*{
+  可換群の部分群は正規部分群である。
+}
+
+\cor*{
+  群$G$の正規部分群$N$について、$N$の部分群$H$は、$G$の正規部分群である。
+}
+
+\cor*{
+  群$G$の部分群$H$と、$G$の正規部分群$N$について、$N \cap H$は$H$の正規部分群である。
+}
+
+\lem{正規部分群の定める同値関係}{
+  群$G$とその正規部分群$H$について、\lemref{部分群の定める同値関係}の定める同値関係$\sim$は\corref{直積集合と自明な同値関係}の意味で演算と両立する同値関係である。
+}{
+  $x_1^{-1} y_1, x_2^{-1} y_2 \in H$であるとき、
+  \eq*{
+    \qty(x_1 x_2)^{-1} y_1 y_2 = x_2^{-1} x_1^{-1} y_1 y_2 = \qty(x_2^{-1} \qty(x_1^{-1} y_1) x_2) \qty(x_2^{-1} y_2) \in H
+  }
+
+  両立する。
+}
+
+\dfn{剰余群}{
+  群$G$とその正規部分群$H$について、\lemref{正規部分群の定める同値関係}の定める同値関係による商マグマを、剰余群と呼び、$G / H$と表す。
+}
+
+\thm{群準同型定理}{
+  群$G, G'$と、群準同型$f \colon G \rightarrow G'$、$f$に付随する同値関係$\sim_{f}$について、群同型$\bar{f} \colon G / \sim_{f} \rightarrow \Im(f)$が存在する。
+}{
+  $\Im(f)$は$G'$の部分群である。
+
+  \thmref{マグマ準同型定理}より、得る$\bar{f}$はマグマ同型。
+  \lemref{マグマ準同型は群準同型}より、群同型。
+}
+
+$G / \sim_f = G / \Ker (f)$であるため、$G / \Ker (f) \rightarrow \Im (f)$の形で書かれることが多い。
+
+\lem{剰余群の正規部分群は剰余群}{
+  群$G$、$G$の正規部分群$N$、$G / N$の正規部分群$Z$について、$G$の正規部分群$H$が存在して、$H / N = Z$である。
+}{
+  $H \coloneqq \qty{g \in G \mid \qty[g] \in Z}$を考える。商写像の群準同型性より$H$は$G$の部分群であり、$H / N = Z$
+
+  $\forall g \in G \forall h \in H$について、$H / N$は$G / N$の正規部分群より$\qty[g^{-1} h g] = \qty[g]^{-1} \qty[h] \qty[g] \in H / N$
+
+  よって、$g^{-1} h g \in H$より正規部分群。
+}
+
+
+\lsubsection{群と作用}
+
+\dfn{作用}{
+  集合$S, X$について、写像$\varphi \colon S \rightarrow \Map(X, X)$を$S$の$X$への作用と呼ぶ。
+}
+
+\thm{作用の表現}{
+  集合$S, X$について、自明な全単射$\varphi \colon \Map(S \times X, X) \rightarrow \Map(S, \Map(X, X))$が存在する。
+}{
+  $\varphi \in \Map(S \times X, X)$を特徴づける集合$G \in \qty(\qty(S \times X) \times X)$に対して、集合$G' \in \qty(S \times \qty(X \times X))$を対応づける自明な一対一対応が存在する。
+
+  $G$による関係は、左全域的かつ右一意的である。
+
+  $G' = (s, \psi), \psi \in X \times X$について、$\psi$による関係は、左全域的かつ右一意的である。
+
+  また、$G'$による関係は、左全域的かつ右一意的である。
+}
+
+この定理を用いて、$s \in S, x \in X$について、作用の$s$での値の$x$での値$\varphi(s)(x)$は、$\varphi(s, x)$と書ける。
+
+\dfn{群と作用}{
+  集合$X$を考える。
+
+  マグマ$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X), \circ)$がマグマ準同型であるとき、マグマ作用と呼ぶ。
+
+  モノイド$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X), \circ)$がモノイド準同型であるとき、モノイド作用と呼ぶ。
+
+  群$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X)^\times, \circ)$が群準同型であるとき、群作用と呼ぶ。
+}
+
+\dfn{軌道}{
+  $S$の$X$への作用$\varphi$と元$x \in X$について、以下の集合を$x$による$S$軌道と呼び、$\varphi(S, x)$で表す。
+  \eq*{
+    \varphi(S, x) \coloneqq \qty{\varphi(s, x) \mid s \in S}
+  }
+}
+
+\dfn{安定化部分群}{
+  群$G$の$X$への群作用$\varphi$と元$x \in X$について、以下の集合を$x$における$G$の安定化部分群と呼び、$\Stab(G, x)$で表す。
+  \eq*{
+    \Stab(G, x) \coloneqq \qty{g \in G \mid x = \varphi(g, x)}
+  }
+}
+
+\lem*{
+  群$\qty(G, \cdot)$の$X$への群作用$\varphi$と、$x$における$G$の安定化部分群$\Stab(G, x)$について、順序対$\qty(\Stab(G, x))$は$G$の部分群である。
+}{
+  群準同型より、$x = \varphi(g, x) = \varphi(h, x)$のとき、$x = \varphi(g, x) = \varphi(g, \varphi(h, x)) = \varphi(g h, x)$、ゆえに部分マグマ。
+
+  群準同型より、$\varphi(e, x) = \id_{X}(x) = x$、ゆえに部分モノイド。
+
+  群準同型より、$\varphi(g, x) = x \rightarrow x = \varphi(g^{-1} g, x) = \varphi(g^{-1}, \varphi(g, x)) = \varphi(g^{-1}, x)$、ゆえに部分群。
+}
+
+\lem*{
+  群$G$の$X$への群作用$\varphi$と元$x \in X$について、以下で定める関係$\sim_{\Stab(G, x)}$は同値関係である。
+  \eq*{
+    \forall g, h \in G \qty(g \sim_{\Stab(G, x)} h \defiff g^{-1} h \in \Stab(G, x))
+  }
+}{
+  \mlemref{-1}より、$\Stab(G, x)$は$G$の部分群。
+
+  \lemref{部分群の定める同値関係}より同値関係である。
+}
+
+\thm{軌道・安定化部分群定理}{
+  群$G$の$X$への群作用$\varphi$と元$x \in X$について、全単射$f \colon G / \sim_{\Stab(G, x)} \rightarrow \varphi(G, x)$が存在する。
+}{
+  写像$\hat{f}_{x} \colon G \ni g \rightarrow \varphi(g, x) \in \varphi(G, x)$を考える。
+
+  今、$\sim_{\hat{f}_{x}} = \sim_{\Stab(G, x)}$であり、$\Im(\hat{f}_{x}) = \varphi(G, x)$であるので、\thmref{標準分解}より存在する。
+}

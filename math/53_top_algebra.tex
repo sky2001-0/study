@@ -1,23 +1,5 @@
 \lsection{代数上の位相}
 
-\lem{直積と連続}{
-  位相空間$X, Y, Z$について、連続写像$f \colon X \times Y \rightarrow Z$を考える。
-
-  このとき、$\forall x \in X$について写像$Y \ni y \mapsto f(x, y) \in Z$は連続である。
-}{
-  \thmref{連続と点連続}より、
-  \eq*{
-    \forall \qty(x, y) \in X \times Y \forall B_Z \in \mathcal{B}_Z(f(x, y)) \exists B_X \in \mathcal{B}_X(x) \exists B_Y \in \mathcal{B}_Y(y) \qty(f(B_X \times B_Y) \subset B_Z)
-  }
-
-  したがって$\forall x \in X$について
-  \eq*{
-    \forall y \in Y \forall B_Z \in \mathcal{B}_Z(f(x, y)) \exists B_Y \in \mathcal{B}_Y(y) \qty(f(\qty{x} \times B_Y) \subset B_Z)
-  }
-  \thmref{連続と点連続}より連続。
-}
-
-
 \lsubsection{位相群}
 
 \dfn{位相群}{
@@ -228,12 +210,6 @@
   $f^{-1}(B) = \sqty{-b, -a} \in \mathcal{B}$であるので連続。
 }
 
-\thmf{順序群の\textit{Hausdorff}性}{順序群のHausdorff性}{
-  順序群$G$は\textit{Hausdorff}である。
-}{
-  $\qty{0_G} = \qty[0_G, 0_G]$より\thmref{位相群と分離}から\textit{Hausdorff}である。
-}
-
 \dfn{絶対値}{
   順序群$G$について、以下で定める写像を絶対値と呼ぶ。
   \eq*{
@@ -344,7 +320,7 @@
   第三式について考える。$r \coloneqq a, b \in R$について、$0_R \leq r \lor r < 0_R$で場合分けすることにより得る。
 }
 
-\thm{順序環は位相環}{
+\thm*{
   順序環$R$は位相環である。すなわち、$R$上の以下の演算は連続である。
   \begin{itemize}
     \item $\times \colon R \times R \rightarrow R$
@@ -369,7 +345,7 @@
   可換性と\lemref{位相環の条件}より位相環である。
 }
 
-\thm{順序体は位相体}{
+\thm*{
   順序体$F$は位相体である。すなわち、$F$上の以下の演算は連続である。
   \begin{itemize}
     \item $-1 \colon F^\times \rightarrow F^\times$

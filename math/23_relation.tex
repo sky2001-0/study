@@ -184,7 +184,7 @@
   右から$r$をかけて、$h = h'$。
 }
 
-\thm{両立２}{
+\lem*{
   空でない集合$X$と$X$上の同値関係$\sim$、空でない集合$Y$について、写像$f \colon X \rightarrow Y$が$\sim$と両立することは、以下と必要十分である。
   \eq*{
     \exists h \in \Map(X / \sim, Y) \qty(f = h \circ \qty[])
@@ -198,7 +198,7 @@
 \thm{標準分解}{
   写像$f \colon X \rightarrow Y$について、全単射$\bar{f} \colon X / \sim_{f} \rightarrow \Im(f)$が存在する。
 }{
-  \thmref{両立２}より、写像$h \colon X / \sim_{f} \rightarrow Y$が存在して、$\Im(h) = \Im(f)$。
+  \mlemref{-1}より、写像$h \colon X / \sim_{f} \rightarrow Y$が存在して、$\Im(h) = \Im(f)$。
 
   単射であることを示す。$h([x]) = h([y])$のとき、$f(x) = f(y)$より、$[x] = [y]$
 
@@ -490,16 +490,15 @@
 }
 
 \dfn{集合におけるフィルター}{
-  集合$X$について、以下を満たす集合$\mathcal{F} \in 2^{2^X}$を集合$X$のフィルターと呼ぶ。
-  \eqg*{
-    \varnothing \notin \mathcal{F} \land X \in \mathcal{F} \\*
-    \forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cap F_2 \in \mathcal{F}) \\*
-    \forall F \in F \forall G \in 2^X \qty(F \subset G \rightarrow G \in \mathcal{F})
-  }
+  集合$X$について、半順序集合$\qty(2^X \setminus \qty{\varnothing}, \subset)$のフィルターを、集合$X$のフィルターと呼ぶ。
 }
 
 \cor*{
-  集合$X$のフィルターは、\lemref{包含は順序}より与えられる半順序集合$\qty(2^X, \subset)$のフィルターである。
+  集合$X$のフィルター$\mathcal{F}$は以下を満たす。
+  \eqg*{
+    X \in \mathcal{F} \\*
+    \forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cap F_2 \in \mathcal{F})
+  }
 }
 
 \thm{集合の超フィルター}{
@@ -511,17 +510,17 @@
 }{
   $1. \rightarrow 2.$を示す。
 
-  $\mathcal{S} \coloneqq \qty{S \in 2^X \mid A \cup S \in \mathcal{F}}$を考える。定義より$\mathcal{F} \subset \mathcal{S} \land X \setminus A \in \mathcal{S}$である。
+  $A \in \mathcal{F}$のとき明らかであるので、$A \notin \mathcal{F}$のときを考える。
+
+  $\mathcal{S} \coloneqq \qty{S \in 2^X \mid A \cup S \in \mathcal{F}}$について、定義より$\mathcal{F} \subset \mathcal{S} \land X \setminus A \in \mathcal{S}$である。
 
   今、$\forall S_1, S_2 \in \mathcal{S}$について、$A \cup \qty(S_1 \cap S_2) = \qty(A \cup S_1) \cap \qty(A \cup S_2) \in \mathcal{F}$より、$S_1 \cap S_2 \in \mathcal{S}$である。
 
   $S \in \mathcal{S} \land T \in 2^X \land S \subset T$とすると、$A \cup S \in \mathcal{F} \rightarrow A \cup T \in \mathcal{F}$より$T \in \mathcal{S}$
 
-  $A \cup X = X \in \mathcal{F}$より、$X \in \mathcal{S}$である。\\*
+  $A \cup X = X \in \mathcal{F}$より、$X \in \mathcal{S}$である。すなわち、$\mathcal{S} \neq \varnothing$
 
-  $A \in \mathcal{F}$のとき明らか。
-
-  $A \notin \mathcal{F}$のとき、$\varnothing \notin \mathcal{S}$より、$\mathcal{S}$はフィルターでありかつ$\mathcal{F}$の細分である。
+  $\varnothing \notin \mathcal{S}$より、$\mathcal{S}$はフィルターでありかつ$\mathcal{F}$の細分である。
 
   ここで、$\mathcal{F}$は超フィルターであるので$X \setminus A \in \mathcal{S} = \mathcal{F}$\\*
 
@@ -549,7 +548,7 @@
 }
 
 \dfn{普遍}{
-  集合$X$上のネット$\qty(a_\lambda)_{\lambda \in \Lambda}$が以下を満たすとき、$\qty(a_\lambda)_{\lambda \in \Lambda}$は普遍であると呼ぶ。
+  集合$X$上のネット$\qty(x_\lambda)_{\lambda \in \Lambda}$が以下を満たすとき、$\qty(x_\lambda)_{\lambda \in \Lambda}$は普遍であると呼ぶ。
   \eq*{
     \forall A \in 2^X \exists \lambda_0 \in \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset A \lor \qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset X \setminus A)
   }
@@ -563,13 +562,13 @@
 }{
   明らかに$\varnothing \notin \mathcal{F} \land X \in \mathcal{F}$である。\\*
 
-  $F_1, F_2 \in \mathcal{F}$について、定義より$\exists \lambda_1, \lambda_2 \subset \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_1}} \in F_1 \land \qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_2}} \subset F_2)$である。
+  $F_1, F_2 \in \mathcal{F}$について、定義より$\exists \lambda_1, \lambda_2 \subset \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_1}} \subset F_1 \land \qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_2}} \subset F_2)$である。
 
   $\Lambda$が有向集合であることから、$\exists \lambda_3 \in \Lambda \qty(\lambda_1 \preccurlyeq \lambda_3 \land \lambda_2 \preccurlyeq \lambda_3)$であり、$\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_3}} \subset F_1 \cap F_2$。
 
   ゆえに$F_1 \cap F_2 \in \mathcal{F}$である。\\*
 
-  $\forall F \in \mathcal{F} \forall G \in 2^X$について、$F \subset G$ならば定義より明らかに$G \in \mathcal{F}$
+  $\forall F \in \mathcal{F} \forall G \subset 2^X$について、$F \subset G$ならば定義より明らかに$G \in \mathcal{F}$
 }
 
 \lem*{

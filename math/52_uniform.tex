@@ -23,27 +23,19 @@
 
 \lem{基本近縁系の三角性}{
   空でない集合$X$の基本近縁系$\mathcal{V}$について、以下を満たす。
-  \eqg*{
-    \forall V \in \mathcal{V} \exists W \in \mathcal{V} \qty(W^{-1} \circ W \subset V) \\*
-    \forall V \in \mathcal{V} \exists W \in \mathcal{V} \qty(W \circ W^{-1} \subset V)
-  }
-}{
-  \dfnref{基本近縁系}第四式より$\exists S \in \mathcal{V} \qty(S \circ S \subset V)$であり、\dfnref{基本近縁系}第五式より$\exists T \in \mathcal{V} \qty(T \subset S^{-1})$
-
-  \dfnref{基本近縁系}第三式より$\exists W \in \mathcal{V} \qty(W \subset S \cap T)$であり、$W^{-1} \circ W \subset T^{-1} \circ S \subset S \circ S \subset V$
-
-  同様に第二式を示せる。
-}
-
-\lem{基本近縁系の補足}{
-  空でない集合$X$の基本近縁系$\mathcal{V}$を考える。
-
-  $\forall V \in \mathcal{V}$について、\dfnref{基本近縁系}第四式の主張する$W$、\lemref{基本近縁系の三角性}の主張する$W$は、ともに以下を満たす。
   \eq*{
-    W \subset V
+    \forall V \in \mathcal{V} \exists W \in \mathcal{V} \qty(W \subset W^{-1} \circ W \subset \qty(W^{-1} \circ W) \circ W \subset V)
   }
 }{
-  \dfnref{基本近縁系}第二式より$\qty(z, z) \in W$であるので成り立つ。
+  \dfnref{基本近縁系}第四式より$\exists S \in \mathcal{V} \qty(S \circ S \subset V)$であり、$\exists R \in \mathcal{V} \qty(R \circ R \subset S)$である。
+
+  \dfnref{基本近縁系}第五式より$\exists T \in \mathcal{V} \qty(T \subset R^{-1})$である。
+
+  \dfnref{基本近縁系}第三式より$\exists W \in \mathcal{V} \qty(W \subset S \cap T)$である。
+
+  ゆえに、$\qty(W^{-1} \circ W) \circ W \subset \qty(T^{-1} \circ T) \circ S \subset \qty(R \circ R) \circ S \subset S \circ S \subset V$\\*
+
+  \dfnref{基本近縁系}第二式より$\qty(z, z) \in W$であるので、その他の包含関係も成り立つ。
 }
 
 \dfn{近縁系}{
@@ -54,7 +46,7 @@
 }
 
 \lem{近縁系の一意性}{
-  空でない集合$X$の基本近縁系$\mathcal{V}$と集合系$\mathcal{V'} \in 2^{2^X}$について、以下を満たすとき、$\mathcal{V'}$は基本近傍系である。
+  空でない集合$X$の基本近縁系$\mathcal{V}$と集合系$\mathcal{V'} \in 2^{2^X}$について、以下を満たすとき、$\mathcal{V'}$は基本近縁系である。
   \eqg*{
     \forall V' \in \mathcal{V'} \exists V \in \mathcal{V} \qty(V \subset V') \\*
     \forall V \in \mathcal{V} \exists V' \in \mathcal{V'} \qty(V' \subset V)
@@ -82,25 +74,36 @@
 \lem{近縁系は基本近縁系}{
   近縁系$\mathcal{U}$は基本近縁系である。さらに$\mathcal{U}$から\dfnref{近縁系}より定まる近縁系は、$\mathcal{U}$に一致する。
 }{
-  定義より$\forall \mathcal{U} \exists V \in \mathcal{V} \qty(V \subset U)$である。
+  定義より$\forall U \in \mathcal{U} \exists V \in \mathcal{V} \qty(V \subset U)$である。
 
   $\forall V \in \mathcal{V}$について、$V \in \mathcal{U}$である。
 
   \lemref{近縁系の一意性}より成り立つ。
 }
 
+\lem{近縁系の開性}{
+  空でない集合$X$と、$X$の近縁系$\mathcal{U}$について、以下を満たす。
+  \eq*{
+    \forall U \in \mathcal{U} \exists V \in \mathcal{U} \forall \qty(x, y) \in V \exists W \in \mathcal{U} \qty(W[y] \subset V[x] \land V \subset U)
+  }
+}{
+  $V \coloneqq \qty{\qty(x, y) \in X \times X \mid \exists S \in \mathcal{U} \qty(S[x] \times S[y] \subset U)}$を考える。定義より$V \subset U$である。
+
+  \lemref{基本近縁系の三角性}より、$\exists T \in \mathcal{U} \qty(\qty(T^{-1} \circ T) \circ T \subset U)$である。
+
+  $\forall \qty(s, t) \in T$について、$\forall \qty(w, z) \in T[s] \times T[t] \qty(\qty(w, z) \in \qty(T^{-1} \circ T) \circ T \subset U)$であるので、$\qty(s, t) \in V$
+
+  $T \subset V$より、$V \in \mathcal{U}$である。\\*
+
+  $\forall \qty(x, y) \in V$について、$\exists S \in \mathcal{U} \qty(S[x] \times S[y] \subset U)$である。
+
+  \dfnref{基本近縁系}第四式より$\exists W \in \mathcal{U} \qty(W \circ W \in S)$である。
+
+  $\forall z \in W[y]$について$W[z] \subset S[y]$より、$W[x] \times W[z] \subset S[x] \times S[y] \subset U$、すなわち$z \in V[x]$である。
+}
+
 \dfn{一様空間}{
   空でない集合$X$と、$X$上の近縁系$\mathcal{U}$について、順序対$\qty(X, \mathcal{U})$を一様空間と呼ぶ。または単に$X$と書き、一様空間と集合どちらも表すものとする。
-}
-
-\lem*{
-  一様空間$\qty(X, \mathcal{U})$と、$X$の空でない部分集合$A$を考える。$\mathcal{U}$を与える基本近縁系$\mathcal{V}$について、$\qty{\qty(A \times A) \cap V \mid V \in \mathcal{V}}$は集合$A$の基本近縁系である。
-}{
-  定義より明らか。
-}
-
-\dfn{部分一様空間}{
-  一様空間$\qty(X, \mathcal{U})$と、$X$の空でない部分集合$A$を考える。\mlemref{0}の与える基本近縁系の与える近縁系$\mathcal{U'}$について、一様空間$\qty(A, \mathcal{U'})$を部分一様空間と呼ぶ。
 }
 
 \thm{基本近縁系から定まる位相}{
@@ -140,17 +143,19 @@
 }{
   $\forall x \in X \forall B \in \mathcal{B}(x)$を考える。
 
-  定義より$\exists U \in \mathcal{U} \qty(U[x] = B)$であり、\lemref{基本近縁系の三角性}より$\exists V \in \mathcal{U} \qty(V \circ V^{-1} \subset U)$
+  定義より$\exists U \in \mathcal{U} \qty(U[x] = B)$であり、\lemref{基本近縁系の三角性}より$\exists V \in \mathcal{U} \qty(V^{-1} \circ V \subset U)$
 
-  $V[x] \in \mathcal{N}(x)$より、$\exists W \in \mathcal{B}(x) \qty(W \subset V[x])$である。\\*
+  \dfnref{基本近縁系}第五式より、$\exists W \in \mathcal{U} \qty(W \subset V^{-1})$である。
 
-  $\forall y \in \bar{W}$について考える。
+  $W[x] \in \mathcal{N}(x)$より、$\exists D \in \mathcal{B}(x) \qty(D \subset W[x])$である。\\*
 
-  \thmref{閉包}より、$\exists z \in X \qty(z \in W \cap V[y] \subset V[x] \cap V[y])$である。
+  $\forall y \in \bar{D}$について考える。
 
-  $\qty(x, z), \qty(y, z) \in V$より、$\qty(x, y) \in U$である。
+  \thmref{閉包}より、$\exists z \in X \qty(z \in D \cap W[y] \subset W[x] \cap W[y])$である。
 
-  したがって、$\bar{W} \subset U[x] = B$\\*
+  $\qty(x, z), \qty(y, z) \in W$より、$\qty(x, y) \in U$である。
+
+  したがって、$\bar{D} \subset U[x] = B$\\*
 
   \thmref{Vietoris性}より成り立つ。
 }
@@ -199,6 +204,23 @@
 
 \cor*{
   一様同型写像は同相写像。
+}
+
+\lem*{
+  一様空間$\qty(X, \mathcal{U})$と、$X$の空でない部分集合$A$を考える。
+
+  $\mathcal{U}$を与える基本近縁系$\mathcal{V}$について、以下の集合系$\mathcal{V'}$は集合$A$の基本近縁系である。
+  \eq*{
+    \mathcal{V'} \coloneqq \qty{\qty(A \times A) \cap V \mid V \in \mathcal{V}}
+  }
+
+  さらに、$\mathcal{V'}$の与える近縁系と、$\mathcal{U}$からこの補題により与えられる基本近縁系$\mathcal{U'}$、この２つは一致する。
+}{
+  明らか。
+}
+
+\dfn{部分一様空間}{
+  一様空間$\qty(X, \mathcal{U})$と、$X$の空でない部分集合$A$を考える。\mlemref{0}の与える基本近縁系の与える近縁系$\mathcal{U'}$について、一様空間$\qty(A, \mathcal{U'})$を部分一様空間と呼ぶ。
 }
 
 
@@ -360,9 +382,7 @@
 
   \dfnref{基本近縁系}第三式より$S \coloneqq \bigcap \qty{W(V', x) \mid x \in Y} \in \mathcal{V}$である。\\*
 
-  $\forall \qty(w, z) \in S(V')$について、$C$は被覆より$\exists y \in Y(V') \qty(w \in W(V', y)[y])$である。
-
-  \lemref{基本近縁系の補足}より$w \in V(V', y)[y]$である。
+  $\forall \qty(w, z) \in S(V')$について、$C$は被覆より$\exists y \in Y(V') \qty(w \in W(V', y)[y] \subset V(V', y)[y])$である。
 
   $\qty(y, w), \qty(w, z) \in W(V', y)$であり、$\qty(y, z) \in V(V', y)$すなわち$z \in V(V', y)[y]$である。
 
@@ -375,36 +395,115 @@
 \lsubsection{可算な一様構造}
 
 \dfn{可算一様空間}{
-  一様空間$X$が可算な基本近縁系$\mathcal{V}$もつとき、$\qty(X, \mathcal{V})$を可算一様空間と呼ぶ。
-}
-
-\thm{可算一様空間は第一可算}{
-  可算一様空間$X$は第一可算である。
-}{
-  \thmref{基本近縁系から定まる位相}より明らか。
+  一様空間$X$が可算な基本近縁系$\mathcal{V}$もつとき、$\qty(X, \mathcal{U})$を可算一様空間と呼ぶ。
 }
 
 \lem{可算一様空間における基本近傍系の単調列}{
   可算一様空間$\qty(X, \mathcal{U})$について、以下を満たす基本近縁系$\qty(V_n)_{n \in \N}$が存在する。
   \eqg*{
-    \forall n \in \N \qty(\qty(V_{s(n)} \circ V_{s(n)}) \circ V_{s(n)} \subset V_n)
+    \forall n \in \N \qty(\qty(V^{-1}_{s(n)} \circ V_{s(n)}) \circ V_{s(n)} \subset V_n) \\*
+    \forall n \in \N \forall \qty(x, y) \in V_n \exists m \in \N \qty(V_m[y] \subset V_n[x])
   }
 }{
   可算であるので、$\N$からの全射$\varphi$が存在するような基本近縁系$\mathcal{V}$が存在する。\\*
 
   以下のように定めた$V_n$は条件を満たす。
 
-  まず、$V_0 \coloneqq \varphi(0)$とする。$V_0 \in \mathcal{U}$である。
+  まず$\varphi(0)$について、\lemref{近縁系の開性}の定める近縁を$V_0$とする。
 
-  次に、$n \in \N \qty(V_n \in \mathcal{U})$として、\dfnref{基本近縁系}第四式より、$\exists W, W' \in \mathcal{U} \qty(\qty(W \circ W) \circ W \subset W' \circ W' \subset V_n)$である。
+  次に$n \in \N \qty(V_n \in \mathcal{U})$として、\lemref{基本近縁系の三角性}の定める近縁を$W_n$とする。
 
-  ここで、$V_{s(n)} \coloneqq W_n \cap \varphi(s(n))$と定義する。\dfnref{基本近縁系}第三式と\dfnref{近縁系}より、$V_{s(n)} \in \mathcal{U}$である。\\*
+  ここで$W_n \cap \varphi(s(n))$は\dfnref{基本近縁系}第三式より近縁であるので、\lemref{近縁系の開性}の定める近縁が存在して$V_{s(n)}$とする。\\*
 
   定義より、$\forall n \in \N \qty(V_n \in \mathcal{U})$である。\\*
 
   定義と$\varphi$の全射性より、$\forall V \in \mathcal{V} \exists n \in \N \qty(V_n \subset \varphi(n) = V)$である。\\*
 
   \lemref{近縁系の一意性}より、同じ近縁系を与える基本近縁系である。
+}
+
+\thm{可算一様空間の満たす性質}{
+  一様空間$\qty(X, \mathcal{U})$が可算一様ならば、以下の２つを満たす。
+  \begin{itemize}
+    \item $X$は第一可算
+    \item $X$は$T_4$
+  \end{itemize}
+}{
+  第一可算性を示す。\thmref{基本近縁系から定まる位相}より明らか。\\*
+
+  $T_4$であることを示す。$\forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cap F_2 = \varnothing)$とする。
+
+  \lemref{可算一様空間における基本近傍系の単調列}の定める$\qty(V_n)_{n \in \N}$を考える。
+
+  \thmref{閉包}より、$\forall x_1 \in F_1 \exists n_1 \in \N \qty(V_{n_1}[x_1] \cap F_2 = \varnothing)$である。
+
+  同様に、$\forall x_2 \in F_2 \exists n_2 \in \N \qty(V_{n_2}[x_2] \cap F_1 = \varnothing)$である。
+
+  以下の集合$U_1, U_2$を考える。定義より明らかに$F_1 \subset U_1 \land F_2 \subset U_2 \land U_1, U_2 \in \mathcal{O}$である。
+  \eqg*{
+    U_1 \coloneqq \bigcup \qty{V_{s(s(n_1(x)))}[x] \mid x \in F_1} \\*
+    U_2 \coloneqq \bigcup \qty{V_{s(s(n_2(x)))}[x] \mid x \in F_2}
+  }
+
+  $\exists y \in U_1 \cap U_2$とすると、$\exists x_1 \in F_1 \exists x_2 \in F_2 \qty(y \in V_{s(s(n_1(x_1)))}[x_1] \cap V_{s(s(n_2(x_2)))}[x_2])$である。
+
+  $n_1(x_1) \leq n_2(x_2)$とする。
+
+  $\qty(x_1, y), \qty(x_2, y) \in V_{s(s(n_1(x_1)))}$より、$\qty(x_1, y), \qty(y, x_2) \in V_{s(n_1(x_1))}$であるので、$\qty(x_1, x_2) \in V_{n_1(x_1)}$である。
+
+  $x_2 \in V_{n_1(x_1)}[x_1] \cap F_2$より、$n_1$の定義に反する。\\*
+
+  $n_1(x_1) > n_2(x_2)$であるときも、同様に$n_1$の定義に反する。
+
+  したがって、$U_1 \cap U_2 = \varnothing$である。
+}
+
+\thm{可算一様空間について}{
+  可算一様空間$X$について、以下の３つは同値である。
+  \begin{enumerate}
+    \item $X$は第二可算
+    \item $X$は\textit{Lindel\"{o}f}
+    \item $X$は可分
+  \end{enumerate}
+}{
+  $1. \rightarrow 2.$は、\thmref{第二可算空間の満たす性質}より成り立つ。\\*
+
+  \lemref{可算一様空間における基本近傍系の単調列}の定める$\qty(V_n)_{n \in \N}$を考える。\\*
+
+  $2. \rightarrow 3.$を示す。
+
+  $\forall \qty(n, x) \in \N \times X$について、$\forall z \in V_n[x] \exists m \in \N \qty(V_m[z] \subset V_n[x])$であるので、$V_n[x] \in \mathcal{O}$である。
+
+  $n \in \N$について、集合系$D_n \coloneqq \qty{V_n[x] \mid x \in X}$
+
+  $D_n$は開被覆であるので、仮定より可算部分$Y_n$が存在して、$\qty{V_n[y] \mid y \in Y}$は開被覆である。\\*
+
+  $Y \coloneqq \bigcup \qty{Y_n \mid n \in \N}$を考える。\thmref{自然数の直積は可算}より$Y$は可算である。
+
+  $\forall x \in X \forall n \in \N$について、$Y_n$は開被覆より$\exists y \in Y_n \qty(x \in V_{s(n)}[y])$である。
+
+  ゆえに$y \in V_n[x] \cap Y$であるので、$x \in \bar{Y}$\\*
+
+  $3. \rightarrow 1.$を示す。仮定より$X$の可算部分$Y$が存在して、$\bar{Y} = X$である。
+
+  以下の集合$\mathcal{B}$を考える。
+  \eq*{
+    \mathcal{B} \coloneqq \qty{V_n[y] \mid \qty(n, y) \in \N \times Y}
+  }
+
+  \thmref{自然数の直積は可算}より、$\mathcal{B}$は可算。
+
+  $\forall \qty(n, y) \in \N \times Y$について、$\forall z \in V_n[y] \exists m \in \N \qty(V_m[z] \subset V_n[y])$であるので、$V_n[y] \in \mathcal{O}$である。\\*
+
+  $\forall O \in \mathcal{O} \forall x \in O$について、\thmref{基本近傍系の定める位相}より$\exists n \in \N \qty(V_n[x] \subset O)$である。
+
+  $x \in \bar{Y}$より$\exists y \in Y \qty(y \in V_{s(s(n))}[x])$である。
+
+  $V_{s(s(n))} \subset V_{s(n)}^{-1}$より、$x \in V_{s(n)}[y]$である。
+
+  $\forall z \in V_{s(n)}[y]$について$\qty(x, x), \qty(x, y), \qty(y, z) \in V_{s(n)}$より$\qty(x, z) \in V_n$、すなわち$V_{s(n)}[y] \subset V_n[x] \subset O$
+
+  \lemref{開集合系の一意性}より、$\mathcal{B}$は$\mathcal{O}$の開基である。
 }
 
 \thm{可算一様空間における完備}{
@@ -423,25 +522,3 @@
   したがって$\qty(a, x_\mu) \in V_n$
 }
 
-\rem{???}{
-  一様空間$X$について、以下の５つの関係は？
-  \begin{enumerate}
-    \item $X$は可算な基本近縁系を持つ
-    \item $X$は第二可算
-    \item $X$は\textit{Lindel\"{o}f}
-    \item $X$は可分
-    \item $X$は$T_4$
-  \end{enumerate}
-
-  \eq*{
-    \begin{matrix}
-      & & 2. & & \\*
-      & & \updownarrow & & \\*
-      1. \land 4. & \leftrightarrow & 1. \land 2. & \leftrightarrow & 1. \land 3. \\*
-      \downarrow & & \downarrow & \searrow & \downarrow \\*
-      4. & & 1. & & 3. \\*
-      & & \downarrow & \swarrow & \\*
-      & & 5. & &
-    \end{matrix}
-  }
-}

@@ -275,19 +275,10 @@
   \thmref{Q上のArchimedesの原理}より示される。
 }
 
-\thm{実数の位相と一様構造}{
-  $\R$は第二可算である。
+\thmf{$\R$は可算一様}{Rは可算一様}{
+  $\R$は可算一様である。
 }{
-  $\mathcal{B} \coloneqq \qty{\sqty{a, b} \mid a, b \in \R}$は開基である。
-
-  $\mathcal{B'} \coloneqq \qty{\sqty{a', b'} \mid a', b' \in \Q}$を考える。
-  $\mathcal{B'}$は可算である。
-
-  定義より$\mathcal{B'} \subset \mathcal{B}$である。
-
-  \thmref{実数の有理数による近似}より$\forall a, b \in \R \forall x \in \R \qty(a < x < b \rightarrow \exists a', b' \in \Q \qty(a < a' < x < b' < b))$である。
-
-  \lemref{開集合系の一意性}より$\mathcal{B'}$は開基である。
+  \thmref{R上のArchimedesの原理}より、$\mathcal{U} \coloneqq \qty{\qty{\qty(x, y) \mid \abs{x - y} < 1 / s(n)} \mid n \in \N}$は基本近縁系である。
 }
 
 \lem*{
@@ -442,9 +433,7 @@
 \thm{実数の完備性}{
   $\R$は完備である。
 }{
-  ??
-
-  \lemref{R上のCauchy列は収束する}から、\thmref{可算一様空間における完備}より成り立つ。
+  \lemref{R上のCauchy列は収束する}\thmref{Rは可算一様}\thmref{可算一様空間における完備}より完備である。
 }
 
 

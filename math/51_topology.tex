@@ -11,36 +11,19 @@
 }
 
 \dfn{開集合系}{
-  空でない集合$X$について、以下を満たす集合系$\mathcal{O} \in 2^{2^X}$を開集合系、または位相と呼ぶ。
-  \eqg*{
-    X \in \mathcal{O} \\*
-    \forall O_1, O_2 \in \mathcal{O} \qty(O_1 \cap O_2 \in \mathcal{O}) \\*
-    \forall A \in 2^\mathcal{O} \qty(\bigcup A \in \mathcal{O})
+  空でない集合$X$の開基$\mathcal{B}$について、以下で与える集合系$\mathcal{O}$を開集合系と呼ぶ。
+  \eq*{
+    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)}
   }
 
   また、$\mathcal{O}$の要素を開集合と呼ぶ。
 }
 
 \cor*{
-  空でない集合$X$の開集合系$\mathcal{O}$について、
+  空でない集合$X$の開基$\mathcal{B}$と、$\mathcal{B}$の与える開集合系$\mathcal{O}$は、以下を満たす。
   \eq*{
-    \varnothing \in \mathcal{O}
+    \mathcal{B} \subset \mathcal{O}
   }
-}
-
-\thm{開基の定める位相}{
-  空でない集合$X$の開基$\mathcal{B}$について、以下で与える集合系$\mathcal{O}$は開集合系である。
-  \eq*{
-    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)}
-  }
-}{
-  第一式を示す。\dfnref{開基}第一式より、$\forall x \in X \exists B \in \mathcal{B} \qty(x \in B \land B \subset X)$であるので、$X \in \mathcal{O}$\\*
-
-  第二式を示す。$O_1, O_2 \in \mathcal{O}$について、$\forall x \in O_1 \cap O_2 \exists B_1, B_2 \in \mathcal{B} \qty(x \in B_1 \cap B_2 \land B_1 \cap B_2 \subset O_1 \cap O_2)$
-
-  \dfnref{開基}第二式より、$B_1 \cap B_2 \in \mathcal{B}$であるので、$O_1 \cap O_2 \in \mathcal{O}$\\*
-
-  第三式を示す。$A \in 2^\mathcal{O}$について、$\forall x \in \bigcup A \exists O \in \mathcal{O} \exists B \in \mathcal{B} \qty(x \in B \land B \subset O \land O \subset A)$であるので、$\bigcup A \in \mathcal{O}$
 }
 
 \lem{開集合系の一意性}{
@@ -50,7 +33,7 @@
     \forall B \in \mathcal{B} \forall x \in B \exists B' \in \mathcal{B'} \qty(x \in B' \land B' \subset B)
   }
 
-  さらに\thmref{開基の定める位相}の定める開集合系$\mathcal{O}$と$\mathcal{O'}$は一致する。
+  さらに$\mathcal{B}$の定める開集合系と、$\mathcal{B'}$の定める開集合系、この２つは一致する。
 }{
   第一式を考える。\dfnref{開基}第一式から$\exists B \in \mathcal{B}$であり、$\exists x \in X$より、仮定から$\exists B' \in \mathcal{B'}$\\*
 
@@ -63,18 +46,37 @@
   同様に$\forall O' \in \mathcal{O'} \qty(O \in \mathcal{O'})$である。
 }
 
-\lem{開集合系は開基}{
-  空でない集合$X$の開集合系$\mathcal{O}$について、$\mathcal{O}$は開基である。
-
-  さらに開集合系$\mathcal{O}$から\thmref{開基の定める位相}の定める開集合系$\mathcal{O'}$は$\mathcal{O}$に一致する。
+\thm{開集合系の公理}{
+  空でない集合$X$の開集合系$\mathcal{O}$について、以下が成り立つ。
+  \eqg*{
+    X \in \mathcal{O} \\*
+    \forall O_1, O_2 \in \mathcal{O} \qty(O_1 \cap O_2 \in \mathcal{O}) \\*
+    \forall A \in 2^\mathcal{O} \qty(\bigcup A \in \mathcal{O})
+  }
 }{
-  \dfnref{開集合系}第一式、第二式より、開基である。\\*
+  第一式を示す。
 
-  \thmref{開基の定める位相}より$\forall O' \in \mathcal{O'} \forall x \in O' \exists O \in \mathcal{O} \qty(x \in O \land O \subset O')$である。
+  \dfnref{開基}第一式より、$\forall x \in X \exists B \in \mathcal{B} \qty(x \in B \land B \subset X)$であるので、$X \in \mathcal{O}$\\*
 
-  また、\thmref{開基の定める位相}より$\mathcal{O} \subset \mathcal{O'}$を得る。
+  第二式を示す。$O_1, O_2 \in \mathcal{O}$について、$\forall x \in O_1 \cap O_2 \exists B_1, B_2 \in \mathcal{B} \qty(x \in B_1 \cap B_2 \land B_1 \cap B_2 \subset O_1 \cap O_2)$
 
-  \lemref{開集合系の一意性}より成り立つ。
+  \dfnref{開基}第二式より、$\exists B \in \mathcal{B} \qty(x \in B \land B \subset B_1 \cap B_2)$であるので、$O_1 \cap O_2 \in \mathcal{O}$\\*
+
+  第三式を示す。$A \in 2^\mathcal{O}$について、$\forall x \in \bigcup A \exists O \in \mathcal{O} \exists B \in \mathcal{B} \qty(x \in B \land B \subset O \land O \subset \bigcup A)$であるので$\bigcup A \in \mathcal{O}$
+}
+
+\lem{開集合系の公理を満たす集合系}{
+  空でない集合$X$と、\thmref{開集合系の公理}を満たす集合系$\mathcal{O}$を考える。
+
+  このとき$\mathcal{O}$は開基であり、さらに、$\mathcal{O}$の定める開集合系$\mathcal{O'}$は$\mathcal{O}$に一致する。
+}{
+  \thmref{開集合系の公理}第一式、第二式より、開基である。\\*
+
+  \dfnref{開集合系}より$\mathcal{O} \subset \mathcal{O'}$を得る。
+
+  \dfnref{開集合系}より$\forall O' \in \mathcal{O'} \forall x \in O' \exists O_x \in \mathcal{O} \qty(x \in O_x \land O_x \subset O')$である。
+
+  $O' = \bigcup \qty{O_x \mid x \in O'} \in \mathcal{O}$である。
 }
 
 \dfn{位相空間}{
@@ -82,32 +84,6 @@
   または単に$X$と書き、位相空間と集合どちらも表すものとする。
 
   $\mathcal{O}$をとくに位相と呼ぶ。また、位相空間の元を点と呼ぶ。
-}
-
-\lem*{
-  位相空間$\qty(X, \mathcal{O})$と、$X$の空でない部分集合$A$を考える。$\mathcal{O}$を与える開基$\mathcal{B}$について、$\qty{A \cap B \mid B \in \mathcal{B}}$は集合$A$の開基である。
-}{
-  定義より明らか。
-}
-
-\dfn{部分空間}{
-  位相空間$\qty(X, \mathcal{O})$と、$X$の空でない部分集合$A$を考える。\mlemref{0}の与える開基の与える開集合系$\mathcal{O'}$について、位相空間$\qty(A, \mathcal{O'})$を部分空間と呼ぶ。
-}
-
-\lem*{
-  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$と$\mathcal{O}, \mathcal{O'}$を与える開基$\mathcal{B}, \mathcal{B'}$について、$\mathcal{B} \times \mathcal{B'}$は$X \times X'$上の開基である。
-}{
-  \dfnref{開基}第一式より$\forall \qty(x, x') \in X \times X' \exists B \in \mathcal{B} \exists B' \in \mathcal{B'} \qty(x \in B \land x' \in B')$である。ゆえに、$\qty(x, x') \in B \times B'$\\*
-
-  $\forall \qty(B_1, B'_1), \qty(B_2, B'_2) \in \mathcal{B} \times \mathcal{B'}$を考える。
-
-  $\forall \qty(x, x') \in \qty(B_1 \cap B_2, B'_1 \cap B'_2)$について、\dfnref{開基}第二式より$\exists B \in \mathcal{B} \exists B' \in \mathcal{B'} \qty(x \in B \subset B_1 \cap B_2 \land x' \in B' \subset B'_1 \cap B'_2)$
-
-  \corref{共通と直積}より、$\qty(B_1 \cap B_2, B'_1 \cap B'_2) = \qty(B_1, B_2) \cap \qty(B'_1, B'_2)$であるので成り立つ。
-}
-
-\dfn{直積空間}{
-  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$について、\mlemref{0}と\thmref{開基の定める位相}より定まる位相空間$\qty(X \times X', \mathcal{O''})$を直積空間と呼ぶ。また位相$\mathcal{O''}$を箱位相と呼ぶ。
 }
 
 \dfn{連続}{
@@ -129,11 +105,11 @@
 
   $2. \rightarrow 1.$を示す。$O' \in \mathcal{O'}$について考える。
 
-  \dfnref{開集合系}より$\forall x \in O' \exists B' \in \mathcal{B'} \qty(x \in B' \land B' \subset O')$である。
+  \thmref{開集合系の公理}より$\forall x \in O' \exists B' \in \mathcal{B'} \qty(x \in B' \land B' \subset O')$である。
 
   ゆえに、$O' = \bigcup \qty{B'(x) \mid x \in O'}$である。。
 
-  \thmref{原像の性質}より$f^{-1}(O') = \bigcup \qty{f^{-1}(B'(x)) \mid x \in O'}$であるので、\dfnref{開集合系}第三式より示される。
+  \thmref{原像の性質}より$f^{-1}(O') = \bigcup \qty{f^{-1}(B'(x)) \mid x \in O'}$であるので、\thmref{開集合系の公理}第三式より示される。
 }
 
 \thm{連続写像の合成}{
@@ -146,6 +122,107 @@
   位相空間$X, X'$と写像$f \colon X\rightarrow X'$について、$f$が全単射かつ$f$と$f^{-1}$がともに連続であるとき、$f$を同相写像と呼ぶ。
 
   また、同相写像$f \colon X \rightarrow Y$が存在するとき、$X$と$Y$は位相同型または同相であると呼ぶ。
+}
+
+
+\lsubsection{誘導位相}
+
+\lem*{
+  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、$\mathcal{O'}$を与える$X$の開基$\mathcal{B'}$、写像$f \colon X \rightarrow X'$を考える。
+
+  このとき、以下の集合系$\mathcal{B}$は$X$の開基である。
+  \eq*{
+    \mathcal{B} \coloneqq \qty{f^{-1}(B) \mid B \in \mathcal{B'}}
+  }
+
+  さらに、$\mathcal{B}$の与える開集合系$\mathcal{O}_1$と、$\mathcal{O'}$からこの補題により与える開基$\mathcal{O}_2$は一致する。
+}{
+  第一式を考える。$\forall x \in X$について、\dfnref{開基}第一式より$\exists B' \in \mathcal{B'} \qty(f(x) \in B')$であるので、$x \in f^{-1}(B')$\\*
+
+  第二式を考える。$\forall B'_1, B'_2 \in \mathcal{B'}$について考える。
+
+  $\forall x \in f^{-1}(B'_1) \cap f^{-1}(B'_2)$について、\thmref{原像の性質}より$f(x) \in B'_1 \cap B'_2$である。
+
+  ゆえに\dfnref{開基}第二式より$\exists B' \in \mathcal{B'} \qty(f(x) \in B' \land B' \subset B'_1 \cap B'_2)$である。
+
+  \thmref{原像の性質}より$x \in f^{-1}(B') \land f^{-1}(B') \subset f^{-1}(B'_1 \cap B'_2) = f^{-1}(B'_1) \cap f^{-1}(B'_2)$\\*
+
+  \lemref{開集合系の公理を満たす集合系}を用いて、$\mathcal{O}_2$が開集合であることを示す。
+
+  第一式を考える。\thmref{開集合系の公理}第一式より$X' \in \mathcal{O'}$であるので、$X = f^{-1}(X') \in \mathcal{O}_2$
+
+  第二式を考える。\thmref{原像の性質}と\thmref{開集合系の公理}第二式より$\forall O'_1, O'_2 \in \mathcal{O'} \qty(f^{-1}(O'_1) \cap f^{-1}(O'_2) = f^{-1}(O'_1 \cap O'_2) \in \mathcal{O}_2)$
+
+  第三式を考える。\thmref{原像の性質}と\thmref{開集合系の公理}第三式より$\forall A' \in 2^{\mathcal{O'}} \qty(\bigcup  \qty{f^{-1}(O') \mid O' \in A'} = f^{-1}(\bigcup A') \in \mathcal{O}_2)$
+
+  ゆえに$\mathcal{O}_2$は開集合系である。\\*
+
+  $\forall B' \in \mathcal{B'} \forall x \in f^{-1}(B') \qty(f^{-1}(B') \in \mathcal{O}_2 \land x \in f^{-1}(B'))$である。
+
+  $\forall O' \in \mathcal{O'} \forall x \in f^{-1}(O')$について、$\exists B' \in \mathcal{B'} \qty(f(x) \in B' \land B' \subset O')$である。
+
+  よって、\thmref{原像の性質}より$x \in f^{-1}(B') \land f^{-1}(B') \subset f^{-1}(O')$
+
+  \lemref{開集合系の一意性}より成り立つ。
+}
+
+\dfn{誘導空間}{
+  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、写像$f \colon X \rightarrow X'$について、\mlemref{0}より定まる開集合系$\mathcal{O}$が存在する。
+
+  位相空間$\qty(X, \mathcal{O})$を誘導空間と呼ぶ。
+}
+
+\dfn{部分空間}{
+  位相空間$\qty(X, \mathcal{O})$と、$X$の空でない部分集合$A$を考える。
+
+  $f = \id_X \rvert_A$により定まる誘導空間$\qty(A, \mathcal{O}_A)$を部分空間と呼ぶ。
+}
+
+\lem*{
+  位相空間$\qty(X_1, \mathcal{O}_1), \qty(X_2, \mathcal{O}_2)$と$\mathcal{O}_1, \mathcal{O}_2$を与える開基$\mathcal{B}_1, \mathcal{B}_2$を考える。
+
+  このとき、$\mathcal{B}_1 \times \mathcal{B}_2$は$X_1 \times X_2$の開基である。
+
+  さらに、$\mathcal{B}_1, \mathcal{B}_2$の与える開集合系と、$\mathcal{O}_1, \mathcal{O}_2$からこの補題により与える開基の定める開集合系、この２つは一致する。
+}{
+  第一式を考える。
+
+  \dfnref{開基}第一式より$\forall \qty(x_1, x_2) \in X_1 \times X_2 \exists \qty(B_1, B_2) \in \mathcal{B}_1 \times \mathcal{B}_2 \qty(x_1 \in B_1 \land x_2 \in B_2)$である。\\*
+
+  第二式を考える。
+  $\forall \qty(B_{11}, B_{21}), \qty(B_{12}, B_{22}) \in \mathcal{B}_1 \times \mathcal{B}_2 \forall \qty(x_1, x_2) \in \qty(B_{11} \cap B_{12}, B_{21} \cap B_{22})$を考える。
+
+  \dfnref{開基}第二式より$\exists B_1 \in \mathcal{B}_1 \exists B_2 \in \mathcal{B}_2 \qty(x_1 \in B_1 \subset B_{11} \cap B_{12} \land x_2 \in B_2 \subset B_{21} \cap B_{22})$
+
+  \corref{共通と直積}より、$\qty(B_{11} \cap B_{12}, B_{21} \cap B_{22}) = \qty(B_{11}, B_{21}) \cap \qty(B_{12}, B_{22})$であるので成り立つ。\\*
+
+  $\mathcal{B}_1 \times \mathcal{B}_2 \subset \mathcal{O}_1 \times \mathcal{O}_2$である。
+
+  $\forall \qty(O_1, O_2) \in \mathcal{O}_1 \times \mathcal{O}_2 \forall \qty(x_1, x_2) \in \mathcal{O}_1 \times \mathcal{O}_2$について考える。
+
+  \dfnref{開集合系}より$\exists \qty(B_1, B_2) \in \mathcal{B}_1 \times \mathcal{B}_2 \qty(x_1 \in B_1 \land B_1 \subset O_1 \land x_2 \in B_2 \land B_2 \subset O_2)$
+
+  $\qty(x_1, x_2) \in B_1 \times B_2 \land B_1 \times B_2 \subset O_1 \times O_2$である。
+
+  したがって、\lemref{開集合系の一意性}より成り立つ。
+}
+
+\dfn{直積空間}{
+  位相空間$\qty(X_1, \mathcal{O}_1), \qty(X_2, \mathcal{O}_2)$について、\mlemref{0}より定まる位相空間$\qty(X_1 \times X_2, \mathcal{O})$を直積空間と呼ぶ。また位相$\mathcal{O}$を箱位相と呼ぶ。
+}
+
+\lem{直積と連続}{
+  位相空間$\qty(X_1, \mathcal{O}_1), \qty(X_2, \mathcal{O}_2), \qty(Y, \mathcal{O})$について、連続写像$f \colon X_1 \times X_2 \rightarrow Y$を考える。
+
+  このとき、$\forall w \in X_1$について写像$f_w \colon X_2 \ni x \mapsto f(w, x) \in Y$は連続である。
+}{
+  $\forall O \in \mathcal{O}$について、$f_w^{-1}(O) = \qty{x \in X_2 \mid f(w, x) \in O}$である。
+
+  $f$は連続より$\forall x \in f_w^{-1}(O) \exists \qty(O_1, O_2) \in \mathcal{O}_1 \times \mathcal{O}_2 \qty(\qty(w, x) \in O_1 \times O_2 \land O_1 \times O_2 \subset f^{-1}(O))$
+
+  $\forall z \in O_2$について、$\qty(w, z) \in O_1 \times O_2 \subset f^{-1}(O)$より、$f(w, z) \in O$である。したがって$O_2 \subset f_w^{-1}(O)$である。
+
+  $f_w^{-1}(O) = \bigcup \qty{O_2 \mid x \in f_w^{-1}(O)} \in \mathcal{O}_2$より連続。
 }
 
 
@@ -165,61 +242,17 @@
   空でない集合$X$とその点$x \in X$について、$\qty(\mathcal{B}(x), \supset)$は有向集合である。
 }
 
-\thm{開基の定める基本近傍系}{
-  位相空間$\qty(X, \mathcal{O})$と、$\mathcal{O}$を与える$X'$の開基$\mathcal{B}$を考える。
-
-  その任意の点$x$について、以下を満たす集合系$\mathcal{B}(x)$は基本近傍系である。
-  \eq*{
-    \mathcal{B}(x) \coloneqq \qty{B \in \mathcal{B} \mid x \in B}
-  }
-}{
-  第一式を考える。\dfnref{開基}第一式と定義より成り立つ。\\*
-
-  第二式は定義より明らか。\\*
-
-  第三式を考える。\dfnref{開基}第二式より$\exists B \in \mathcal{B} \qty(x \in B \land B \subset B_1 \cap B_2)$が成り立つ。
-
-  ゆえに、$B \in \mathcal{B}(x)$\\*
-
-  第四式を考える。定義より$B = B' = D$として成り立つ。
-}
-
-\thm{基本近傍系の定める位相}{
-  空でない集合$X$とその任意の点$x$について、基本近傍系$\mathcal{B}(x)$が与えられているとする。
-
-  このとき、以下の集合$\mathcal{O}$は$X$の開集合系である。
-  \eq*{
-    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)}
-  }
-
-  さらに開基$\mathcal{B}$について、\thmref{開基の定める位相}の定める開集合系$\mathcal{O}_1$と、\thmref{開基の定める基本近傍系}とこの定理により定まる開集合系$\mathcal{O}_2$は、一致する。
-}{
-  第一式を考える。\dfnref{基本近傍系}第一式より$\forall x \in X \exists B \in \mathcal{B}(x) \qty(B \subset X)$であるので、$X \in \mathcal{O}$\\*
-
-  第二式を考える。$O_1, O_2 \in \mathcal{O}$とする。
-
-  $\forall x \in O_1 \cap O_2$について、定義より$\exists B_1, B_2 \in \mathcal{B}(x) \qty(B_1 \cap B_2 \subset O_1 \cap O_2)$である。
-
-  \dfnref{基本近傍系}第三式より$\exists B \in \mathcal{B} \qty(B \subset B_1 \cap B_2 \subset O_1 \cap O_2)$であるので、$O_1 \cap O_2 \in \mathcal{N}(x)$である。\\*
-
-  第三式を考える。$A \in 2^\mathcal{O}$を考える。
-
-  $A = \varnothing$のとき、$\bigcup A = \bigcup \varnothing = \varnothing \in \mathcal{O}$より成り立つ。
-
-  $A \neq \varnothing$のとき、$\forall x \in \bigcup A$について、$\exists O \in \mathcal{O} \qty(x \in O \subset \bigcup A)$である。
-
-  定義より$\exists B \in \mathcal{B}(x) \qty(B \subset O \subset \bigcup A)$である。定義より示される。\\*
-
-  以下より一致する。
-  \eq*{
-    \mathcal{O}_2 = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)} = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)} = \mathcal{O}_1
-  }
-}
-
 \dfn{近傍系}{
   空でない集合$X$の基本近傍系$\mathcal{B}(x)$について、以下で与える集合系$\mathcal{N}(x)$を近傍系と呼ぶ。
   \eq*{
     \mathcal{N}(x) \coloneqq \qty{N \in 2^X \mid \exists B \in \mathcal{B}(x) \qty(B \subset N)}
+  }
+}
+
+\cor*{
+  空でない集合$X$の基本近傍系$\mathcal{B}(x)$と、$\mathcal{B}(x)$の与える開集合系$\mathcal{N}(x)$は、以下を満たす。
+  \eq*{
+    \forall x \in X \qty(\mathcal{B}(x) \subset \mathcal{N}(x))
   }
 }
 
@@ -230,7 +263,7 @@
     \forall B \in \mathcal{B}(x) \exists B' \in \mathcal{B'}(x) \qty(B' \subset B)
   }
 
-  さらに\dfnref{近傍系}の定める近傍系$\mathcal{N}(x)$と$\mathcal{N'}(x)$は一致する。
+  さらに$\mathcal{B}(x)$の定める近傍系と、$\mathcal{B'}(x)$の定める近傍系、この２つは一致する。
 }{
   第一式を考える。\dfnref{基本近傍系}第一式から$\exists B \in \mathcal{B}(x)$より、仮定から$\exists B' \in \mathcal{B'}(x)$\\*
 
@@ -256,16 +289,86 @@
 }{
   定義より$\forall \mathcal{N}(x) \exists B \in \mathcal{B}(x) \qty(B \subset N)$である。
 
-  $\forall B \in \mathcal{B}(x)$について、$B \in \mathcal{N}(x)$である。
+  $\mathcal{B}(x) \subset \mathcal{N}(x)$である。
 
   \lemref{近傍系の一意性}より成り立つ。
 }
 
-\lem{基本近傍系の定める位相の定める近傍系}{
-  空でない集合$X$と基本近傍系$\mathcal{B}(x)$について、\thmref{基本近傍系の定める位相}と\thmref{開基の定める基本近傍系}の定める基本近傍系$\mathcal{B'}(x)$を考える。
+\thm{開基の定める基本近傍系}{
+  位相空間$\qty(X, \mathcal{O})$と、$\mathcal{O}$を与える$X'$の開基$\mathcal{B}$を考える。
 
-  $\mathcal{B}(x), \mathcal{B'}(x)$から\dfnref{近傍系}より定まる近傍系$\mathcal{N}(x), \mathcal{N'}(x)$について、$\mathcal{N}(x) = \mathcal{N'}(x)$である。
+  $X$の任意の点$x$について、以下を満たす集合系$\mathcal{B}(x)$は基本近傍系である。
+  \eq*{
+    \mathcal{B}(x) \coloneqq \qty{B \in \mathcal{B} \mid x \in B}
+  }
+
+  さらに$\mathcal{B}(x)$の与える近傍系と、$\mathcal{O}$からこの定理の与える基本近傍系$\mathcal{B'}(x)$が与える近傍系、この２つは一致する。
 }{
+  第一式を考える。\dfnref{開基}第一式と定義より成り立つ。\\*
+
+  第二式は定義より明らか。\\*
+
+  第三式を考える。\dfnref{開基}第二式より$\exists B \in \mathcal{B} \qty(x \in B \land B \subset B_1 \cap B_2)$が成り立つ。
+
+  ゆえに、$B \in \mathcal{B}(x)$\\*
+
+  第四式を考える。定義より$B = B' = D$として成り立つ。\\*
+
+  $\mathcal{B} \subset \mathcal{O}$より、$\mathcal{B}(x) \subset \mathcal{B'}(x)$である。
+
+  $\forall B' \in \mathcal{B'}(x)$について、$x \in B' \land \forall y \in B' \exists B \in \mathcal{B} \qty(y \in B \land B \subset B')$である。
+  ゆえに、$\exists B \in \mathcal{B}(x) \qty(B \subset B')$
+
+  \lemref{近傍系の一意性}より成り立つ。
+}
+
+\thm{基本近傍系の定める位相}{
+  空でない集合$X$とその任意の点$x$について、基本近傍系$\mathcal{B}(x)$が与えられているとする。
+
+  このとき、以下の集合$\mathcal{O}$は$X$の開基であり、かつ$\mathcal{O}$の定める開集合系は$\mathcal{O}$である。
+  \eq*{
+    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)}
+  }
+
+  さらに$\mathcal{O}$と、$\mathcal{N}(x)$からこの定理の与える開集合系$\mathcal{O'}$、この２つは一致する。
+}{
+  \lemref{開集合系の公理を満たす集合系}を用いて示す。\\*
+
+  第一式を考える。\dfnref{基本近傍系}第一式より$\forall x \in X \exists B \in \mathcal{B}(x) \qty(B \subset X)$であるので、$X \in \mathcal{O}$\\*
+
+  第二式を考える。$O_1, O_2 \in \mathcal{O}$とする。
+
+  $\forall x \in O_1 \cap O_2$について、定義より$\exists B_1, B_2 \in \mathcal{B}(x) \qty(B_1 \cap B_2 \subset O_1 \cap O_2)$である。
+
+  \dfnref{基本近傍系}第三式より$\exists B \in \mathcal{B} \qty(B \subset B_1 \cap B_2 \subset O_1 \cap O_2)$であるので、$O_1 \cap O_2 \in \mathcal{N}(x)$である。\\*
+
+  第三式を考える。$A \in 2^\mathcal{O}$を考える。
+
+  $A = \varnothing$のとき、$\bigcup A = \bigcup \varnothing = \varnothing \in \mathcal{O}$より成り立つ。
+
+  $A \neq \varnothing$のとき、$\forall x \in \bigcup A$について、$\exists O \in \mathcal{O} \qty(x \in O \subset \bigcup A)$である。
+
+  定義より$\exists B \in \mathcal{B}(x) \qty(B \subset O \subset \bigcup A)$である。定義より示される。\\*
+
+  $\forall x \in X \qty(\mathcal{B}(x) \subset \mathcal{N}(x))$より、$\mathcal{O} \subset \mathcal{O'}$である。
+
+  $\forall O' \in \mathcal{O'} \forall y \in O' \exists N \in \mathcal{N}(x) \exists B \in \mathcal{B}(x) \qty(N \subset B \subset O)$より、$\mathcal{O'} \subset \mathcal{O}$である。
+}
+
+\lem*{
+  空でない集合$X$を考える。\\*
+
+  開基$\mathcal{B}$の定める開集合系$\mathcal{O}$と、\thmref{開基の定める基本近傍系}と\thmref{基本近傍系の定める位相}により定まる開集合系$\mathcal{O'}$は、一致する。\\*
+
+  基本近傍系$\mathcal{B}(x)$について、\thmref{基本近傍系の定める位相}と\thmref{開基の定める基本近傍系}の定める基本近傍系$\mathcal{B'}(x)$を考える。
+
+  $\mathcal{B}(x)$の定める近傍系と、$\mathcal{B'}(x)$の定める近傍系は、一致する。
+}{
+  以下より一致する。
+  \eq*{
+    \mathcal{O'} = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)} = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)} = \mathcal{O}
+  }\\*
+
   定義より、以下である。
   \eq*{
     \mathcal{B'}(x) = \qty{B' \in 2^X \mid x \in B' \land \forall y \in B' \exists D \in \mathcal{B}(y) \qty(D \subset B')}
@@ -372,7 +475,7 @@
 
   $\forall x \in X \forall B' \in \mathcal{B}(f(x))$について、$B' \in \mathcal{B'}$より、$f^{-1}(B') \in \mathcal{O}$である。
 
-  今、$x \in f^{-1}(B')$であるので、\thmref{開基の定める位相}より$\exists B \in \mathcal{B}(x) \qty(B \subset f^{-1}(B'))$となる。
+  今、$x \in f^{-1}(B')$であるので、\dfnref{開集合系}より$\exists B \in \mathcal{B}(x) \qty(B \subset f^{-1}(B'))$となる。
 
   したがって、\corref{像と原像}より$f(B) \subset f(f^{-1}(B')) \subset B'$
 }
@@ -397,13 +500,21 @@
     \forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cup F_2 \in \mathcal{F})
   }
 }{
-  \thmref{De Morganの法則}と\dfnref{開集合系}より示される。
+  \thmref{De Morganの法則}と\thmref{開集合系の公理}より示される。
 }
 
 \dfn{閉包}{
   位相空間$X$と$X$の部分集合$A$について、以下で定義する集合を閉包と呼び、$\bar{A}$で表す。
   \eq*{
     \bar{A} = \bigcap \qty{F \in \mathcal{F} \mid A \subset F}
+  }
+}
+
+\cor*{
+  位相空間$X$について、以下が成り立つ。
+  \eqg*{
+    \forall A, B \in 2^X \qty(A \subset B \rightarrow \bar{A} \subset \bar{B}) \\*
+    \forall D \in 2^{2^X} \qty(\bigcup \qty{\bar{A} \mid A \in D} \subset \bar{\bigcup D})
   }
 }
 
@@ -498,7 +609,7 @@
 
   コンパクトでないと仮定する。その任意の有限部分集合が開被覆とならない$X$の開被覆$C$が存在する。
 
-  $P \coloneqq \qty{A \in C \mid \abs{A} < \infty \land A \neq \varnothing}$について$\qty(P, \subset)$は有向集合であり、
+  $P \coloneqq \qty{A \in 2^C \mid \abs{A} < \infty \land A \neq \varnothing}$について$\qty(P, \subset)$は有向集合であり、
 
   コンパクトでないことから$\forall A \in P \exists x \in X \setminus \bigcup A$である。このようなネット$\qty(x_A)_{A \in P}$を考える。\\*
 
@@ -544,6 +655,32 @@
 
 \cor*{
   位相空間$X$について、$X$がコンパクトならば$X$は\textit{Lindel\"{o}f}である。
+}
+
+\dfn{点列コンパクト}{
+  位相空間$X$について、$X$上の任意の点列が収束する部分列を持つとき、$X$は点列コンパクトであると呼ぶ。
+}
+
+\thm*{
+  \textit{Lindel\"{o}f}で点列コンパクトな位相空間$X$は、コンパクトである。
+}{
+  コンパクトでないと仮定する。その任意の有限部分集合が開被覆とならない$X$の開被覆$C$が存在する。
+
+  仮定より可算な部分開被覆$C' \coloneqq \qty{O_n \mid n \in \N}$が存在する。
+
+  $n \in \N$について、$P_n \coloneqq \qty{O_m \mid m \in \N \land m \leq n}$を考える。
+
+  $C$の定義より$\bigcup P_n \neq X$である。
+
+  したがって、$x_n \in X \setminus \bigcup P_n$なる点列$\qty(x_n)_{n \in \N}$を取れる。
+
+  点列コンパクトより、$a \in X$に収束する部分列$\qty(x_{n(k)})_{k \in \N}$が存在する。
+
+  今、開被覆より$\exists l \in \N \qty(a \in O_l)$であり、収束の定義から$\exists j \in \N \forall j' \in \N \qty(j \leq j' \rightarrow x_{j'} \in O_l)$。
+
+  \dfnref{部分ネット}より$\exists h \in \N \qty(l \leq n(h))$であり、$\forall h' \in \N \qty(h \leq h' \rightarrow a \in X \setminus \bigcup P_{n(h')} \subset X \setminus \bigcup P_{n(l)} \subset X \setminus O_l)$
+
+  矛盾するので、背理法よりコンパクト。
 }
 
 
@@ -912,6 +1049,26 @@
   ゆえに\lemref{近傍系の一意性}より、$\qty(B_n)_{n \in \N}$は$\mathcal{B}(x)$と同じ近傍系を与える基本近傍系である。
 }
 
+\thmf{\textit{Bolzano-Weierstrass}の定理}{Bolzano-Weierstrassの定理}{
+  第一可算でコンパクトな位相空間$X$は、点列コンパクトである。
+}{
+  $X$上の点列$\qty(x_k)_{k \in \N}$について、$\qty(F_k)_{k \in \N}, F_k = \qty{x_l \mid l \in \N \land l \geq k} \in 2^X$を考える。\\*
+
+  $\bigcap \qty{\bar{F_k} \mid k \in \N} = \varnothing$とすると、\lemref{コンパクトの言い換え}より$\exists n \in \N \qty(n > 0 \land \bigcap \qty{\bar{F_{k_m}} \mid m \leq n} = \varnothing)$である。
+
+  $x_{s(k_n)} \in \bigcap \qty{\bar{F_k} \mid k \in \N}$であるので反する。背理法より$\bigcap \qty{\bar{F_k} \mid k \in \N} \neq \varnothing$を得る。\\*
+
+  $\exists a \in X \forall k \in \N \qty(a \in \bar{F_k})$であるので、\lemref{第一可算空間における基本近傍系の単調列}の点列$\qty(B_n)_{n \in \N}$を用いて$\forall j \in \N \qty(F_k \cap B_j(a) \neq \varnothing)$である。
+
+  ここで、以下の写像$\varphi : \N \rightarrow \N$を考える。
+  \eqg*{
+    x_{\varphi(0)} \in B_0(a) \\*
+    x_{\varphi(s(n))} \in F_{s(\varphi(n))} \cap B_n(a)
+  }
+
+  $\qty(x_{\varphi(n)})_{n \in \N}$は部分列であり、$a$に収束する。
+}
+
 \thm{第一可算空間における点連続と収束}{
   第一可算な位相空間$X$、位相空間$X'$、点$x \in X$、写像$f \colon X \rightarrow X'$について、以下の２つは同値である。
   \begin{enumerate}
@@ -954,7 +1111,7 @@
 
   第二可算性より、点列$\qty(B_n)_{n \in \N}$が存在して$\qty{B_n \mid n \in \N}$は開基である。
 
-  開被覆$C$について、\thmref{開基の定める位相}より$\forall x \in X \exists O \in C \exists n \in \N \qty(x \in B_n \land B_n \subset O)$
+  開被覆$C$について、\dfnref{開集合系}より$\forall x \in X \exists O \in C \exists n \in \N \qty(x \in B_n \land B_n \subset O)$
 
   \thmref{選択公理が与える写像}より$n(x)$を考える。このとき、$\qty{B_{n(x)} \mid x \in \N} = \qty{B_m \mid m \in \Im(n)}$は開被覆である。
 
@@ -977,79 +1134,97 @@
   したがって、$x_{B'} \in X \setminus \bar{M} \subset X \setminus M$より矛盾。背理法より示される。
 }
 
-\dfn{点列コンパクト}{
-  位相空間$X$について、$X$上の任意の点列が収束する部分列を持つとき、$X$は点列コンパクトであると呼ぶ。
-}
-
-\thmf{\textit{Bolzano-Weierstrass}の定理}{Bolzano-Weierstrassの定理}{
-  第一可算でコンパクトな位相空間$X$は、点列コンパクトである。
-}{
-  $X$上の点列$\qty(x_k)_{k \in \N}$について、$\qty(F_k)_{k \in \N}, F_k = \qty{x_l \mid l \in \N \land l \geq k} \in 2^X$を考える。\\*
-
-  $\bigcap \qty{\bar{F_k} \mid k \in \N} = \varnothing$とすると、\lemref{コンパクトの言い換え}より$\exists n \in \N \qty(n > 0 \land \bigcap \qty{\bar{F_{k_m}} \mid m \leq n} = \varnothing)$である。
-
-  $x_{s(k_n)} \in \bigcap \qty{\bar{F_k} \mid k \in \N}$であるので反する。背理法より$\bigcap \qty{\bar{F_k} \mid k \in \N} \neq \varnothing$を得る。\\*
-
-  $\exists a \in X \forall k \in \N \qty(a \in \bar{F_k})$であるので、\lemref{第一可算空間における基本近傍系の単調列}の点列$\qty(B_n)_{n \in \N}$を用いて$\forall j \in \N \qty(F_k \cap B_j(a) \neq \varnothing)$である。
-
-  ここで、以下の写像$\varphi : \N \rightarrow \N$を考える。
-  \eqg*{
-    x_{\varphi(0)} \in B_0(a) \\*
-    x_{\varphi(s(n))} \in F_{s(\varphi(n))} \cap B_n(a)
-  }
-
-  $\qty(x_{\varphi(n)})_{n \in \N}$は部分列であり、$a$に収束する。
-}
-
-\thmf{\textit{Bolzano-Weierstrass}の定理の逆}{Bolzano-Weierstrassの定理の逆}{
-  第二可算で点列コンパクトな位相空間$X$は、コンパクトである。
-}{
-  コンパクトでないと仮定する。その任意の有限部分集合が開被覆とならない$X$の開被覆$C$が存在する。
-
-  \thmref{第二可算空間の満たす性質}より可算な部分開被覆$C' \coloneqq \qty{O_n \mid n \in \N}$が存在する。
-
-  $n \in \N$について、$P_n \coloneqq \qty{O_m \mid m \in \N \land m \leq n}$を考える。
-
-  $C$の定義より$\bigcup P_n \neq X$である。
-
-  したがって、$x_n \in X \setminus \bigcup P_n$なる点列$\qty(x_n)_{n \in \N}$を取れる。
-
-  点列コンパクトより、$a \in X$に収束する部分列$\qty(x_{n(k)})_{k \in \N}$が存在する。
-
-  今、開被覆より$\exists l \in \N \qty(a \in O_l)$であり、収束の定義から$\exists j \in \N \forall j' \in \N \qty(j \leq j' \rightarrow x_{j'} \in O_l)$。
-
-  \dfnref{部分ネット}より$\exists h \in \N \qty(l \leq n(h))$であり、$\forall h' \in \N \qty(h \leq h' \rightarrow a \in X \setminus \bigcup P_{n(h')} \subset X \setminus \bigcup P_{n(l)} \subset X \setminus O_l)$
-
-  矛盾するので、背理法よりコンパクト。
-}
-
 
 \lsubsection{順序位相}
 
 \lem{順序の開基}{
-  ２点以上を含む全順序集合$\qty(X, \leq)$について、以下の集合系$\mathcal{B}$は$X$の開基である。
+  空でない全順序集合$\qty(X, \leq)$について、以下を満たす新たな２元$\infty, -\infty$を加えた集合$\hat{X}$を考える。
   \eqg*{
-    \mathcal{D} \coloneqq \qty{\qty{x \in X \mid a < x} \mid a \in X} \cup \qty{\qty{x \in X \mid x < b} \mid b \in X} \\*
-    \mathcal{B} \coloneqq \qty{\bigcap A \mid A \in 2^\mathcal{D} \land \abs{A} < \infty}
+    \forall x \in X \qty(-\infty < x \land x < \infty) \\*
+    \hat{X} \coloneqq X \cup \qty{\infty, -\infty}
+  }
+
+  このとき、以下の集合系$\mathcal{B}$は$X$の開基である。
+  \eq*{
+    \mathcal{B} \coloneqq \qty{\sqty{a, b} \mid \qty(a, b) \in \hat{X} \times \hat{X}}
   }
 }{
-  第一式を示す。２点以上を含むため$\exists c \in X \qty(c < x \lor x < c)$である。ゆえに$\exists D \in \mathcal{D} \qty(x \in D)$である。
+  $\forall B \in \mathcal{B} \qty(-\infty \notin B \land \infty \notin B)$であるので、$\mathcal{B} \in 2^{2^X}$である。\\*
 
-  $x \in D = \bigcap \qty{D} \in \mathcal{B}$より成り立つ。\\*
+  第一式を示す。$\forall x \in X \qty(x \in \sqty{-\infty, \infty})$である。\\*
 
-  第二式を示す。$\forall A_1, A_2 \in 2^{\mathcal{D}} \qty(\abs{A_1} < \infty \land \abs{A_2} \rightarrow \abs{A_1 \cup A_2} < \infty)$より、$\bigcap \qty(A_1 \cup A_2)$は求める集合である。
+  第二式を示す。$\forall a_1, b_1, a_2, b_2 \in \hat{X}$について、$\sqty{a_1, b_1} \cap \sqty{a_2, b_2} = \sqty{\max \qty{a_1, a_2}, \min \qty{b_1, b_2}} \in \mathcal{B}$である。
 }
 
-\dfn{順序位相}{
-  \lemref{順序の開基}と\thmref{開基の定める位相}より定まる位相空間$\qty(X, \mathcal{O})$を順序空間と呼ぶ。
+\cor*{
+  空でない全順序集合$\qty(X, \leq)$について、$X$が最大元、最小元をともに持たないとき、以下の集合系$\mathcal{B'}$は開基である。
+  \eq*{
+    \mathcal{B'} \coloneqq \qty{\sqty{a, b} \mid \qty(a, b) \in X \times X}
+  }
+
+  このとき、\lemref{順序の開基}から得る開集合系と、$\mathcal{B'}$の定める開集合系、この２つは一致する。
 }
 
-\lem{開・閉区間は、開・閉集合}{
+\dfn{順序空間}{
+  \lemref{順序の開基}と\dfnref{開集合系}より定まる位相空間$\qty(X, \mathcal{O})$を順序空間と呼ぶ。
+}
+
+\lem*{
   順序空間$\qty(X, \mathcal{O})$について、開区間は開集合であり、閉区間は閉集合である。
 }{
-  開区間$\sqty{a, b} = \bigcap \qty{\qty{x \in X \mid a < x}, \qty{x \in X \mid x < b}} \in \mathcal{B} \subset \mathcal{O}$である。\\*
+  定義より開区間は開集合である。\\*
 
-  閉区間$\qty[a, b]$を考える。$X \setminus \qty[a, b] = \bigcup \qty{\qty{x \in X \mid x < a}, \qty{x \in X \mid b < x}}$である。
+  閉区間$\qty[a, b]$を考える。$X \setminus \qty[a, b] = \sqty{-\infty, a} \cup \sqty{b, \infty} \in \mathcal{O}$より成り立つ。
+}
 
-	$\qty{x \in X \mid x < a}, \qty{x \in X \mid b < x} \in \mathcal{D} \subset \mathcal{B} \subset \mathcal{O}$より成り立つ。
+\lem*{
+  順序空間$\qty(X, \mathcal{O})$と、$X$の閉集合$F_1, F_2$を考える。
+
+  $F_1 \cap F_2 = \varnothing$であるとき、$\forall x \in F_1$について以下の全てを満たす$a, b \in \hat{X}$が存在する。
+  \begin{itemize}
+    \item $x \in \sqty{a, b}$
+    \item $\sqty{a, b} \cap F_2 = \varnothing$
+    \item $\sqty{a, x} = \varnothing \lor a \in F_1 \lor \qty(a \notin F_2 \land \sqty{a, x} \cap F_1 = \varnothing)$
+    \item $\sqty{x, b} = \varnothing \lor b \in F_1 \lor \qty(b \notin F_2 \land \sqty{x, b} \cap F_1 = \varnothing)$
+  \end{itemize}
+}{
+  \thmref{閉包}より、$\exists p, q \in \hat{X} \qty(x \in \sqty{p, q} \subset X \setminus F_1)$である。
+
+  $\sqty{p, x} = \varnothing$のとき、$a \coloneqq p$で成り立つ。
+
+  $\exists z \in \sqty{p, x} \cap F_1$のとき、$a \coloneqq z$で成り立つ。
+
+  $\exists z \in \sqty{p, x} \land \sqty{p, x} \cap F_1 = \varnothing$のとき、$a \coloneqq z$で成り立つ。
+
+  同様に$b$を定めることができて、条件を満たす。
+}
+
+\thm{順序空間は正規}{
+  順序空間は$T_1$空間かつ$T_4$空間である。
+}{
+  $\forall x \in X$について、\mlemref{-2}より$\qty{x} = \qty[x, x] \in \mathcal{F}$である。\thmref{Frechet性}より、$T_1$である。\\*
+
+  $\forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cap F_2 = \varnothing)$として、$\forall x \in F_1$について考える。
+
+  $x \notin F_2$より\mlemref{-1}の条件を満たす$a_x, b_x \in \hat{X}$が存在する。
+
+  ここで、$U \coloneqq \bigcup \qty{\sqty{a_x, b_x} \mid x \in F_1}$を考える。明らかに$F_1 \subset U \land U \in \mathcal{O}$である。\\*
+
+  $\forall y \in F_2$を考える。$y \notin F_1 = \bar{F_1}$より、$\exists \qty(c, d) \in \hat{X} \times \hat{X} \qty(\sqty{c, d} \cap F_1 = \varnothing)$である。\\*
+
+  $F'_1 \coloneqq \qty{x \in F_1 \mid x < y \land \sqty{a_x, b_x} \cap \sqty{c, d} \neq \varnothing}$とする。
+
+  $\exists x_1, x_2 \in F'_1 \qty(x_1 < x_2)$とすると、$c$の定義と\mlemref{-1}第二式より$x_1 < x_2 < c < b_{x_1} \land b_{x_1} \notin F_1$である。
+
+  これは\mlemref{-1}第四式に反する。
+  ゆえに、$\forall x_1, x_2 \in F'_1 \qty(x_1 = x_2)$である。
+
+  $\exists x \in X \qty(F'_1 = \qty{x})$のときを考える。
+  \mlemref{-1}第四式より$b_x < y$である。$a' \coloneqq b_x$とする。
+
+  $F'_1 = \varnothing$であるとき、$a' \coloneqq c$とする。\\*
+
+  同様に$b'$を定めると、$y \notin U$より$y \in \sqty{a', b'} \land \sqty{a', b'} \cap U = \varnothing$である。\thmref{閉包}より$y \notin \bar{U}$
+
+  よって、$F_2 \subset X \setminus \bar{U}$
 }

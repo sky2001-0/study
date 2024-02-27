@@ -3,9 +3,9 @@
 \lsubsection{整数の構成}
 
 \lem{整数の準備：前順序}{
-  直積集合$\N \times \N$上で以下の自己関係$\preccurlyeq_Z$は前順序である。
+  直積集合$\N^2$上で以下の自己関係$\preccurlyeq_Z$は前順序である。
   \eq*{
-    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N \times \N \qty(\qty(a_1, a_2) \preccurlyeq_Z \qty(b_1, b_2) \defiff a_1 + b_2 \leq b_1 + a_2)
+    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N^2 \qty(\qty(a_1, a_2) \preccurlyeq_Z \qty(b_1, b_2) \defiff a_1 + b_2 \leq b_1 + a_2)
   }
 }{
   反射的である。\\*
@@ -24,18 +24,18 @@
 }
 
 \lem{整数の準備：前順序の全域性}{
-  直積集合$\N \times \N$上で\lemref{整数の準備：前順序}の前順序$\preccurlyeq_Z$は以下を満たす。
+  直積集合$\N^2$上で\lemref{整数の準備：前順序}の前順序$\preccurlyeq_Z$は以下を満たす。
   \eq*{
-    \forall a, b \in \N \times \N \qty(a \preccurlyeq_Z b \lor b \preccurlyeq_Z a)
+    \forall a, b \in \N^2 \qty(a \preccurlyeq_Z b \lor b \preccurlyeq_Z a)
   }
 }{
   \thmref{自然数の全順序}より明らか。
 }
 
 \lem{整数の準備：加法可換群}{
-  直積集合$\N \times \N$上の以下の演算$+$は可換群をなす。
+  直積集合$\N^2$上の以下の演算$+$は可換群をなす。
   \eq*{
-    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N \times \N \qty(\qty(a_1, a_2) + \qty(b_1, b_2) \defiff \qty(a_1 + b_1, a_2 + b_2))
+    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N^2 \qty(\qty(a_1, a_2) + \qty(b_1, b_2) \defiff \qty(a_1 + b_1, a_2 + b_2))
   }
 }{
   結合法則は、\thmref{自然数は可換モノイド}より明らか。
@@ -48,9 +48,9 @@
 }
 
 \lem{整数の準備：可換環}{
-  \lemref{整数の準備：加法可換群}の定める可換群$\qty(\N \times \N, +)$上の以下の演算$\times$は可換環をなす。
+  \lemref{整数の準備：加法可換群}の定める可換群$\qty(\N^2, +)$上の以下の演算$\times$は可換環をなす。
   \eq*{
-    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N \times \N \qty(\qty(a_1, a_2) \times \qty(b_1, b_2) \defiff \qty(a_1 b_1 + a_2 b_2, a_1 b_2 + a_2 b_1))
+    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N^2 \qty(\qty(a_1, a_2) \times \qty(b_1, b_2) \defiff \qty(a_1 b_1 + a_2 b_2, a_1 b_2 + a_2 b_1))
   }
 }{
   結合法則を示す。
@@ -79,16 +79,16 @@
 }
 
 \lem{整数の準備：同値類}{
-  直積集合$\N \times \N$上で以下の自己関係$\sim_Z$は同値類である。
+  直積集合$\N^2$上で以下の自己関係$\sim_Z$は同値類である。
   \eq*{
-    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N \times \N \qty(\qty(a_1, a_2) \sim_Z \qty(b_1, b_2) \defiff \qty(a_1, a_2) \preccurlyeq \qty(b_1, b_2) \land \qty(b_1, b_2) \preccurlyeq \qty(a_1, a_2))
+    \forall \qty(a_1, a_2), \qty(b_1, b_2) \in \N^2 \qty(\qty(a_1, a_2) \sim_Z \qty(b_1, b_2) \defiff \qty(a_1, a_2) \preccurlyeq \qty(b_1, b_2) \land \qty(b_1, b_2) \preccurlyeq \qty(a_1, a_2))
   }
 }{
   \lemref{整数の準備：前順序}より前順序。明らかに対称的であるので、同値類である。
 }
 
 \lem{整数の準備：両立}{
-  直積集合$\N \times \N$上で\lemref{整数の準備：同値類}の同値類$\sim_Z$は、\lemref{整数の準備：前順序}の前順序、\lemref{整数の準備：加法可換群}の加法、\lemref{整数の準備：可換環}の乗法のそれぞれと両立する。
+  直積集合$\N^2$上で\lemref{整数の準備：同値類}の同値類$\sim_Z$は、\lemref{整数の準備：前順序}の前順序、\lemref{整数の準備：加法可換群}の加法、\lemref{整数の準備：可換環}の乗法のそれぞれと両立する。
 }{
   前順序と両立することは、$\sim_Z$の定義と前順序の推移性より明らか。\\*
 
@@ -114,7 +114,7 @@
 }
 
 \dfn{整数}{
-  \lemref{整数の準備：両立}より定まる商マグマ$\qty(\N \times \N) / \sim_Z$を整数と呼び、$\Z$で表す。
+  \lemref{整数の準備：両立}より定まる商マグマ$\N^2 / \sim_Z$を整数と呼び、$\Z$で表す。
   また、その元も整数と呼ぶ。
 
   定義より$\Z$は可換環である。
@@ -158,7 +158,7 @@
 }
 
 \lem*{
-  写像$\varphi \colon \N \rightarrow \Z, \varphi(n) = \qty[\qty(n, 0)]$は以下を満たす。
+  写像$\varphi \in \Z^\N, \varphi(n) = \qty[\qty(n, 0)]$は以下を満たす。
   \begin{enumerate}
     \item 単射
     \item 加法についてモノイド準同型
@@ -182,7 +182,7 @@
 \thmf{整数は\textit{Euclid}整域}{整数はEuclid整域}{
   整数$\Z$は\textit{Euclid}整域である。
 }{
-  以下で定める写像$\sign \colon \Z \rightarrow \qty{1, -1}$を考える。
+  以下で定める写像$\sign \in \qty{1, -1}^\Z$を考える。
   \eq*{
     \sign(x) =
     \begin{cases}
@@ -191,7 +191,7 @@
     \end{cases}
   }
 
-  写像$\abs{} \colon \Z \ni x \rightarrow x \sign(x) \in \Z$を考える。
+  写像$\abs{} \in \Z^\Z, \abs{x} = x \sign(x)$を考える。
 
   ここで、$\abs{\Z} = \N$である。
 

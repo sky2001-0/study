@@ -1,7 +1,9 @@
-\lsection{自己関係}
+\lsection{順序}
+
+\lsubsection{自己関係}
 
 \dfn{自己関係}{
-  空でない集合$X$について、順序対$\qty(\qty(X, X), G)$により特徴づけられる関係を、明示的に$X$上の自己関係、または単に$X$上の関係と呼ぶ。
+  空でない集合$X$について、$X$と$X$の間の関係を、明示的に$X$上の自己関係、または単に$X$上の関係と呼ぶ。
 }
 
 \dfn{反射的}{
@@ -96,117 +98,14 @@
 }
 
 \dfn{前順序との両立}{
-  集合$X$と$X$上の前順序$\preccurlyeq_{X}$、集合$Y$と$Y$上の前順序$\preccurlyeq_{Y}$について、写像$f \colon X \rightarrow Y$が$\preccurlyeq_{X}, \preccurlyeq_{Y}$と両立するとは、以下を満たすことである。
+  集合$X$と$X$上の前順序$\preccurlyeq_{X}$、集合$Y$と$Y$上の前順序$\preccurlyeq_{Y}$について、写像$f \in Y^X$が$\preccurlyeq_{X}, \preccurlyeq_{Y}$と両立するとは、以下を満たすことである。
   \eq*{
     \forall x, y \in X \qty(x \preccurlyeq_{X} y \rightarrow f(x) \preccurlyeq_{Y} f(y))
   }
 }
 
 
-\lsubsection{同値関係}
-
-\dfn{同値関係}{
-  対称的な前順序を、同値関係または単に同値と呼ぶ。同値関係であることを明示的に記号$\sim$で表す。
-}
-
-\dfn{同値類}{
-  空でない集合$X$上で定義された同値関係$\sim$と、$X$の要素$a$について、以下で定義された集合を$a$の同値類と呼ぶ。この$a$を特に代表元と呼ぶ。
-  \eq*{
-    \qty[a] \coloneqq \qty{x \in X \mid x \sim a}
-  }
-}
-
-\cor{直積集合と自明な同値関係}{
-  集合$X, Y$上に同値関係$\sim_X, \sim_Y$が存在するとき、集合$X \times Y$上の以下で定める関係$\sim$は、同値関係である。
-  \eq*{
-    \qty(x, y) \sim \qty(x', y') \defiff x \sim_X x' \land y \sim_Y y'
-  }
-}
-
-\dfn{商集合}{
-  同値関係の定義された空でない集合$X$について、商集合を以下のように定める。
-  \eq*{
-    X / \sim \coloneqq \qty{[x] \mid x \in X}
-  }
-}
-
-\dfn{商写像}{
-  写像$\qty[] \colon X \ni x \mapsto \qty[x] \in X / \sim$を商写像と呼ぶ。
-}
-
-\cor*{
-  商写像は全射である。
-}
-
-\dfn{同値関係との両立}{
-  空でない集合$X$と$X$上の同値関係$\sim_{X}$、集合$Y$について、写像$f \colon X \rightarrow Y$が$\sim_{X}$と両立するとは、以下を満たすことである。
-  \eq*{
-    \forall x, y \in X \qty(x \sim_{X} y \rightarrow f(x) = f(y))
-  }
-}
-
-\dfn{写像に付随する同値関係}{
-  写像$f \colon X \rightarrow Y$について、以下で定める$X$上の関係$\sim_{f}$は同値関係であり、これを写像$f$に付随する同値関係と呼ぶ。
-  \eq*{
-    x \sim_{f} y \defiff f(x) = f(y)
-  }
-}
-
-\cor*{
-  写像$f$に付随する同値関係は、写像$f$と両立する。
-}
-
-\thm{両立}{
-  空でない集合$X$と$X$上の同値関係$\sim_{X}$、空でない集合$Y$と$Y$上の同値関係$\sim_{Y}$について、写像$f \colon X \rightarrow Y$が$\sim_{X}, \sim_{Y}$と両立することは、以下と必要十分である。
-  \eq*{
-    \exists h \in \Map(X / \sim_{X}, Y / \sim_{Y}) \qty(\qty[]_{Y} \circ f = h \circ \qty[]_{X})
-  }
-
-  さらに、上で定まる写像$h$は一意である。
-}{
-  $\qty[]_{X}$は全射より、右逆写像$r$が存在する。
-
-  まず、必要性を示す。$h \coloneqq \qty[]_{Y} \circ f \circ r$を考える。
-
-  今、仮定より以下を満たす。
-  \eq*{
-    \forall x \in X / \sim_{X} \forall z, w \in x \qty(\qty[f(z)]_{Y} = \qty[f(w)]_{Y})
-  }
-
-  ゆえに、$\qty[]_{Y} \circ f = h \circ \qty[]_{X}$を満たす。\\*
-
-  十分性を示す。$\forall x, y \in X $について、$x \sim_{X} y$ならば、$\qty[f(x)]_{Y} = h(\qty[x]_{X}) = h(\qty[y]_{X}) = \qty[f(y)]_{Y}$
-
-  よって、$f(x) \sim_{Y} f(y)$\\*
-
-  一意であることを示す。２つ存在すると仮定すると、$h \circ \qty[]_{X} = h' \circ \qty[]_{X}$
-
-  右から$r$をかけて、$h = h'$。
-}
-
-\lem*{
-  空でない集合$X$と$X$上の同値関係$\sim$、空でない集合$Y$について、写像$f \colon X \rightarrow Y$が$\sim$と両立することは、以下と必要十分である。
-  \eq*{
-    \exists h \in \Map(X / \sim, Y) \qty(f = h \circ \qty[])
-  }
-
-  さらに、上で定まる写像$h$は一意である。
-}{
-  同値関係$y \sim_{Y} y' \defiff y = y'$を考えることにより、\thmref{両立}より示される。
-}
-
-\thm{標準分解}{
-  写像$f \colon X \rightarrow Y$について、全単射$\bar{f} \colon X / \sim_{f} \rightarrow \Im(f)$が存在する。
-}{
-  \mlemref{-1}より、写像$h \colon X / \sim_{f} \rightarrow Y$が存在して、$\Im(h) = \Im(f)$。
-
-  単射であることを示す。$h([x]) = h([y])$のとき、$f(x) = f(y)$より、$[x] = [y]$
-
-  写像$h$の終集合を限定した写像$\bar{f}$は全射となる。
-}
-
-
-\lsubsection{順序}
+\lsubsection{半順序}
 
 \dfn{半順序}{
   反対称的な前順序を、半順序と呼ぶ。
@@ -214,10 +113,8 @@
   空でない集合$A$と$A$上の半順序$\preccurlyeq$について、順序対$\qty(A, \preccurlyeq)$を半順序集合と呼ぶ。または単に$A$と書き、半順序集合と集合どちらも表すものとする。
 }
 
-\lem{包含は順序}{
+\cor*{
   空でない集合$A$について、$\qty(A, \subset)$は半順序集合である。また、$\qty(A, \supset)$も半順序集合である。
-}{
-  \corref{包含の半順序性}より明らか。
 }
 
 \dfn{単調}{
@@ -339,17 +236,17 @@
 \lem*{
   帰納的な半順序集合$\qty(X, \preccurlyeq)$について、以下の集合$\mathcal{T}$、すなわち$X$の全順序部分集合の全体を考える。
   \eq*{
-    \mathcal{T} \coloneqq \qty{T \in 2^X \mid T \neq \varnothing \land \forall x, y \in T \qty(x \preccurlyeq y \lor y \preccurlyeq x)}
+    \mathcal{T} \coloneqq \qty{T \in \P(X) \mid T \neq \varnothing \land \forall x, y \in T \qty(x \preccurlyeq y \lor y \preccurlyeq x)}
   }
 
-  また、$\mathcal{T}$の要素$T$について、以下の写像$U \colon \mathcal{T} \rightarrow 2^X$を考える。
+  以下の写像$U \in \P(X)^{\mathcal{T}}$を考える。
   \eq*{
-    U(T) \coloneqq \qty{u \in X \mid \forall t \in T \qty(t \prec u)}
+    \forall T \in \mathcal{T} \qty(U(T) \coloneqq \qty{u \in X \mid \forall t \in T \qty(t \prec u)})
   }
 
   このとき、以下が成り立つ。
   \eqg*{
-    \forall S \in 2^X \forall T \in \mathcal{T} \qty(S \neq \varnothing \land S \subset T \rightarrow S \in \mathcal{T}) \\*
+    \forall S \in \P(X) \forall T \in \mathcal{T} \qty(S \neq \varnothing \land S \subset T \rightarrow S \in \mathcal{T}) \\*
     \forall T \in \mathcal{T} \qty(U(T) \cap T = \varnothing)
   }
 }{
@@ -361,7 +258,7 @@
 }
 
 \lem*{
-  帰納的な半順序集合$X$が極大元を持たないならば、以下を満たす写像$f \colon \qty{U(T) \mid T \in \mathcal{T}} \rightarrow X$が存在する。
+  帰納的な半順序集合$X$が極大元を持たないならば、以下を満たす写像$f \in X^{\qty{U(T) \mid T \in \mathcal{T}}}$が存在する。
   \eq*{
     f(U) \in U
   }
@@ -376,7 +273,7 @@
 \lem*{
   帰納的な半順序集合$X$が極大元を持たないとき、以下の集合を考える。
   \eqg*{
-    \mathcal{T}_0 \coloneqq \qty{T \in \mathcal{T} \mid \forall S \in 2^T \setminus \qty{\varnothing} \qty(U(S) \setminus U(T) \neq \varnothing \rightarrow f(U(S)) \in T)} \\*
+    \mathcal{T}_0 \coloneqq \qty{T \in \mathcal{T} \mid \forall S \in \P(T) \setminus \qty{\varnothing} \qty(U(S) \setminus U(T) \neq \varnothing \rightarrow f(U(S)) \in T)} \\*
     \mathcal{T}_1 \coloneqq \qty{T \in \mathcal{T}_0 \mid \forall S \in \mathcal{T}_0 \qty(T \setminus S \subset U(S))} \\*
     T^* \coloneqq \bigcup \mathcal{T}_1
   }
@@ -395,7 +292,7 @@
 
   したがって、$T^* \in \mathcal{T}$である。\\*
 
-  $R \in 2^{T^*} \setminus \qty{\varnothing}$について、$\exists v \in U(R) \setminus U(T^*)$とする。
+  $R \in \P \qty(T^*) \setminus \qty{\varnothing}$について、$\exists v \in U(R) \setminus U(T^*)$とする。
 
   $\exists w \in T^* \exists T \in \mathcal{T}_1 \qty(\lnot w \prec v \land w \in T)$より、$\exists T \in \mathcal{T}_1 \qty(v \in U(R) \setminus U(T))$
 
@@ -418,7 +315,7 @@
 
   今、$u$は定義より$T'$の最大元となるので、$T' \in \mathcal{T}$である。\\*
 
-  $S \in 2^{T'} \setminus \qty{\varnothing}$について、$U(S) \setminus U(T') \neq \varnothing$とする。
+  $S \in \P \qty(T') \setminus \qty{\varnothing}$について、$U(S) \setminus U(T') \neq \varnothing$とする。
 
   $u \in S$とすると、$U(S) = U(\qty{u}) = U(T')$より矛盾。したがって、$u \notin S$より、$S \subset T^*$を得る。
 
@@ -480,7 +377,7 @@
   任意のフィルターに対して、その細分である超フィルターが存在する。
 }{
   フィルター$F$に対して、その細分の全体$\mathcal{F}$を考える。
-  \lemref{包含は順序}より半順序集合$\qty(\mathcal{F}, \subset)$を考える。
+  半順序集合$\qty(\mathcal{F}, \subset)$を考える。
 
   $\mathcal{F}$の全順序部分集合$A$に対して、$\bigcup A \in \mathcal{F}$である。
 
@@ -490,7 +387,7 @@
 }
 
 \dfn{集合におけるフィルター}{
-  集合$X$について、半順序集合$\qty(2^X \setminus \qty{\varnothing}, \subset)$のフィルターを、集合$X$のフィルターと呼ぶ。
+  集合$X$について、半順序集合$\qty(\P(X) \setminus \qty{\varnothing}, \subset)$のフィルターを、集合$X$のフィルターと呼ぶ。
 }
 
 \cor*{
@@ -505,18 +402,18 @@
   集合$X$のフィルター$\mathcal{F}$について、以下の２つは同値である。
   \begin{enumerate}
     \item $\mathcal{F}$は超フィルターである
-    \item $\forall A \in 2^X \qty(A \in \mathcal{F} \lor X \setminus A \in \mathcal{F})$
+    \item $\forall A \in \P(X) \qty(A \in \mathcal{F} \lor X \setminus A \in \mathcal{F})$
   \end{enumerate}
 }{
   $1. \rightarrow 2.$を示す。
 
   $A \in \mathcal{F}$のとき明らかであるので、$A \notin \mathcal{F}$のときを考える。
 
-  $\mathcal{S} \coloneqq \qty{S \in 2^X \mid A \cup S \in \mathcal{F}}$について、定義より$\mathcal{F} \subset \mathcal{S} \land X \setminus A \in \mathcal{S}$である。
+  $\mathcal{S} \coloneqq \qty{S \in \P(X) \mid A \cup S \in \mathcal{F}}$について、定義より$\mathcal{F} \subset \mathcal{S} \land X \setminus A \in \mathcal{S}$である。
 
   今、$\forall S_1, S_2 \in \mathcal{S}$について、$A \cup \qty(S_1 \cap S_2) = \qty(A \cup S_1) \cap \qty(A \cup S_2) \in \mathcal{F}$より、$S_1 \cap S_2 \in \mathcal{S}$である。
 
-  $S \in \mathcal{S} \land T \in 2^X \land S \subset T$とすると、$A \cup S \in \mathcal{F} \rightarrow A \cup T \in \mathcal{F}$より$T \in \mathcal{S}$
+  $S \in \mathcal{S} \land T \in \P(X) \land S \subset T$とすると、$A \cup S \in \mathcal{F} \rightarrow A \cup T \in \mathcal{F}$より$T \in \mathcal{S}$
 
   $A \cup X = X \in \mathcal{F}$より、$X \in \mathcal{S}$である。すなわち、$\mathcal{S} \neq \varnothing$
 
@@ -540,7 +437,7 @@
 }
 
 \dfn{部分ネット}{
-  集合$X$上のネット$\qty(x_\lambda)_{\lambda \in \Lambda}$と有向集合$M$について、写像$\varphi : M \rightarrow \Lambda$が以下を満たすとき、$\qty(x_{\varphi(\mu)})_{\mu \in M}$を$\qty(x_\lambda)_{\lambda \in \Lambda}$の部分ネットと呼ぶ。
+  集合$X$上のネット$\qty(x_\lambda)_{\lambda \in \Lambda}$と有向集合$M$について、写像$\varphi \in \Lambda^M$が以下を満たすとき、$\qty(x_{\varphi(\mu)})_{\mu \in M}$を$\qty(x_\lambda)_{\lambda \in \Lambda}$の部分ネットと呼ぶ。
   \eqg*{
     \forall \mu_1, \mu_2 \in M \qty(\mu_1 \preccurlyeq \mu_2 \rightarrow \varphi(\mu_1) \preccurlyeq \varphi(\mu_2)) \\*
     \forall \lambda \in \Lambda \exists \mu \in M \qty(\lambda \preccurlyeq \varphi(\mu))
@@ -550,14 +447,14 @@
 \dfn{普遍}{
   集合$X$上のネット$\qty(x_\lambda)_{\lambda \in \Lambda}$が以下を満たすとき、$\qty(x_\lambda)_{\lambda \in \Lambda}$は普遍であると呼ぶ。
   \eq*{
-    \forall A \in 2^X \exists \lambda_0 \in \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset A \lor \qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset X \setminus A)
+    \forall A \in \P(X) \exists \lambda_0 \in \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset A \lor \qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset X \setminus A)
   }
 }
 
 \thm{ネットの定めるフィルター}{
   集合$X$上のネット$\qty(x_\lambda)_{\lambda \in \Lambda}$について、以下で定める集合系$\mathcal{F}$は$X$のフィルターである。
   \eq*{
-    \mathcal{F} \coloneqq \qty{F \in 2^X \mid \exists \lambda_0 \in \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset F)}
+    \mathcal{F} \coloneqq \qty{F \in \P(X) \mid \exists \lambda_0 \in \Lambda \qty(\qty(x_\lambda)_{\lambda \in \Lambda_{\succcurlyeq \lambda_0}} \subset F)}
   }
 }{
   明らかに$\varnothing \notin \mathcal{F} \land X \in \mathcal{F}$である。\\*
@@ -568,7 +465,7 @@
 
   ゆえに$F_1 \cap F_2 \in \mathcal{F}$である。\\*
 
-  $\forall F \in \mathcal{F} \forall G \subset 2^X$について、$F \subset G$ならば定義より明らかに$G \in \mathcal{F}$
+  $\forall F \in \mathcal{F} \forall G \subset \P(X)$について、$F \subset G$ならば定義より明らかに$G \in \mathcal{F}$
 }
 
 \lem*{
@@ -605,7 +502,7 @@
 
   $\qty(\lambda_4, F_1 \cap F_2)$は、$\qty{\qty(\lambda_1, F_1), \qty(\lambda_2, F_2)}$の上界であるので、$M$は有向集合である。\\*
 
-  ここで、$\varphi \colon M \ni \qty(\lambda, F) \rightarrow \lambda \in \Lambda$とする。
+  ここで、写像$\varphi \in \Lambda^M$を$\varphi \qty(\lambda, F) \coloneqq \lambda$として定める。
 
   \mlemref{-1}より$\forall \lambda \in \Lambda \exists F \in \mathcal{F'} \exists \lambda_1 \in \Lambda \qty(\lambda \preccurlyeq \lambda_1 = \varphi(\lambda_1, F) \land \qty(\lambda_1, F) \in M)$である。
 
@@ -615,7 +512,7 @@
 
   $\forall \qty(\lambda', F') \in M$について、$\qty(\lambda_0, F) \preccurlyeq \qty(\lambda', F')$ならば、$x_{\lambda'} \in F' \subset F$となる。
 
-  よって、$F \in \qty{F \in 2^X \mid \exists \mu_0 \in M \qty(\qty(x_{\varphi(\mu)})_{\mu \in M_{\succcurlyeq \mu_0}} \subset F)}$
+  よって、$F \in \qty{F \in \P(X) \mid \exists \mu_0 \in M \qty(\qty(x_{\varphi(\mu)})_{\mu \in M_{\succcurlyeq \mu_0}} \subset F)}$
 }
 
 \thm{普遍部分ネットの存在}{
@@ -629,3 +526,4 @@
 
   \thmref{集合の超フィルター}より、この部分ネットは普遍である。
 }
+

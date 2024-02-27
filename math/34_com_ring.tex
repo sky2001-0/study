@@ -1,4 +1,4 @@
-\lsection{可換環}
+\lsection{可換環論}
 
 \lsubsection{倍元と約元}
 
@@ -168,7 +168,7 @@
 \dfn{素元分解}{
   整域$D$と元$a \in D$について、以下が成り立つとき、$a$は素元分解可能であると呼ぶ。
   \begin{itemize}
-    \item $\exists n \in \N \exists p \in \Map(n, \mathcal{P}(D)) \exists u \in D^\times \qty(a = u \prod_{m = 0}^n p(m))$
+    \item $\exists n \in \N \exists p \in \mathcal{P}(D)^n \exists u \in D^\times \qty(a = u \prod_{m = 0}^n p(m))$
   \end{itemize}
 }
 
@@ -202,7 +202,7 @@
 }
 
 \thmf{PIDは\textit{Noether}}{PIDはNoether}{
-  単項イデアル整域$D$について、$2^D$上の以下を満たす点列$\qty(I_n)_{n \in \N}$を考える。
+  単項イデアル整域$D$について、$\P(D)$上の以下を満たす点列$\qty(I_n)_{n \in \N}$を考える。
   \begin{itemize}
     \item $\forall n \in \N$について$I_n$はイデアル
     \item $I_n \subset I_{s(n)}$
@@ -279,7 +279,7 @@
 
   \thmref{PIDの素イデアルは極大イデアル}より$\aqty{p'(k)} = \aqty{p(n)}$
 
-  以下の$q \in \Map(n', \mathcal{P}(D))$を考える。
+  以下の$q \in \mathcal{P}(D)^{n'}$を考える。
   \eq*{
     q(m) =
     \begin{cases}
@@ -294,7 +294,7 @@
 }
 
 \dfnf{\textit{Euclid}整域}{Euclid整域}{
-  整域$D$について、以下を満たす写像$f \colon D \setminus \qty{0_D} \rightarrow \N$が存在するとき、$D$を\textit{Euclid}整域と呼ぶ。
+  整域$D$について、以下を満たす写像$f \in \N^{D \setminus \qty{0_D}}$が存在するとき、$D$を\textit{Euclid}整域と呼ぶ。
   \eqg*{
     \forall a \in D \forall b \in D \setminus \qty{0_D} \exists q, r \in D \qty(a = b q + r \land \qty(r = 0_D \lor f(r) < f(b))) \\*
     \forall a, b \in D \setminus \qty{0_D} \qty(f(a) \leq f(a b))
@@ -322,92 +322,12 @@
 }
 
 
-\lsubsection{体}
-
-\dfn{体}{
-  可換環$\qty(\qty(F, +), \times)$が以下を満たすとき、体と呼ぶ。
-  \eq*{
-    F^\times = F \setminus \qty{0_F}
-  }
-
-  さらに、$x \times y^{-1}$を$x / y$と略記する。
-}
-
-\cor*{
-  体は零環ではない。
-}
-
-\dfn{部分体}{
-  体$F$の部分環$R$が、体をなすとき、体$R$を体$F$の部分体と呼ぶ。
-}
-
-\thm{体はED}{
-  体$F$は\textit{Euclid}整域である。
-}{
-  まず、整域であることを示す。
-
-  整域でないとすると、$\forall x, y \in F \qty(x y = 0_F \land x \neq 0_F \land y \neq 0_F)$である。
-
-  $y = x^{-1} x y = x^{-1} 0_F = 0_F$より矛盾。ゆえに整域。
-
-  $\forall a \in F \forall b \in D \setminus \qty{0_D}$について、$q = a b^{-1} \land r = 0_D$として成り立つ。
-}
-
-\thm{極大イデアルと体}{
-  可換環$R$とイデアル$I$について、以下の２つは同値である。
-  \begin{enumerate}
-    \item $I$は極大イデアル
-    \item 剰余環$R / I$は体
-  \end{enumerate}
-}{
-  $1. \rightarrow 2.$を示す。
-
-  $\forall a \in R \qty(\qty[a] \neq 0_{R / I})$を考える。
-
-  $a \notin I$である。ここで、$J \coloneqq \qty{r a + i \mid \qty(r, i) \in R \times I}$を考える。
-
-  定義より$I \subset J$であり、$J$はイデアル。ゆえに$I$の極大性から$J = R$
-
-  したがって$\exists \qty(r, i) \in R \times I \qty(r a + i = 1_R)$である。
-
-  よって$1_{R / I} = \qty[1_R] = \qty[r a + i] = \qty[r] \qty[a] + \qty[i] = \qty[r] \qty[a]$より、$\qty[r] = \qty[a]^{-1}$\\*
-
-  $2. \rightarrow 1.$を示す。
-
-  $I$が極大イデアルでないとする。すなわちイデアル$J$が存在して、$I \subsetneq J \subsetneq R$である。
-
-  $\forall a \in J \setminus I$について、$\qty[a] \neq 0_{R / I}$である。
-
-  体であるので、$\exists b \in R \qty(\qty[b] \qty[a] = \qty[1_R])$である。
-
-  したがって$b a - 1_R \in I \subset J$である。ここで、$a \in J$より$b a \in J$
-
-  イデアルは加法について群をなすので$1_R = b a - \qty(b a - 1_R) \in J$である。したがって$J = R$となり矛盾。
-}
-
-\thm{体準同型は単射}{
-  体$F$、零環ではない環$R$について、環準同型$\varphi \colon F \rightarrow R$は単射である。
-}{
-  $\qty{0_F}$は、\thmref{極大イデアルと体}より、極大イデアルである。
-
-  $\Ker(\varphi)$はイデアルであり、$\qty{0_F} \subset \Ker(\varphi)$である。
-
-  ゆえに、$\Ker(\varphi) = \qty{0_F} \lor \Ker(\varphi) = F$
-
-  零環でない$R$について、$\varphi(1_F) = 1_R \neq 0_R$より、$1_R \notin \Ker(\varphi)$
-
-  したがって、$\Ker(\varphi) = \qty{0_F}$
-
-  \thmref{群準同型の単射性}より単射。
-}
-
-
 \lsubsection{多項式環}
 
 \dfn{多項式環}{
   可換環$R$について、集合$R[X]$を以下のように定義する。
   \eq*{
-    R[X] \coloneqq \qty{\varphi \in \Map(\N, R) \mid \exists N \in \N \forall n \in \N_{\geq N} \qty(\varphi(n) = 0_R)}
+    R[X] \coloneqq \qty{\varphi \in R^\N \mid \exists N \in \N \forall n \in \N_{\geq N} \qty(\varphi(n) = 0_R)}
   }
 
   ここで、$R[X]$上の加法$+$、乗法$\times$を以下のように定める。
@@ -422,7 +342,7 @@
 }
 
 \lem*{
-  以下で定義する写像$\gamma \colon R \rightarrow R[X]$を考える。
+  以下で定義する写像$\gamma \in R[X]^R$を考える。
   \eq*{
     \gamma(a)(n) \coloneqq
     \begin{cases}
@@ -478,7 +398,7 @@
 }
 
 \dfn{多項式の値}{
-  可換環$R$上の多項式環$R[X]$について、以下で定める写像$f \colon R[X] \rightarrow \Map(R, R)$が存在する。
+  可換環$R$上の多項式環$R[X]$について、以下で定める写像$f \in \qty(R^R)^{R[X]}$が存在する。
   \eq*{
     \forall x \in R \qty(f(\varphi)(x) \coloneqq \sum_{n \in s(\deg \varphi)} \varphi(n) \times x^n)
   }

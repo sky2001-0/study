@@ -5,8 +5,8 @@
 \dfn{位相群}{
   群$\qty(G, \cdot)$と、$X$の開集合系$\mathcal{O}$が以下が成り立つとき、順序対$\qty(\qty(G, \cdot), \mathcal{O})$を位相群と呼ぶ。
   \begin{enumerate}
-    \item $\cdot \colon G \times G \rightarrow G$が連続
-    \item $-1 \colon G \rightarrow G$が連続
+    \item $\cdot \in G^{G \times G}$が連続
+    \item $-1 \in G^G$が連続
   \end{enumerate}
 }
 
@@ -21,9 +21,9 @@
 }
 
 \lem{位相群と連続写像}{
-  位相空間$X$と位相群$G$について、連続写像$f \colon X \rightarrow G, g \colon X \rightarrow G$を考える。
+  位相空間$X$と位相群$G$について、連続写像$f \in G^X, g \in G^X$を考える。
 
-  このとき、写像$f \cdot g \colon X \ni x \mapsto f(x) \cdot g(x) \in G$と、写像$\hat{f} \colon X \ni x \mapsto f(x)^{-1} \in G$は連続である。
+  このとき、写像$f \cdot g \in G^X, \qty(f \cdot g) (x) = f(x) \cdot g(x)$と、写像$\hat{f} \in G^X, \hat{f}(x) 0 f(x)^{-1}$は連続である。
 }{
   \dfnref{位相群}と\thmref{連続写像の合成}より成り立つ。
 }
@@ -123,16 +123,16 @@
   環$\qty(\qty(R, +), \times)$と、$X$の開集合系$\mathcal{O}$が以下が成り立つとき、順序対$\qty(\qty(\qty(R, +), \times), \mathcal{O})$を位相環と呼ぶ。
   \begin{enumerate}
     \item $\qty(\qty(R, +), \mathcal{O})$は位相群
-    \item $\times \colon R \times R \rightarrow R$が連続
+    \item $\times \in R^{R \times R}$が連続
   \end{enumerate}
 }
 
 \lem{位相環の条件}{
   位相群$\qty(R, +)$について、$R$が位相環であることは、以下の３つを満たすことと同値である。
   \begin{itemize}
-    \item $\times \colon R \times R \rightarrow R$は、$\qty(0_R, 0_R)$で連続。
-    \item $\forall x_0 \in R$について、$R \ni x \mapsto x_0 x \in R$は、$0_R$で連続。
-    \item $\forall x_0 \in R$について、$R \ni x \mapsto x x_0 \in R$は、$0_R$で連続。
+    \item $\times \in R^{R \times R}$は、$\qty(0_R, 0_R)$で連続。
+    \item $\forall x_0 \in R$について、$l \in R^R, l(x) = x_0 x$は、$0_R$で連続。
+    \item $\forall x_0 \in R$について、$r \in R^R, r(x) = x x_0$は、$0_R$で連続。
   \end{itemize}
 }{
   必要性は明らか。\\*
@@ -149,9 +149,9 @@
 }
 
 \lem{位相環と連続写像}{
-  位相空間$X$と位相環$R$について、連続写像$f \colon X \rightarrow R, g \colon X \rightarrow R$を考える。
+  位相空間$X$と位相環$R$について、連続写像$f \in R^X, g \in R^X$を考える。
 
-  このとき、写像$f \times g \colon X \ni x \mapsto f(x) \times g(x) \in G$は連続である。
+  このとき、写像$f \times g \in G^X, \qty(f \times g)(x) = f(x) \times g(x)$は連続である。
 }{
   \dfnref{位相環}と\thmref{連続写像の合成}より成り立つ。
 }
@@ -160,7 +160,7 @@
   体$\qty(\qty(F, +), \times)$と、$X$の開集合系$\mathcal{O}$が以下が成り立つとき、順序対$\qty(\qty(\qty(F, +), \times), \mathcal{O})$を位相体と呼ぶ。
   \begin{enumerate}
     \item $\qty(\qty(\qty(F, +), \times), \mathcal{O})$は位相環
-    \item $-1 \colon F^\times \rightarrow F^\times$が連続
+    \item $-1 \in \qty(F^\times)^{F^\times}$が連続
   \end{enumerate}
 }
 
@@ -185,8 +185,8 @@
 \thm{順序群は位相群}{
   順序群$\qty(\qty(G, +), \leq)$上の以下の２つの演算は連続である。
   \begin{enumerate}
-    \item $+ \colon G \times G \rightarrow G$
-    \item $- \colon G \rightarrow G$
+    \item $+ \in G^{G \times G}$
+    \item $- \in G^G$
   \end{enumerate}
 }{
   \lemref{順序の開基}の定める開基$\mathcal{B}$を考える。\\*
@@ -271,7 +271,7 @@
 }{
   非自明性より$\exists g \in G^+$である。
 
-  全有界より$\exists Y \in 2^A \qty(\abs{Y} < \infty \land A \subset \qty{B(g)[y] \mid y \in Y})$である。
+  全有界より$\exists Y \in \P(A) \qty(\abs{Y} < \infty \land A \subset \qty{B(g)[y] \mid y \in Y})$である。
 
   \thmref{有限全順序集合の最大元}より$\exists u, d \in G \qty(u = \max Y \land d = \min Y)$である。
 
@@ -323,7 +323,7 @@
 \thm*{
   順序環$R$は位相環である。すなわち、$R$上の以下の演算は連続である。
   \begin{itemize}
-    \item $\times \colon R \times R \rightarrow R$
+    \item $\times \in R^{R \times R}$
   \end{itemize}
 }{
   $\qty(0_R, 0_R)$について考える。
@@ -334,7 +334,7 @@
 
   $B' \coloneqq \sqty{-r, r} \times \sqty{-r, r} \mathcal{B} \times \mathcal{B}$であり、$\times(B') \subset B$\\*
 
-  $\forall x_0 \in R$について、$f \colon R \ni x \rightarrow x \times x_0 \in R$を考える。
+  $\forall x_0 \in R$について、$f \in R^R, f(x) = x \times x_0$を考える。
 
   $x_0 = 0_R$のとき、定値写像より連続。
 
@@ -348,7 +348,7 @@
 \thm*{
   順序体$F$は位相体である。すなわち、$F$上の以下の演算は連続である。
   \begin{itemize}
-    \item $-1 \colon F^\times \rightarrow F^\times$
+    \item $-1 \in \qty(F^\times)^{F^\times}$
   \end{itemize}
 }{
   開基$B = \sqty{a, b} \cap F^\times$を考える。

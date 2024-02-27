@@ -3,7 +3,7 @@
 \lsubsection{マグマ}
 
 \dfn{二項演算}{
-  集合$X$について、写像$\cdot \colon X \times X \rightarrow X$を、$X$上の二項演算、または$X$上の演算と呼ぶ。
+  集合$X$について、写像$\cdot \in X^{X^2}$を、$X$上の二項演算、または$X$上の演算と呼ぶ。
 
   $\cdot(a, b)$を誤解のない範囲で$a \cdot b$とも表す。
 }
@@ -23,16 +23,16 @@
 \lsubsection{マグマと準同型}
 
 \dfn{マグマ準同型}{
-  マグマ$\qty(M, \cdot_{M}), \qty(M', \cdot_{M'})$について以下を満たす写像$\varphi \colon M \rightarrow M'$が存在するとき、$\varphi$をマグマ準同型写像、または単にマグマ準同型と呼ぶ。
+  マグマ$\qty(M_1, \cdot_{M_1}), \qty(M_2, \cdot_{M_2})$について以下を満たす写像$\varphi \in M_2^{M_1}$が存在するとき、$\varphi$をマグマ準同型写像、または単にマグマ準同型と呼ぶ。
   \eq*{
-    \forall x, y \in M \qty(\varphi(x) \cdot_{M'} \varphi(y) = \varphi(x \cdot_{M} y))
+    \forall x, y \in M_1 \qty(\varphi(x) \cdot_{M_2} \varphi(y) = \varphi(x \cdot_{M_1} y))
   }
 
-  また、$\qty(M, \cdot_{M}) = \qty(M', \cdot_{M'})$であるとき、マグマ自己準同型と呼ぶ。
+  また、$\qty(M_1, \cdot_{M_1}) = \qty(M_2, \cdot_{M_2})$であるとき、マグマ自己準同型と呼ぶ。
 }
 
 \cor*{
-  マグマ$M, M', M''$と、マグマ準同型$f \colon M \rightarrow M', g \colon M' \rightarrow M''$について、合成写像$g \circ f$はマグマ準同型である。
+  マグマ$M_1, M_2, M_3$と、マグマ準同型$f \in M_2^{M_1}, g \in M_3^{M_2}$について、合成写像$g \circ f$はマグマ準同型である。
 }
 
 \dfn{埋め込み}{
@@ -48,7 +48,7 @@
 }
 
 \dfn{マグマ準同型の全体}{
-  マグマ$M, M'$について、$M$から$M'$へのマグマ準同型写像全体のなす集合を、$\Hom(M, M')$と表す。
+  マグマ$M_1, M_2$について、$M_1$から$M_2$へのマグマ準同型写像全体のなす集合を、$\Hom(M_1, M_2)$と表す。
 
   また、自己準同型写像の全体を$\End(M) \coloneqq \Hom(M, M)$と表す。
 }
@@ -64,7 +64,7 @@
 }
 
 \cor*{
-  マグマ$M, M'$と、マグマ準同型$f \colon M \rightarrow M'$について、像$f(M)$は$M'$の部分マグマである。
+  マグマ$M_1, M_2$と、マグマ準同型$f \in M_2^{M_1}$について、像$f(M_1)$は$M_2$の部分マグマである。
 }
 
 \dfn{商マグマ}{
@@ -80,14 +80,14 @@
 }
 
 \thm{マグマ準同型定理}{
-  マグマ$\qty(M, \cdot_{M}), \qty(M', \cdot_{M'})$とマグマ準同型$f \colon M \rightarrow M'$、および$f$に付随する同値関係$\sim_{f}$について、
-  マグマ同型$\bar{f} \colon \qty(M / \sim_{f}, \cdot) \rightarrow \qty(\Im(f), \cdot_{M'})$が存在する。
+  マグマ$\qty(M_1, \cdot_{M_1}), \qty(M_2, \cdot_{M_2})$とマグマ準同型$f \in M_2^{M_1}$、および$f$に付随する同値関係$\sim_{f}$について、
+  マグマ同型$\bar{f} \in \qty(\Im(f), \cdot_{M_2})^\qty(M_1 / \sim_{f}, \cdot)$が存在する。
 }{
   \thmref{標準分解}より全単射な$\bar{f}$が存在して、$f = \bar{f} \circ \qty[]$
 
   ゆえに、
   \eq*{
-    \bar{f} (\qty[x] \cdot \qty[y]) = \bar{f} (\qty[x \cdot_{M} y]) = f(x \cdot_{M} y) = f(x) \cdot_{M'} f(y) = \bar{f} (\qty[x]) \cdot_{M'} \bar{f} (\qty[x])
+    \bar{f} (\qty[x] \cdot \qty[y]) = \bar{f} (\qty[x \cdot_{M_1} y]) = f(x \cdot_{M_1} y) = f(x) \cdot_{M_2} f(y) = \bar{f} (\qty[x]) \cdot_{M_2} \bar{f} (\qty[x])
   }
 
   したがってマグマ準同型。
@@ -114,9 +114,10 @@
 }
 
 \thm{一般交換法則}{
-  可換半群$\qty(S, +)$について、$S$の$2$以上の$n \in \N$コの元の演算結果$a_{\sigma(0)} + a_{\sigma(1)} + \cdots + a_{\sigma(n - 1)}$は、順番によらず$a_0 + a_1 + \cdots + a_{n - 1}$に等しい。
-
-  ただし、写像$\sigma$は全単射$n \rightarrow n$とする。
+  可換半群$\qty(S, +)$と点列$a \in S^n$を考える。任意の全単射$\sigma \in n^n$について、以下が成り立つ。
+  \eq*{
+    a_{\sigma(0)} + a_{\sigma(1)} + \cdots + a_{\sigma(n - 1)} = a_0 + a_1 + \cdots + a_{n - 1}
+  }
 }{
   帰納的に示される。
 }
@@ -195,20 +196,20 @@
 \lsubsection{モノイドと準同型}
 
 \dfn{モノイド準同型}{
-  モノイド$M, M'$について、マグマ準同型$\varphi \colon M \rightarrow M'$が以下を満たすとき、$\varphi$をモノイド準同型写像、または単にモノイド準同型と呼ぶ。
+  モノイド$M_1, M_2$について、マグマ準同型$\varphi \in M_2^{M_1}$が以下を満たすとき、$\varphi$をモノイド準同型写像、または単にモノイド準同型と呼ぶ。
   \eq*{
-    \varphi(e_{M}) = e_{M'}
+    \varphi(e_{M_1}) = e_{M_2}
   }
 }
 
 \cor{モノイド準同型の合成}{
-  モノイド$M, M', M''$と、モノイド準同型$f \colon M \rightarrow M', g \colon M' \rightarrow M''$について、合成写像$g \circ f$はモノイド準同型である。
+  モノイド$M_1, M_2, M_3$と、モノイド準同型$f \in M_2^{M_1}, g \in M_3^{M_2}$について、合成写像$g \circ f$はモノイド準同型である。
 }
 
 \dfn{核}{
-  モノイド準同型$\varphi \colon M \rightarrow M'$について、以下の原像を核と呼び、$\Ker(\varphi)$と表す。
+  モノイド準同型$\varphi \in M_2^{M_1}$について、以下の原像を核と呼び、$\Ker(\varphi)$と表す。
   \eq*{
-    \Ker(\varphi) \coloneqq \varphi^{-1}(\qty{e_{M'}})
+    \Ker(\varphi) \coloneqq \varphi^{-1}(\qty{e_{M_2}})
   }
 }
 
@@ -217,7 +218,7 @@
 }
 
 \thm{自己写像の全体}{
-  集合$X$について、順序対$\qty(\Map(X, X), \circ)$はモノイドである。
+  集合$X$について、順序対$\qty(X^X, \circ)$はモノイドである。
 }{
   自明にマグマである。
   \corref{写像の合成の結合法則}より、半群。
@@ -254,7 +255,7 @@
 }
 
 \cor*{
-  モノイド準同型$\varphi \colon M \rightarrow M'$について、$\Ker(\varphi)$は$M$の部分モノイドである。
+  モノイド準同型$\varphi \in M_2^{M_1}$について、$\Ker(\varphi)$は$M$の部分モノイドである。
 }
 
 \cor*{
@@ -262,17 +263,17 @@
 }
 
 \thm{モノイド準同型定理}{
-  モノイド$M, M'$と、モノイド準同型$f \colon M \rightarrow M'$、$f$に付随する同値関係$\sim_{f}$について、モノイド同型$\bar{f} \colon M / \sim_{f} \rightarrow \Im(f)$が存在する。
+  モノイド$M_1, M_2$と、モノイド準同型$f \in M_2^{M_1}$、$f$に付随する同値関係$\sim_{f}$について、モノイド同型$\bar{f} \in \Im(f)^{M_1 / \sim_{f}}$が存在する。
 }{
-  $\Im(f)$は$M'$の部分モノイドである。
+  $\Im(f)$は$M_2$の部分モノイドである。
 
   \thmref{マグマ準同型定理}より、得る$\bar{f}$はマグマ同型。
 
-  今、$\bar{f}(\qty[e_{M}]) = f(e_{M}) = e_{M'}$であるので、示される。
+  今、$\bar{f}(\qty[e_{M_1}]) = f(e_{M_1}) = e_{M_2}$であるので、示される。
 }
 
 \thm{自己準同型の全体}{
-  マグマ$M$について、順序対$\qty(\End(M), \circ)$はモノイド$\qty(\Map(X, X), \circ)$の部分モノイドである。
+  マグマ$M$について、順序対$\qty(\End(M), \circ)$はモノイド$\qty(X^X, \circ)$の部分モノイドである。
 }{
   自明に部分である。
 
@@ -286,13 +287,13 @@
 \lsubsection{指数と総乗}
 
 \lem*{
-  モノイド$\qty(M, \cdot)$について、以下のように帰納的に定める部分写像$\prod \colon \Map(\N, M) \times \N \nrightarrow M$は左全域的である。
+  モノイド$\qty(M, \cdot)$について、以下のように帰納的に定める部分写像$\prod$は$M^\N \times \N$について左全域的である。
   \eqg*{
-    \forall \qty(x_m)_{m \in \N} \in \Map(\N, M) \qty(\prod \qty(\qty(x_m)_{m \in \N}, 0) \coloneqq e) \\*
-    \forall \qty(x_m)_{m \in \N} \in \Map(\N, M) \forall n \in \N \qty(\prod \qty(\qty(x_m)_{m \in \N}, s(n)) \coloneqq \prod \qty(\qty(x_m)_{m \in \N}, n) \cdot x_n)
+    \forall \qty(x_m)_{m \in \N} \in M^\N \qty(\prod \qty(\qty(x_m)_{m \in \N}, 0) \coloneqq e) \\*
+    \forall \qty(x_m)_{m \in \N} \in M^\N \forall n \in \N \qty(\prod \qty(\qty(x_m)_{m \in \N}, s(n)) \coloneqq \prod \qty(\qty(x_m)_{m \in \N}, n) \cdot x_n)
   }
 }{
-  $\forall \qty(\qty(x_m)_{m \in \N}, n) \in \Map(\N, M) \times \N$に対して、$\prod \qty(\qty(x_m)_{m \in \N}, n)$が存在することを示す。
+  $\forall \qty(\qty(x_m)_{m \in \N}, n) \in M^\N \times \N$に対して、$\prod \qty(\qty(x_m)_{m \in \N}, n)$が存在することを示す。
 
   $n = 0$のとき定義より成り立つ。
 
@@ -302,14 +303,14 @@
 }
 
 \dfn{総乗記号}{
-  \mlemref{0}より定まる写像を総和記号と呼び$\prod$で表す。
+  \mlemref{0}より定まる写像$\prod \in M^{M^\N \times \N}$を総乗記号と呼ぶ。
 
   また、$\prod \qty(\qty(x_m)_{m \in \N}, n)$を誤解のない範囲で$\prod_{m \in n} x_m$と略記する。
 
   書き直して再掲する。
   \eqg*{
-    \forall \qty(x_m)_{m \in \N} \in \Map(\N, M) \qty(\prod_{m \in 0} x_m \coloneqq e) \\*
-    \forall \qty(x_m)_{m \in \N} \in \Map(\N, M) \forall n \in \N \qty(\prod_{m \in s(n)} x_m  \coloneqq \qty(\prod_{m \in n} x_m) \cdot x_n)
+    \forall \qty(x_m)_{m \in \N} \in M^\N \qty(\prod_{m \in 0} x_m \coloneqq e) \\*
+    \forall \qty(x_m)_{m \in \N} \in M^\N \forall n \in \N \qty(\prod_{m \in s(n)} x_m  \coloneqq \qty(\prod_{m \in n} x_m) \cdot x_n)
   }
 
   可換モノイドであるとき、可換であることを明示的に$\sum$を、$\prod$の代わりに用いる。
@@ -318,17 +319,17 @@
 \dfn{総和記号}{
   可換モノイド$\qty(M, +)$と、その部分集合$X$について、以下を満たすとする。ただし、$0$は単位元とする。
   \eq*{
-    \exists A \in 2^X \qty(\abs{A} < \infty \land \forall x \in X \setminus A \qty(x = 0))
+    \exists A \in \P(X) \qty(\abs{A} < \infty \land \forall x \in X \setminus A \qty(x = 0))
   }
 
-  このとき、全単射$\abs{A} \rightarrow A$が存在する。集合についての総和記号を以下のように定義する。\thmref{一般交換法則}から一意に定まる。
+  このとき、全単射$\sigma \in A^\abs{A}$が存在する。集合についての総和記号を以下のように定義する。\thmref{一般交換法則}から一意に定まる。
   \eq*{
     \sum X \coloneqq \sum_{m \in \abs{A}} a_m
   }
 }
 
 \dfn{指数}{
-  モノイド$M$について、以下の写像$\text{\textasciicircum } \colon M \times \N \rightarrow M$を指数と呼ぶ。
+  モノイド$M$について、以下の写像$\text{\textasciicircum } \in M^{M \times \N}$を指数と呼ぶ。
   \eq*{
     \text{\textasciicircum } \qty(x, n) \coloneqq \prod_{m \in n} x
   }
@@ -341,8 +342,8 @@
 \lem{モノイド上の指数法則}{
   モノイド$\qty(M, \cdot)$について、以下の２つのモノイド準同型が存在する。
   \begin{enumerate}
-    \item $\forall x \in M$について、$\qty(\N, +) \ni n \mapsto x^n \in M$
-    \item $\qty(\N, \times) \ni n \mapsto \qty(x \mapsto x^n) \in \End(M)$
+    \item $\forall x \in M$について、$\sigma \in M^\qty(\N, +)$であり、$\sigma(n) = x^n$
+    \item $\tau \in \End(M)^{\qty(\N, \times)}$であり、$\tau(n)(x) = x^n$
   \end{enumerate}
 }{
   $1.$を示す。
@@ -363,5 +364,5 @@
 
   \thmref{数学的帰納法}より、任意の$m$について成り立つ。
 
-  $x \mapsto x^1 = x$は$\End(M)$の単位元であるので、モノイドである。
+  $\tau(1)$は$\End(M)$の単位元であるので、モノイドである。
 }

@@ -215,7 +215,7 @@
 }
 
 \lem*{
-  写像$\varphi \colon \Q \rightarrow \R, \varphi(a) = \qty[\qty(a)_{n \in \N}]$は以下を満たす。
+  写像$\varphi \in \R^\Q, \varphi(a) = \qty[\qty(a)_{n \in \N}]$は以下を満たす。
   \begin{enumerate}
     \item 単射
     \item 加法、乗法について環準同型
@@ -282,20 +282,20 @@
 }
 
 \lem*{
-  全単射$\varphi \colon \qty[0, 1] \rightarrow \R$が存在する。
+  全単射$\varphi \in \R^{\qty[0, 1]}$が存在する。
 }{
-  以下の写像は、全単射$f \colon \sqty{0, 1} \rightarrow \R$である。
+  以下の写像は、全単射$f \in \R^{\sqty{0, 1}}$である。
   \eq*{
     f(x) \coloneqq \frac{1 / 2 - x}{x \qty(x - 1)}
   }
 
-  以下の写像は、全単射$g \colon \qty[0, 1] \rightarrow \sqty{0, 1}$である。
+  以下の写像は、全単射$g \in \sqty{0, 1}^{\qty[0, 1]}$である。
   \eq*{
     g(x) \coloneqq
     \begin{cases}
       1 / 2 + 1 / 2^{s(n)} & \qty(\exists n \in \N \qty(1 / 2 + 1 / 2^n = x)) \\*
       1 / 2 - 1 / 2^{s(n)} & \qty(\exists n \in \N \qty(1 / 2 - 1 / 2^n = x)) \\*
-      x & \qty(\text{otherwise})
+      x & \qty(\otherwise)
     \end{cases}
   }
 
@@ -303,13 +303,13 @@
 }
 
 \thm{連続体濃度}{
-  全単射$2^\N \rightarrow \R$が存在する。
+  全単射$\sigma \in \R^{\P(\N)}$が存在する。
 }{
-  $f \colon \R \rightarrow 2^\Q, f(r) = \qty{q \in \Q \mid q < r}$は\thmref{実数の有理数による近似}より単射である。\\*
+  $f \in \P(\Q)^\R, f(r) = \qty{q \in \Q \mid q < r}$は\thmref{実数の有理数による近似}より単射である。\\*
 
-  以下で定める写像$g \colon 2^\N \rightarrow \qty[0, 1]$を考える。
+  以下で定める写像$g \in \qty[0, 1]^{\P(\N)}$を考える。
 
-  $A \in 2^\N$について以下の点列$\qty(y_m)_{m \in \N}$が与えられる。
+  $A \in \P(\N)$について以下の点列$\qty(y_m)_{m \in \N}$が与えられる。
   \eq*{
     y_m \coloneqq
     \begin{cases}
@@ -322,15 +322,15 @@
 
   $A$に対して$\qty[\qty(x_n)_{n \in \N}]$を定める写像$g$は単射である。
 
-  \mlemref{-1}より単射$\varphi$が存在して、単射$\varphi \circ g \colon 2^\N \rightarrow \R$が存在する。\\*
+  \mlemref{-1}より単射$\varphi$が存在して、単射$\varphi \circ g \in \R^{\P(\N)}$が存在する。\\*
 
   \thmref{Bernsteinの定理}より成り立つ。
 }
 
 \thm{実数の直積は連続体濃度}{
-  全単射$\R \rightarrow \R \times \R$が存在する。
+  全単射$\sigma \in \R^{\R \times \R}$が存在する。
 }{
-  \thmref{連続体濃度}と\thmref{自然数の直積は可算}より成り立つ。
+  ??
 }
 
 \thm{有界と全有界}{
@@ -374,7 +374,7 @@
 }{
   \textit{Cauchy}列より$\forall n \in \N \exists N \in \N \forall m, l \in \N_{\geq N} \qty(\abs{x_m - x_l} < 1 / \qty(2 s(n)))$である。
 
-  以下のような写像$N_0 \colon \N \rightarrow \N$を考える。
+  以下のような写像$N_0 \in \N^\N$を考える。
   \eqg*{
     N_0(0) \coloneqq N(0) \\*
     N_0(s(n)) \coloneqq \max \qty{N(s(n)), s(N_0(n))}
@@ -552,10 +552,6 @@
   区間についても同様に示される。
 }
 
-\dfn{関数}{
-  終集合を$\R$とする写像を関数と呼ぶ。
-}
-
 \thm{有界閉集合とコンパクト}{
   $\R$上の部分集合$A$について、以下は同値である。
   \begin{enumerate}
@@ -584,8 +580,19 @@
   背理法より、$A$は閉集合である。
 }
 
+
+\lsubsection{実一変数関数}
+
+\dfn{関数}{
+  終集合を$\R$とする写像を関数と呼ぶ。
+}
+
+\cor*{
+  連続関数$f \in \R^X, g \in \R^X$について、$f + g, f g$は連続である。
+}
+
 \thm{最大値の定理}{
-  空でないコンパクト空間$X$上で定義された連続関数$f \colon X \rightarrow \R$は最大値を持つ。
+  空でないコンパクト空間$X$上で定義された連続関数$f \in \R^X$は最大値を持つ。
 }{
   \thmref{コンパクト空間の連続像はコンパクト}より、$f(X)$はコンパクト。
 
@@ -597,7 +604,7 @@
 }
 
 \thm{中間値の定理}{
-  連結空間$X$上で定義された連続関数$f \colon X \rightarrow \R$について、以下が成り立つ。
+  連結空間$X$上で定義された連続関数$f \in \R^X$について、以下が成り立つ。
   \eq*{
     \forall x_1, x_2 \in X \forall y \in \qty[f(x_1), f(x_2)] \exists x \in X \qty(f(x) = y)
   }

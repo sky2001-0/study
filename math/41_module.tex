@@ -3,23 +3,23 @@
 \lsubsection{加群}
 
 \dfn{左加群}{
-  環$R$、可換群$\qty(V, +)$、\thmref{可換群上の自己準同型全体}の主張する環$\End(V)$について、環準同型$\rho \colon R \rightarrow \End(V)$が存在するとき、順序対$\qty(\qty(V, +), \rho)$を左$R$-加群と呼ぶ。
+  環$R$、可換群$\qty(V, +)$、\thmref{可換群上の自己準同型全体}の主張する環$\End(V)$について、環準同型$\rho \in \End(V)^R$が存在するとき、順序対$\qty(\qty(V, +), \rho)$を左$R$-加群と呼ぶ。
   または単に$V$と書き、左$R$-加群を表すものとする。
 
-  作用の値$\rho(\lambda)(x)$を$\lambda x$と略記する。
+  作用の値$\rho(r)(x)$を$r x$と略記する。
 }
 
 \rem{左加群の補足}{
-  左$R$-加群$\qty(\qty(V, +), \rho)$は以下を満たす。$\forall a, b, c \in V \forall \lambda, \mu \in R$とする。
+  左$R$-加群$\qty(\qty(V, +), \rho)$は以下を満たす。$\forall a, b, c \in V \forall r, s \in R$とする。
   \begin{enumerate}
     \item $V$のマグマ性：$a + b \in V$
     \item $V$の半群性：$a + \qty(b + c) = \qty(a + b) + c$
     \item $V$のモノイド性：$\exists 0_V \coloneqq e$
     \item $V$の群性：$\exists (-a)$
     \item $V$の可換群性：$a + b = b + a$
-    \item 自己準同型性：$\lambda \qty(a + b) = \lambda a + \lambda b$
-    \item $\rho$の群準同型性と$\End(V)$の定義：$\qty(\lambda + \mu) a = \lambda a + \mu a$
-    \item $\rho$のモノイド準同型性：$\lambda \qty(\mu a) = \qty(\lambda \mu) a$
+    \item 自己準同型性：$r \qty(a + b) = r a + r b$
+    \item $\rho$の群準同型性と$\End(V)$の定義：$\qty(r + s) a = r a + s a$
+    \item $\rho$のモノイド準同型性：$r \qty(s a) = \qty(r s) a$
   \end{enumerate}
 }
 
@@ -31,17 +31,17 @@
   左$R$-加群$V$について、以下が成り立つ。
   \eqg*{
     \forall v \in V \qty(0_R v = 0_V) \\*
-    \forall \lambda \in R \forall v \in V \qty(\lambda (-v) = (-\lambda) v = -(\lambda v)) \\*
-    \forall \lambda \in R \forall v \in V \qty(\lambda v = (-\lambda) (-v))
+    \forall r \in R \forall v \in V \qty(r (-v) = (-r) v = -(r v)) \\*
+    \forall r \in R \forall v \in V \qty(r v = (-r) (-v))
   }
 }{
   \lemref{環の性質}と同様に示される。
 }
 
 \dfn{線型}{
-  左$R$-加群$V, V'$について、群準同型$f : V \rightarrow V'$が以下を満たすとき、$f$を加群準同型写像または線型写像と呼ぶ。
+  左$R$-加群$V_1, V_2$について、群準同型$f \in V_2^{V_1}$が以下を満たすとき、$f$を加群準同型写像または線型写像と呼ぶ。
   \eq*{
-    \forall v \in V \forall \lambda \in R \qty(f(\lambda v) = \lambda f(v))
+    \forall v \in V_1 \forall r \in R \qty(f(r v) = r f(v))
   }
 }
 
@@ -59,7 +59,7 @@
 \thm{左加群としての環}{
   環$\qty(\qty(R, +), \times)$と、$R$の部分環$S$を考える。
 
-  以下で定める$\rho \colon S \rightarrow \End(R)$について、順序対$\qty(\qty(R, +), \rho)$は左$S$-加群である。
+  以下で定める$\rho \in \End(R)^S$について、順序対$\qty(\qty(R, +), \rho)$は左$S$-加群である。
   \eq*{
     \forall s \in S \forall r \in R \qty(\rho(s) (r) \coloneqq s \times r)
   }
@@ -68,7 +68,7 @@
 }
 
 \thmf{$\Z$-加群としての可換群}{Z-加群としての可換群}{
-  可換群$\qty(G, +)$を考える。以下で定める$\rho \colon \Z \rightarrow \End(G)$について、順序対$\qty(\qty(G, +), \rho)$は$\Z$-加群である。
+  可換群$\qty(G, +)$を考える。以下で定める$\rho \in \End(G)^\Z$について、順序対$\qty(\qty(G, +), \rho)$は$\Z$-加群である。
   \eq*{
     \rho(n)(g) \coloneqq
     \begin{cases}
@@ -86,14 +86,14 @@
 \dfn{部分加群}{
   左$R$-加群$\qty(\qty(V, +), \rho)$と$V$の部分群$\qty(W, +)$について、以下が成り立つとき$\qty(\qty(W, +), \rho')$を$\qty(\qty(V, +), \rho)$の部分加群と呼ぶ。
   \eq*{
-    \forall v \in W \forall \lambda \in R \qty(\lambda v \in W)
+    \forall v \in W \forall r \in R \qty(r v \in W)
   }
 }
 
 \dfn{商加群}{
   左$R$-加群$\qty(\qty(V, +), \rho)$上の同値関係$\sim$を考える。
 
-  \corref{直積集合と自明な同値関係}の意味で演算$+$と$\sim$が両立かつ、$\forall \lambda \in R$について写像$\rho(\lambda)$が$\sim$と両立するとき、
+  \corref{直積集合と自明な同値関係}の意味で演算$+$と$\sim$が両立かつ、$\forall r \in R$について写像$\rho(r)$が$\sim$と両立するとき、
 
   \thmref{両立}より定める演算$+'$および環準同型$\rho'$が存在する。
 
@@ -101,14 +101,14 @@
 }
 
 \lem*{
-  左$R$-加群$V$とその部分加群$W$について、以下で定める関係$\sim$は\corref{直積集合と自明な同値関係}の意味で演算$+$と両立かつ、$\forall \lambda \in R$について写像$\rho(\lambda)$が$\sim$と両立する同値関係である。
+  左$R$-加群$V$とその部分加群$W$について、以下で定める関係$\sim$は\corref{直積集合と自明な同値関係}の意味で演算$+$と両立かつ、$\forall r \in R$について写像$\rho(r)$が$\sim$と両立する同値関係である。
   \eq*{
     \forall x, y \in V \qty(x \sim y \defiff x + (-y) \in W)
   }
 }{
   \lemref{部分群の定める同値関係}より、$+$と両立する同値関係である。
 
-  $x + (-y) \in W$のとき、\lemref{加群の性質}より、$\forall \lambda \in R \qty(\lambda x + (-(\lambda y)) = \lambda x + \lambda (-y) = \lambda \qty(x + (-y)) \in W)$
+  $x + (-y) \in W$のとき、\lemref{加群の性質}より、$\forall r \in R \qty(r x + (-(r y)) = r x + r (-y) = r \qty(x + (-y)) \in W)$
 
   ゆえに両立する。
 }
@@ -118,13 +118,13 @@
 }
 
 \thm{加群の準同型定理}{
-  左$R$-加群$V, V'$と、線型写像$f \colon V \rightarrow V'$に付随する同値関係$\sim_f$について、加群同型$\bar{f} \colon V / \sim_f \rightarrow \Im(f)$が存在する。
+  左$R$-加群$V_1, V_2$と、線型写像$f \in V_2^{V_1}$に付随する同値関係$\sim_f$について、加群同型$\bar{f} \in \Im(f)^{V / \sim_f}$が存在する。
 }{
-  $\Im(f)$は$V'$の部分左加群である。
+  $\Im(f)$は$V_2$の部分左加群である。
 
   \thmref{群準同型定理}より、得る$\bar{f}$は群同型である。
 
-  今、$\bar{f}(\qty[\lambda v]) = f(\lambda v) = \lambda f(v) = \lambda \bar{f}([v])$であるので線型である。
+  今、$\bar{f}(\qty[r v]) = f(r v) = r f(v) = r \bar{f}([v])$であるので線型である。
 }
 
 
@@ -133,7 +133,7 @@
 \dfn{線型包}{
   左$R$-加群$V$について、$V$の部分集合$W$を考える。このとき、以下で定める集合$\Span W$は$V$の部分加群である。
   \eq*{
-    \Span W \coloneqq \qty{v \in V \mid \exists n \in \N \exists \qty(r_m, w_m)_{m \in \N} \in \Map(\N, R \times W) \qty(v = \sum_{m \in n} r_m w_m)}
+    \Span W \coloneqq \qty{v \in V \mid \exists n \in \N \exists \qty(r_m, w_m)_{m \in \N} \in \qty(R \times W)^\N \qty(v = \sum_{m \in n} r_m w_m)}
   }
 
   これを線型包と呼ぶ。
@@ -149,14 +149,14 @@
 \dfn{一次独立}{
   左$R$-加群$V$と、$V$の部分集合$W$が以下を満たすとき、$W$は一次独立であると呼ぶ。
   \eq*{
-    \forall n \in \N \forall \qty(r_m, w_m)_{m \in \N} \in \Map(\N, R \times W) \qty(\sum_{m \in n} r_m w_m = 0_V \rightarrow \forall m \in n \qty(r_m = 0_R))
+    \forall n \in \N \forall \qty(r_m, w_m)_{m \in \N} \in \qty(R \times W)^\N \qty(\sum_{m \in n} r_m w_m = 0_V \rightarrow \forall m \in n \qty(r_m = 0_R))
   }
 }
 
 \lem{一次独立と一意性}{
   左$R$-加群$V$と、$V$の一次独立な部分集合$W$について、以下が成り立つ。
 
-  $\exists n_1, n_2 \in \N \exists \qty(r_{1, m}, w_{1, m})_{m \in \N}, \qty(r_{2, m'}, w_{2, m'})_{m' \in \N} \in \Map(\N, R \times W)$について、
+  $\exists n_1, n_2 \in \N \exists \qty(r_{1, m}, w_{1, m})_{m \in \N}, \qty(r_{2, m'}, w_{2, m'})_{m' \in \N} \in \qty(R \times W)^\N$について、
   \eq*{
     \sum_{m \in n_1} r_{1, m} w_{1, m} = \sum_{m' \in n_2} r_{2, m'} w_{2, m'} \rightarrow \forall m \in n_1 \qty(r_{1, m} = 0_R \lor \exists m' \in n_2 \qty(r_{1, m} = r_{2, m'} \land w_{1, m} = w_{2, m'}))
   }
@@ -172,115 +172,33 @@
   基底を持つ左$R$-加群を自由加群と呼ぶ。
 }
 
-\thm{基底の存在}{
-  体$F$について、$\qty{0_V}$でない$F$-加群$V$は自由加群である。
-}{
-  $\mathcal{S} \coloneqq \qty{S \in 2^V \mid \text{$S$は一次独立}}$について$\qty(\mathcal{S}, \subset)$は半順序集合である。
-
-  $\exists v \in V \setminus \qty{0_V}$について、$\exists \lambda \in F \qty(\lambda v = 0_V)$と仮定すると、$F$は体であることより$v = \lambda^{-1} 0_V = 0_V$となり反する。
-
-  ゆえに、$\qty{v} \in \mathcal{S}$\\*
-
-  $\mathcal{S}$の全順序部分$T$を考える。
-
-  $\forall n \in \N \forall \qty(x_m)_{m \in n} \in \Map(n, \bigcup T)$について、$\forall m \in n \exists S_m \in T \qty(x_m \in S_m)$
-
-  $\qty{S_m \mid m \in n}$は全順序な有限集合であるので、\thmref{有限全順序集合の最大元}より最大元を持つ。
-
-  ゆえに、$\bigcup T$は一次独立すなわち、$\bigcup T \in \mathcal{S}$
-
-  したがって$\mathcal{S}$は帰納的である。
-
-  \thmref{Zornの補題}より、極大元$S_0$が存在する。\\*
-
-  $S_0$が生成系でないと仮定すると、一次独立な新たな元がとれるので、極大性に反する。
-}
-
-\lem{次元}{
-  体$F$について、$F$-加群$V$を考える。$V$の任意の基底$B, B'$について、全単射$f \colon B \rightarrow B'$が存在する。
-}{
-  $P \coloneqq \qty{\varphi \in \bigcup \qty{\Map(D, B') \mid D \in 2^B \land B \cap B' \subset D} \mid \varphi \rvert_{B \cap B'} = \id_{B \cap B'} \land C(\varphi) \coloneqq \dom(\varphi) \cup \qty(B' \setminus \Im(\varphi)) \text{は一次独立}}$を考える。
-
-  ここで$p \colon B \cap B' \rightarrow B'$について、$B'$が基底であることから$p \in P$である。
-
-  $P$上の半順序$\preccurlyeq$を以下のように定義する。
-  \eq*{
-    \varphi \preccurlyeq \psi \defiff \dom(\varphi) \subset \dom(\psi) \land \psi \rvert_{\dom(\varphi)} = \varphi
-  }
-
-  $P$の全順序部分$Q$を考える。
-
-  自明な単射$q \colon \bigcup \qty{\dom(\varphi) \mid \varphi \in Q} \rightarrow B'$が存在する。
-
-  $C(q)$が一次独立でないとすると、$\exists C' \in 2^{C(q)} \qty(\abs{C'} < \infty \land C' \text{は一次独立でない})$
-
-  $\forall c \in C' \exists \varphi_c \in Q \qty(c \in \dom(\varphi_c) \cup B')$であり、\thmref{有限全順序集合の最大元}より、$\qty{\varphi_c \mid c \in C'} \subset Q$は最大元$\varphi_q$を持つ。
-
-  ここで、$\Im(\varphi_q) \subset \Im(q)$であるので、$C' \subset C(\varphi_q)$であり、$C(\varphi_q)$が一次独立であることに反する。
-
-  ゆえに$q$は上界であり、すなわち$P$は帰納的である。
-
-  \thmref{Zornの補題}より、極大元$\sigma$が存在する。\\*
-
-  $\exists b' \in B' \setminus \Im(\sigma)$であるとする。このとき$b' \notin B$より、$b' \notin \dom(\sigma)$である。
-
-  $H \coloneqq \Span \qty(C(\sigma) \setminus \qty{b'})$を考える。一次独立性から$b' \notin H$
-
-  ここで$B$は基底より、$\exists n \in \N \exists \qty(r_m, b_m)_{m \in \N} \in \Map(\N, R \times B) \qty(b' = \sum_{m \in n} r_m b_m)$と書ける。
-
-  $b' \notin H$より、$\exists m \in n \qty(b_m \notin H)$であり、$b_m \notin \dom(\sigma)$である。
-
-  今、以下を満たす写像$\tau \colon \dom(\sigma) \cup \qty{b_m} \rightarrow B'$を考える。
-  \eq*{
-    \tau \rvert_{\dom(\sigma)} = \sigma \land \tau(b_m) = b'
-  }
-
-  $b' \notin \Im(\sigma)$より単射。$F$は体より、$C(\tau) = \qty(C(\sigma) \setminus \qty{b'}) \cup \qty{b_m}$は一次独立である。
-
-  ゆえに$\tau \in P$であり$\sigma \prec \tau$より、$\sigma$の極大性に反する。
-
-  背理法より$\sigma$は全射である。
-  \thmref{全射と右逆写像}より、単射な右逆写像$B' \rightarrow B$が存在する。\\*
-
-  同様に、単射$B \rightarrow B'$が存在する。
-
-  \thmref{Bernsteinの定理}より、全単射$f \colon B \rightarrow B'$が存在する。
-}
-
-\dfn{次元}{
-  体$F$について、$F$-加群$V$について考える。
-
-  \thmref{基底の存在}より、$V$は基底$B$を持つ。$B$が有限であるとき、\lemref{次元}より、$V$の基底の要素数は一意に定まる。
-  この要素数を、$V$の次元$\dim V$と呼ぶ。
-}
-
 
 \lsubsection{加群の双対}
 
 \lem*{
   可換環$R$と、$R$-加群$\qty(V, \rho)$について、以下で定める順序対$\qty(\Hom_R(V, R), \rho')$は$R$-加群である。
   \eq*{
-    \forall f \in \Hom_R(V, R) \forall \lambda \in R \forall v \in V \qty(\rho'(\lambda)(f) (v) \coloneqq f \circ \rho(\lambda)(v))
+    \forall f \in \Hom_R(V, R) \forall r \in R \forall v \in V \qty(\rho'(r)(f) (v) \coloneqq f \circ \rho(r)(v))
   }
 }{
   \thmref{可換群上の準同型全体}より、$\Hom_R(V, R)$は可換群である。
 
   $\rho$の環準同型性より、以下が成り立つ。
   \eqa*{
-    \rho'(\lambda + \mu)(f) (v)
-    &= f \circ \rho(\lambda + \mu)(v) \\*
-    &= f \qty(\rho(\lambda)(v) + \rho(\mu)(v)) \\*
-    &= f \circ \rho(\lambda) (v) + f \circ \rho(\mu) (v) \\*
-    &= \qty(\rho'(\lambda)(f) + \rho'(\lambda)(g)) (v)
+    \rho'(r + s)(f) (v)
+    &= f \circ \rho(r + s)(v) \\*
+    &= f \qty(\rho(r)(v) + \rho(s)(v)) \\*
+    &= f \circ \rho(r) (v) + f \circ \rho(s) (v) \\*
+    &= \qty(\rho'(r)(f) + \rho'(r)(g)) (v)
   }
 
   \eqa*{
-    \rho'(\mu \lambda)(f) (v)
-    &= \rho'(\lambda \mu)(f) (v) \\*
-    &= f \circ \rho(\lambda \mu)(v) \\*
-    &= f \circ \rho(\lambda) \circ \rho(\mu) (v) \\*
-    &= \rho'(\lambda) (f) \circ \rho(\mu) (v) \\*
-    &= \rho'(\mu) \circ \rho'(\lambda) (f) (v)
+    \rho'(s r)(f) (v)
+    &= \rho'(r s)(f) (v) \\*
+    &= f \circ \rho(r s)(v) \\*
+    &= f \circ \rho(r) \circ \rho(s) (v) \\*
+    &= \rho'(r) (f) \circ \rho(s) (v) \\*
+    &= \rho'(s) \circ \rho'(r) (f) (v)
   }
 }
 
@@ -289,24 +207,24 @@
 }
 
 \dfn{標準双線型式}{
-  $R$-加群$V$について、以下で定まる写像$\braket{} \colon V^* \times V \rightarrow R$を標準双線形式と呼ぶ。
+  $R$-加群$V$について、以下で定まる写像$\braket{} \in R^{V^* \times V}$を標準双線形式と呼ぶ。
   \eq*{
     \forall \qty(f, x) \in V^* \times V \qty(\braket{f}{x} \coloneqq f(x))
   }
 }
 
 \rem{双対加群の補足}{
-  $R$-加群$V$は以下を満たす。$\forall x, y \in V \forall f, g \in V^* \forall \lambda \in R$とする。
+  $R$-加群$V$は以下を満たす。$\forall x, y \in V \forall f, g \in V^* \forall r \in R$とする。
   \begin{enumerate}
     \item $f$の線型性：$\braket{f}{x + y} = \braket{f}{x} + \braket{f}{y}$
-    \item $f$の線型性：$\braket{f}{\lambda x} = \lambda \braket{f}{x}$
+    \item $f$の線型性：$\braket{f}{r x} = r \braket{f}{x}$
     \item \thmref{可換群上の準同型全体}：$\braket{f + g}{x} = \braket{f}{x} + \braket{g}{x}$
-    \item 双対加群の定義：$\braket{\lambda f}{x} = \lambda \braket{f}{x}$
+    \item 双対加群の定義：$\braket{r f}{x} = r \braket{f}{x}$
   \end{enumerate}
 }
 
 \dfn{双対写像}{
-  $R$-加群$V, W$を考える。線型写像$u \colon V \rightarrow W$について、以下で定まる写像$u^* \colon W^* \rightarrow V^*$を双対写像と呼ぶ。
+  $R$-加群$V, W$を考える。線型写像$u \in W^V$について、以下で定まる写像$u^* \in \qty(V^*)^{W^*}$を双対写像と呼ぶ。
   \eq*{
     \forall f \in W^* \qty(u^*(f) \coloneqq f \circ u)
   }
@@ -315,52 +233,84 @@
 }
 
 
-\lsubsection{テンソル積}
+\lsubsection{加群の積}
 
-\dfn{直和}{
-  環$R$と、左$R$-加群$V, V'$について、以下で定める順序対$\qty(\qty(V \times V', +), \rho)$は左加群である。
+\dfn{直積加群}{
+  環$R$と、写像$V \in Z^\Lambda$を考える。$\forall \lambda \in \Lambda$について、$V(\lambda)$は左$R$-加群であるとする。
+
+  以下で定める順序対$\qty(\qty(\prod V, +), \rho)$は左加群である。
   \eqg*{
-    \qty(a, a') + \qty(b, b') \coloneqq \qty(a + a', b + b') \\*
-    \lambda \qty(a, a') \coloneqq \qty(\lambda a, \lambda a')
+    \forall v_1, v_2 \in \prod V \forall \lambda \in \Lambda \qty(\qty(v_1 + v_2)(\lambda) \coloneqq v_1(\lambda) + v_2(\lambda)) \\*
+    \forall v \in \prod V \forall r \in R \forall \lambda \in \Lambda \qty(\qty(r v)(\lambda) \coloneqq r v(\lambda))
   }
 
-  この左加群を$V$と$V'$の直和と呼び、$V \oplus V'$で表す。
+  この左$R$-加群を$V$の直積加群または直積と呼ぶ。
+}
+
+\dfn{直和加群}{
+  環$R$と、写像$V \in Z^\Lambda$を考える。$\forall \lambda \in \Lambda$について、$V(\lambda)$は左$R$-加群であるとする。
+
+  以下で定める順序対$\qty(\qty(\bigoplus V, +), \rho)$は左加群である。
+  \eq*{
+    \bigoplus V \coloneqq \qty{v \in \prod V \mid \abs{\qty{\lambda \in \Lambda \mid v(\lambda) \neq 0_{V(\lambda)}}} < \infty}
+  }
+
+  この左$R$-加群を$V$の直積加群または直和と呼ぶ。
+}
+
+\cor*{
+  直和$\bigoplus V$は、直積$\prod V$の部分加群である。
+}
+
+\cor*{
+  $V \in Z^\Lambda$を考える。$\forall \lambda \in \Lambda$について、$V(\lambda)$は左$R$-加群であるとする。
+
+  $\abs{\Lambda} < \infty$ならば$\bigoplus V = \prod V$である。
 }
 
 \lem*{
-  可換環$R$と、$R$-自由加群$V, V'$を考える。
+  可換環$R$と、$R$-加群$V_1, V_2$、写像$A \in \qty{R}^{V_1 \times V_2}$を考える。
 
-  基底$B, B'$について、以下で定める順序対$\qty(\qty(\Map(B \times B', R), +), \rho)$は自由な$R$-加群をなす。
+  以下で定める単射$\varphi \in \qty(\bigoplus A)^{V_1 \times V_2}$を考える。
+  \eq*{
+    \varphi \qty(x, y) \qty(x', y') =
+    \begin{cases}
+      1_R & \qty(x = x' \land y = y') \\*
+      0_R & \qty(\otherwise)
+    \end{cases}
+  }
+
+  さらに以下で定める$B$は、$\bigoplus A$の部分加群である。
   \eqg*{
-    \forall r_1, r_2 \in \Map(B \times B', R) \forall \qty(v, v') \in B \times B' \qty(\qty(r_1 + r_2) (v, v') \coloneqq r_1(v, v') + r_2(v, v')) \\*
-    \forall r \in \Map(B \times B', R) \forall \lambda \in R \forall \qty(v, v') \in B \times B' \qty(\qty(\rho(\lambda)(r))(v, v') \coloneqq \lambda r(v, v'))
+    B_1 \coloneqq \qty{\varphi \qty(x_1 + x_2, y) - \varphi \qty(x_1, y) - \varphi \qty(x_2, y) \mid x_1, x_2 \in V_1, y \in V_2} \\*
+    B_2 \coloneqq \qty{\varphi \qty(x, y_1 + y_2) - \varphi \qty(x, y_1) - \varphi \qty(x, y_2) \mid x \in V_1, y_1, y_2 \in V_2} \\*
+    B_3 \coloneqq \qty{r \varphi \qty(x, y) - \varphi \qty(r x, y) \mid r \in R, x \in V_1, y \in V_2} \\*
+    B_4 \coloneqq \qty{r \varphi \qty(x, y) - \varphi \qty(x, r y) \mid r \in R, x \in V_1, y \in V_2} \\*
+    B \coloneqq \Span \qty(\bigcup \qty{B_1, B_2, B_3, B_4})
   }
 }{
-  $R$は可換環すなわち可換群より、定義から$\qty(\Map(B \times B', R), +)$は可換群である。
-
-  $R$は可換環より、定義から環準同型性を満たす。
+  $\bigcup \qty{B_1, B_2, B_3, B_4} \subset \bigoplus A$より明らか。
 }
 
 \dfn{テンソル積}{
-  \mlemref{0}の主張する$R$-加群をテンソル積と呼び、$V \otimes_R V'$と表す。
+  可換環$R$と、$R$-加群$V_1, V_2$、写像$A \in \qty{R}^{V_1 \times V_2}$を考える。
 
-  テンソル積の元は、形式的に記号$\sum$を用いて以下のように表す。
-  \eq*{
-    \sum r(b, b') b \otimes b'
-  }
+  \mlemref{0}の主張する$R$-加群$B$について、剰余加群$\qty(\bigoplus A) / B$をテンソル積と呼び、$V_1 \bigotimes V_2$と表す。
+
+  さらに\mlemref{0}の定める$\varphi$について、$\qty[\varphi \qty(x, y)]$を$x \otimes y$と表す。
 }
 
 \rem{テンソル積の補足}{
-  $r_1, r_2, r \in V \otimes V'$と、$\lambda \in R$について、$R$-加群であることより以下が成り立つ。
-  \eqg*{
-    \sum r_1(b, b') b \otimes b' + \sum r_2(b, b') b \otimes b' = \sum \qty(r_1(b, b') + r_2(b, b')) b \otimes b' \\*
-    \lambda \sum r(b, b') b \otimes b' = \sum \qty(\lambda r(b, b')) b \otimes b'
-  }
-
-  さらに、$\qty(v, v') \in V \times V'$に対して、$v = \sum_{m \in n} r_m b_m, v' = \sum_{m \in n'} r_{m'} b'_{m'}$と一意に表せる。
+  可換環$R$と、$R$-加群$V_1, V_2$は以下を満たす。$\forall x, x_1, x_2 \in V_1 \forall y, y_1, y_2 \in V_2 \forall r \in R$とする。
+  \begin{enumerate}
+    \item $\qty(x_1 + x_2) \otimes y = x_1 \otimes y + x_2 \otimes y$
+    \item $x \otimes \qty(y_1 + y_2) = x \otimes y_1 + x \otimes y_2$
+    \item $r \qty(x \otimes y) = \qty(r x) \otimes y = x \otimes \qty(r y)$
+  \end{enumerate}
 }
 
 \begin{comment}
+
 \dfn{テンソル空間}{}
 
 \lsubsection{外積代数}
@@ -372,4 +322,5 @@
 \dfn{準双線型写像}{}
 
 \dfnf{\textit{Hermite}}{Hermite}{}
+
 \end{comment}

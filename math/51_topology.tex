@@ -3,7 +3,7 @@
 \lsubsection{位相}
 
 \dfn{開基}{
-  空でない集合$X$について、以下を満たす集合系$\mathcal{B} \in 2^{2^X}$を開基と呼ぶ。
+  空でない集合$X$について、以下を満たす集合系$\mathcal{B} \in \P \qty(\P(X))$を開基と呼ぶ。
   \eqg*{
     \forall x \in X \exists B \in \mathcal{B} \qty(x \in B) \\*
     \forall B_1, B_2 \in \mathcal{B} \forall x \in B_1 \cap B_2 \exists B \in \mathcal{B} \qty(x \in B \land B \subset B_1 \cap B_2)
@@ -13,7 +13,7 @@
 \dfn{開集合系}{
   空でない集合$X$の開基$\mathcal{B}$について、以下で与える集合系$\mathcal{O}$を開集合系と呼ぶ。
   \eq*{
-    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)}
+    \mathcal{O} \coloneqq \qty{O \in \P(X) \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)}
   }
 
   また、$\mathcal{O}$の要素を開集合と呼ぶ。
@@ -27,7 +27,7 @@
 }
 
 \lem{開集合系の一意性}{
-  集合$X$の開基$\mathcal{B}$と集合系$\mathcal{B'} \in 2^{2^X}$について、以下を満たすとき、$\mathcal{B'}$は開基である。
+  集合$X$の開基$\mathcal{B}$と集合系$\mathcal{B'} \in \P \qty(\P(X))$について、以下を満たすとき、$\mathcal{B'}$は開基である。
   \eqg*{
     \forall B' \in \mathcal{B'} \forall x \in B' \exists B \in \mathcal{B} \qty(x \in B \land B \subset B') \\*
     \forall B \in \mathcal{B} \forall x \in B \exists B' \in \mathcal{B'} \qty(x \in B' \land B' \subset B)
@@ -51,7 +51,7 @@
   \eqg*{
     X \in \mathcal{O} \\*
     \forall O_1, O_2 \in \mathcal{O} \qty(O_1 \cap O_2 \in \mathcal{O}) \\*
-    \forall A \in 2^\mathcal{O} \qty(\bigcup A \in \mathcal{O})
+    \forall A \in \P(\mathcal{O}) \qty(\bigcup A \in \mathcal{O})
   }
 }{
   第一式を示す。
@@ -62,7 +62,7 @@
 
   \dfnref{開基}第二式より、$\exists B \in \mathcal{B} \qty(x \in B \land B \subset B_1 \cap B_2)$であるので、$O_1 \cap O_2 \in \mathcal{O}$\\*
 
-  第三式を示す。$A \in 2^\mathcal{O}$について、$\forall x \in \bigcup A \exists O \in \mathcal{O} \exists B \in \mathcal{B} \qty(x \in B \land B \subset O \land O \subset \bigcup A)$であるので$\bigcup A \in \mathcal{O}$
+  第三式を示す。$A \in \P(\mathcal{O})$について、$\forall x \in \bigcup A \exists O \in \mathcal{O} \exists B \in \mathcal{B} \qty(x \in B \land B \subset O \land O \subset \bigcup A)$であるので$\bigcup A \in \mathcal{O}$
 }
 
 \lem{開集合系の公理を満たす集合系}{
@@ -87,14 +87,14 @@
 }
 
 \dfn{連続}{
-  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$について、写像$f \colon X \rightarrow X'$が以下を満たすとき、$f$は連続であると呼ぶ。
+  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$について、写像$f \in \qty(X')^X$が以下を満たすとき、$f$は連続であると呼ぶ。
   \eq*{
     \forall O' \in \mathcal{O'} \qty(f^{-1}(O') \in \mathcal{O})
   }
 }
 
 \lem{開基と連続}{
-  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$と$X'$の開基$\mathcal{B'}$、および写像$f \colon X \rightarrow X'$を考える。
+  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O'})$と$X'$の開基$\mathcal{B'}$、および写像$f \in \qty(X')^X$を考える。
   このとき、以下の２つは同値である。
   \begin{enumerate}
     \item $f$は連続。
@@ -113,22 +113,22 @@
 }
 
 \thm{連続写像の合成}{
-  位相空間$X, Y, Z$について、写像$f \colon X \rightarrow Y, g \colon Y \rightarrow Z$がともに連続であるとき、合成$g \circ f$は連続である。
+  位相空間$X, Y, Z$について、写像$f \in Y^X, g \in Z^Y$がともに連続であるとき、合成$g \circ f$は連続である。
 }{
   $\forall O_Z \in \mathcal{O}_Z \qty(g^{-1}(O_Z) \in \mathcal{O}_Y)$であり、$f^{-1}(g^{-1}(O_Z)) \in \mathcal{O}_X$である。
 }
 
 \dfn{同相}{
-  位相空間$X, X'$と写像$f \colon X\rightarrow X'$について、$f$が全単射かつ$f$と$f^{-1}$がともに連続であるとき、$f$を同相写像と呼ぶ。
+  位相空間$X, X'$と写像$f \in \qty(X')^X$について、$f$が全単射かつ$f$と$f^{-1}$がともに連続であるとき、$f$を同相写像と呼ぶ。
 
-  また、同相写像$f \colon X \rightarrow Y$が存在するとき、$X$と$Y$は位相同型または同相であると呼ぶ。
+  また、同相写像$f \in Y^X$が存在するとき、$X$と$Y$は位相同型または同相であると呼ぶ。
 }
 
 
 \lsubsection{誘導位相}
 
 \lem*{
-  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、$\mathcal{O'}$を与える$X$の開基$\mathcal{B'}$、写像$f \colon X \rightarrow X'$を考える。
+  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、$\mathcal{O'}$を与える$X$の開基$\mathcal{B'}$、写像$f \in \qty(X')^X$を考える。
 
   このとき、以下の集合系$\mathcal{B}$は$X$の開基である。
   \eq*{
@@ -153,7 +153,7 @@
 
   第二式を考える。\thmref{原像の性質}と\thmref{開集合系の公理}第二式より$\forall O'_1, O'_2 \in \mathcal{O'} \qty(f^{-1}(O'_1) \cap f^{-1}(O'_2) = f^{-1}(O'_1 \cap O'_2) \in \mathcal{O}_2)$
 
-  第三式を考える。\thmref{原像の性質}と\thmref{開集合系の公理}第三式より$\forall A' \in 2^{\mathcal{O'}} \qty(\bigcup  \qty{f^{-1}(O') \mid O' \in A'} = f^{-1}(\bigcup A') \in \mathcal{O}_2)$
+  第三式を考える。\thmref{原像の性質}と\thmref{開集合系の公理}第三式より$\forall A' \in \P(\mathcal{O'}) \qty(\bigcup  \qty{f^{-1}(O') \mid O' \in A'} = f^{-1}(\bigcup A') \in \mathcal{O}_2)$
 
   ゆえに$\mathcal{O}_2$は開集合系である。\\*
 
@@ -167,7 +167,7 @@
 }
 
 \dfn{誘導空間}{
-  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、写像$f \colon X \rightarrow X'$について、\mlemref{0}より定まる開集合系$\mathcal{O}$が存在する。
+  空でない集合$X$と、位相空間$\qty(X', \mathcal{O'})$、写像$f \in \qty(X')^X$について、\mlemref{0}より定まる開集合系$\mathcal{O}$が存在する。
 
   位相空間$\qty(X, \mathcal{O})$を誘導空間と呼ぶ。
 }
@@ -194,7 +194,7 @@
 
   \dfnref{開基}第二式より$\exists B_1 \in \mathcal{B}_1 \exists B_2 \in \mathcal{B}_2 \qty(x_1 \in B_1 \subset B_{11} \cap B_{12} \land x_2 \in B_2 \subset B_{21} \cap B_{22})$
 
-  \corref{共通と直積}より、$\qty(B_{11} \cap B_{12}, B_{21} \cap B_{22}) = \qty(B_{11}, B_{21}) \cap \qty(B_{12}, B_{22})$であるので成り立つ。\\*
+  $\qty(B_{11} \cap B_{12}, B_{21} \cap B_{22}) = \qty(B_{11}, B_{21}) \cap \qty(B_{12}, B_{22})$であるので成り立つ。\\*
 
   $\mathcal{B}_1 \times \mathcal{B}_2 \subset \mathcal{O}_1 \times \mathcal{O}_2$である。
 
@@ -212,9 +212,9 @@
 }
 
 \lem{直積と連続}{
-  位相空間$\qty(X_1, \mathcal{O}_1), \qty(X_2, \mathcal{O}_2), \qty(Y, \mathcal{O})$について、連続写像$f \colon X_1 \times X_2 \rightarrow Y$を考える。
+  位相空間$\qty(X_1, \mathcal{O}_1), \qty(X_2, \mathcal{O}_2), \qty(Y, \mathcal{O})$について、連続写像$f \in Y^{X_1 \times X_2}$を考える。
 
-  このとき、$\forall w \in X_1$について写像$f_w \colon X_2 \ni x \mapsto f(w, x) \in Y$は連続である。
+  このとき、$\forall w \in X_1$について写像$f_w \in Y^{X_2}, f_w(x) = f(w, x)$は連続である。
 }{
   $\forall O \in \mathcal{O}$について、$f_w^{-1}(O) = \qty{x \in X_2 \mid f(w, x) \in O}$である。
 
@@ -229,7 +229,7 @@
 \lsubsection{近傍}
 
 \dfn{基本近傍系}{
-  空でない集合$X$とその任意の点$x$について、以下を満たす集合系$\mathcal{B}(x) \in 2^{2^X}$を基本近傍系と呼ぶ。
+  空でない集合$X$とその任意の点$x$について、以下を満たす集合系$\mathcal{B}(x) \in \P \qty(\P(X))$を基本近傍系と呼ぶ。
   \eqg*{
     \mathcal{B}(x) \neq \varnothing \\*
     \forall B \in \mathcal{B}(x) \qty(x \in B) \\*
@@ -245,7 +245,7 @@
 \dfn{近傍系}{
   空でない集合$X$の基本近傍系$\mathcal{B}(x)$について、以下で与える集合系$\mathcal{N}(x)$を近傍系と呼ぶ。
   \eq*{
-    \mathcal{N}(x) \coloneqq \qty{N \in 2^X \mid \exists B \in \mathcal{B}(x) \qty(B \subset N)}
+    \mathcal{N}(x) \coloneqq \qty{N \in \P(X) \mid \exists B \in \mathcal{B}(x) \qty(B \subset N)}
   }
 }
 
@@ -257,7 +257,7 @@
 }
 
 \lem{近傍系の一意性}{
-  空でない集合$X$の基本近傍系$\mathcal{B}(x)$と集合系$\mathcal{B'}(x) \in 2^{2^X}$について、以下を満たすとき、$\mathcal{B'}(x)$は基本近傍系である。
+  空でない集合$X$の基本近傍系$\mathcal{B}(x)$と集合系$\mathcal{B'}(x) \in \P \qty(\P(X))$について、以下を満たすとき、$\mathcal{B'}(x)$は基本近傍系である。
   \eqg*{
     \forall B' \in \mathcal{B'}(x) \exists B \in \mathcal{B}(x) \qty(B \subset B') \\*
     \forall B \in \mathcal{B}(x) \exists B' \in \mathcal{B'}(x) \qty(B' \subset B)
@@ -327,7 +327,7 @@
 
   このとき、以下の集合$\mathcal{O}$は$X$の開基であり、かつ$\mathcal{O}$の定める開集合系は$\mathcal{O}$である。
   \eq*{
-    \mathcal{O} \coloneqq \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)}
+    \mathcal{O} \coloneqq \qty{O \in \P(X) \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)}
   }
 
   さらに$\mathcal{O}$と、$\mathcal{N}(x)$からこの定理の与える開集合系$\mathcal{O'}$、この２つは一致する。
@@ -342,7 +342,7 @@
 
   \dfnref{基本近傍系}第三式より$\exists B \in \mathcal{B} \qty(B \subset B_1 \cap B_2 \subset O_1 \cap O_2)$であるので、$O_1 \cap O_2 \in \mathcal{N}(x)$である。\\*
 
-  第三式を考える。$A \in 2^\mathcal{O}$を考える。
+  第三式を考える。$A \in \P(\mathcal{O})$を考える。
 
   $A = \varnothing$のとき、$\bigcup A = \bigcup \varnothing = \varnothing \in \mathcal{O}$より成り立つ。
 
@@ -366,12 +366,12 @@
 }{
   以下より一致する。
   \eq*{
-    \mathcal{O'} = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)} = \qty{O \in 2^X \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)} = \mathcal{O}
+    \mathcal{O'} = \qty{O \in \P(X) \mid \forall x \in O \exists B \in \mathcal{B}(x) \qty(B \subset O)} = \qty{O \in \P(X) \mid \forall x \in O \exists B \in \mathcal{B} \qty(x \in B \land B \subset O)} = \mathcal{O}
   }\\*
 
   定義より、以下である。
   \eq*{
-    \mathcal{B'}(x) = \qty{B' \in 2^X \mid x \in B' \land \forall y \in B' \exists D \in \mathcal{B}(y) \qty(D \subset B')}
+    \mathcal{B'}(x) = \qty{B' \in \P(X) \mid x \in B' \land \forall y \in B' \exists D \in \mathcal{B}(y) \qty(D \subset B')}
   }
 
   $\forall B' \in \mathcal{B'}(x)$について、\dfnref{基本近傍系}第二式より$x \in B'$であるので、定義から$\exists B \in \mathcal{B}(x) \qty(B \subset B')$である。\\*
@@ -417,18 +417,18 @@
 }
 
 \dfn{点連続}{
-  位相空間$X, X'$と点$x \in X$、写像$f \colon X \rightarrow X'$について、以下を満たすとき、写像$f$は点$x$で連続であると言う。
+  位相空間$X, X'$と点$x \in X$、写像$f \in \qty(X')^X$について、以下を満たすとき、写像$f$は点$x$で連続であると言う。
   \eq*{
     \forall N' \in \mathcal{N}(f(x)) \exists N \in \mathcal{N}(x) \qty(f(N) \subset N')
   }
 }
 
 \cor*{
-  位相空間$X, X', X''$と点$x \in X$、写像$f \colon X \rightarrow X', g \colon X' \rightarrow X''$について、$f$は点$x$で連続であり、$g$が点$f(x)$で連続であるとき、合成写像$g \circ f$は点$x$で連続である。
+  位相空間$X_1, X_2, X_3$と点$x \in X_1$、写像$f \in X_2^{X_1}, g \in X_3^{X_2}$について、$f$は点$x$で連続であり、$g$が点$f(x)$で連続であるとき、合成写像$g \circ f$は点$x$で連続である。
 }
 
 \thm{点連続と収束}{
-  位相空間$X, X'$と点$x \in X$、写像$f \colon X \rightarrow X'$と、近傍系$\mathcal{N}(x)$を与える基本近傍系$\mathcal{B}(x)$について、以下の３つは同値である。
+  位相空間$X, X'$と点$x \in X$、写像$f \in \qty(X')^X$と、近傍系$\mathcal{N}(x)$を与える基本近傍系$\mathcal{B}(x)$について、以下の３つは同値である。
   \begin{enumerate}
     \item $f$が$x$で連続
     \item $\forall B' \in \mathcal{B}(f(x)) \exists B \in \mathcal{B}(x) \qty(f(B) \subset B')$
@@ -449,13 +449,13 @@
   \eq*{
     \exists N' \in \mathcal{N}(f(x)) \forall N \in \mathcal{N}(x) \exists y \in N \qty(f(y) \notin N')
   }
-  \thmref{選択公理が与える写像}より、写像$g \colon \mathcal{N}(x) \rightarrow X, f(g(N)) \notin N'$が存在して、$\qty(\mathcal{N}(x), \supset)$は\corref{有向集合としての基本近傍系}より有向集合である。
+  \thmref{選択公理が与える写像}より、写像$g \in X^{\mathcal{N}(x)}, f(g(N)) \notin N'$が存在して、$\qty(\mathcal{N}(x), \supset)$は\corref{有向集合としての基本近傍系}より有向集合である。
 
   今、$g$から構成されるネットは、順序を包含で定義したことから$x$に収束するが、$f \circ g$から構成されるネットは$f(x)$に収束しない。背理法より示される。
 }
 
 \thm{連続と点連続}{
-  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O})$と写像$f \colon X \rightarrow X'$について、以下の２つは同値である。
+  位相空間$\qty(X, \mathcal{O}), \qty(X', \mathcal{O})$と写像$f \in \qty(X')^X$について、以下の２つは同値である。
   \begin{enumerate}
     \item $f$は$X$上の任意の点$x$で連続
     \item $f$は連続
@@ -486,7 +486,7 @@
 \dfn{閉集合系}{
   位相空間$\qty(X, \mathcal{O})$について、以下を満たす集合系$\mathcal{F}$を閉集合系と呼ぶ。
   \eq*{
-    \mathcal{F} \coloneqq \qty{F \in 2^X \mid X \setminus F \in \mathcal{O}}
+    \mathcal{F} \coloneqq \qty{F \in \P(X) \mid X \setminus F \in \mathcal{O}}
   }
 
   また、$\mathcal{F}$の要素を閉集合と呼ぶ。
@@ -496,7 +496,7 @@
   位相空間$X$について、閉集合系$\mathcal{F}$は以下を満たす。
   \eqg*{
     \varnothing, X \in \mathcal{F} \\*
-    \forall A \in 2^\mathcal{F} \qty(A \neq \varnothing \rightarrow \bigcap A \in \mathcal{F}) \\*
+    \forall A \in \P(\mathcal{F}) \qty(A \neq \varnothing \rightarrow \bigcap A \in \mathcal{F}) \\*
     \forall F_1, F_2 \in \mathcal{F} \qty(F_1 \cup F_2 \in \mathcal{F})
   }
 }{
@@ -513,8 +513,8 @@
 \cor*{
   位相空間$X$について、以下が成り立つ。
   \eqg*{
-    \forall A, B \in 2^X \qty(A \subset B \rightarrow \bar{A} \subset \bar{B}) \\*
-    \forall D \in 2^{2^X} \qty(\bigcup \qty{\bar{A} \mid A \in D} \subset \bar{\bigcup D})
+    \forall A, B \in \P(X) \qty(A \subset B \rightarrow \bar{A} \subset \bar{B}) \\*
+    \forall D \in \P \qty(\P(X)) \qty(\bigcup \qty{\bar{A} \mid A \in D} \subset \bar{\bigcup D})
   }
 }
 
@@ -570,7 +570,7 @@
 \lem{コンパクトの言い換え}{
   コンパクトな位相空間について、以下が成り立つ。
   \eq*{
-    \forall A \in 2^\mathcal{F} \qty(A \neq \varnothing \land \bigcap A = \varnothing \rightarrow \exists A' \in 2^A \qty(A' \neq \varnothing \land \bigcap A' = \varnothing \land \abs{A'} < \infty))
+    \forall A \in \P(\mathcal{F}) \qty(A \neq \varnothing \land \bigcap A = \varnothing \rightarrow \exists A' \in \P(A) \qty(A' \neq \varnothing \land \bigcap A' = \varnothing \land \abs{A'} < \infty))
   }
 }{
   コンパクトの定義と\thmref{De Morganの法則}より成り立つ。
@@ -609,7 +609,7 @@
 
   コンパクトでないと仮定する。その任意の有限部分集合が開被覆とならない$X$の開被覆$C$が存在する。
 
-  $P \coloneqq \qty{A \in 2^C \mid \abs{A} < \infty \land A \neq \varnothing}$について$\qty(P, \subset)$は有向集合であり、
+  $P \coloneqq \qty{A \in \P(C) \mid \abs{A} < \infty \land A \neq \varnothing}$について$\qty(P, \subset)$は有向集合であり、
 
   コンパクトでないことから$\forall A \in P \exists x \in X \setminus \bigcup A$である。このようなネット$\qty(x_A)_{A \in P}$を考える。\\*
 
@@ -635,7 +635,7 @@
 }
 
 \thm{コンパクト空間の連続像はコンパクト}{
-  コンパクトな位相空間$\qty(X, \mathcal{O})$と、位相空間$\qty(X', \mathcal{O'})$について、連続写像$f \colon X \rightarrow X'$を考える。
+  コンパクトな位相空間$\qty(X, \mathcal{O})$と、位相空間$\qty(X', \mathcal{O'})$について、連続写像$f \in \qty(X')^X$を考える。
   このとき、像$f(X)$はコンパクトである。
 }{
   $f(X)$の任意の開被覆$C'$について、$C \coloneqq \qty{f^{-1}(O') \mid O' \in C'}$を考える。
@@ -644,7 +644,7 @@
 
   $\forall x \in X \exists O' \in C' \qty(f(x) \in O')$より、$C$は$X$の開被覆である。
 
-  コンパクト性から、$\exists A' \in 2^{C'} \qty(\abs{A'} < \infty \land X = \bigcup \qty{f^{-1}(O') \mid O' \in A'})$
+  コンパクト性から、$\exists A' \in \P(C') \qty(\abs{A'} < \infty \land X = \bigcup \qty{f^{-1}(O') \mid O' \in A'})$
 
   \thmref{像の性質}、\corref{像と原像}から$f(X) = \bigcup \qty{f(f^{-1}(O')) \mid O' \in A'} \subset \bigcup \qty{O' \mid O' \in A'}$より$A'$は有限開被覆である。
 }
@@ -785,7 +785,7 @@
     \exists x, y \in X \qty(x \neq y \land \forall N_x \in \mathcal{N}(x) \forall N_y \in \mathcal{N}(y) \exists z \in X \qty(z \in N_x \cap N_y))
   }
 
-  \thmref{選択公理が与える写像}より、写像$g \colon \mathcal{N}(x) \times \mathcal{N}(y) \rightarrow X, g \qty(\qty(N_x, N_y)) \in N_x \cap N_y$が存在する。
+  \thmref{選択公理が与える写像}より、写像$g \in X^{\mathcal{N}(x) \times \mathcal{N}(y)}, g \qty(\qty(N_x, N_y)) \in N_x \cap N_y$が存在する。
 
   $\mathcal{N}(x) \times \mathcal{N}(y)$上の半順序を以下のように定義する。
   \eq*{
@@ -941,9 +941,9 @@
 
   \textit{Lindel\"{o}f}より、$F_1$の可算部分$A_1$が存在して、$F_1 \subset \bigcup \qty{O_1(x) \mid x \in A_1}$
 
-  すなわち、写像$\varphi_1 \colon \N \rightarrow \mathcal{O}$が存在して、$F_1 \subset \bigcup \qty{\varphi_1(n) \mid n \in \N} \land \forall n \in \N \qty(\bar{\varphi_1(n)} \cap F_2 = \varnothing)$\\*
+  すなわち、写像$\varphi_1 \in \mathcal{O}^\N$が存在して、$F_1 \subset \bigcup \qty{\varphi_1(n) \mid n \in \N} \land \forall n \in \N \qty(\bar{\varphi_1(n)} \cap F_2 = \varnothing)$\\*
 
-  同様に、写像$\varphi_2 \colon \N \rightarrow \mathcal{O}$が存在して、$F_2 \subset \bigcup \qty{\varphi_2(n) \mid n \in \N} \land \forall n \in \N \qty(\bar{\varphi_2(n)} \cap F_1 = \varnothing)$\\*
+  同様に、写像$\varphi_2 \in \mathcal{O}^\N$が存在して、$F_2 \subset \bigcup \qty{\varphi_2(n) \mid n \in \N} \land \forall n \in \N \qty(\bar{\varphi_2(n)} \cap F_1 = \varnothing)$\\*
 
   以下に定める集合$U_1, U_2$は定義より開集合である。
   \eqa*{
@@ -975,7 +975,7 @@
   \begin{enumerate}
     \item $X$は連結でない
     \item $\exists U, V \in \mathcal{O} \setminus \qty{\varnothing} \qty(X = U \cup V \land U \cap V = \varnothing)$
-    \item $\exists A, B \in 2^X \setminus \qty{\varnothing} \qty(X = A \cup B \land A \cap \bar{B} = \varnothing \land \bar{A} \cap B = \varnothing)$
+    \item $\exists A, B \in \P(X) \setminus \qty{\varnothing} \qty(X = A \cup B \land A \cap \bar{B} = \varnothing \land \bar{A} \cap B = \varnothing)$
   \end{enumerate}
 }{
   $1. \rightarrow 2.$を考える。
@@ -1000,7 +1000,7 @@
 }
 
 \thm{連結空間の連続像は連結}{
-  連結な位相空間$\qty(X, \mathcal{O})$と、位相空間$\qty(X', \mathcal{O'})$について、連続写像$f \colon X \rightarrow X'$を考える。
+  連結な位相空間$\qty(X, \mathcal{O})$と、位相空間$\qty(X', \mathcal{O'})$について、連続写像$f \in \qty(X')^X$を考える。
   このとき、像$f(X)$は連結である。
 }{
   $f(X)$が連結でないと仮定する。
@@ -1052,7 +1052,7 @@
 \thmf{\textit{Bolzano-Weierstrass}の定理}{Bolzano-Weierstrassの定理}{
   第一可算でコンパクトな位相空間$X$は、点列コンパクトである。
 }{
-  $X$上の点列$\qty(x_k)_{k \in \N}$について、$\qty(F_k)_{k \in \N}, F_k = \qty{x_l \mid l \in \N \land l \geq k} \in 2^X$を考える。\\*
+  $X$上の点列$\qty(x_k)_{k \in \N}$について、$\qty(F_k)_{k \in \N}, F_k = \qty{x_l \mid l \in \N \land l \geq k} \in \P(X)$を考える。\\*
 
   $\bigcap \qty{\bar{F_k} \mid k \in \N} = \varnothing$とすると、\lemref{コンパクトの言い換え}より$\exists n \in \N \qty(n > 0 \land \bigcap \qty{\bar{F_{k_m}} \mid m \leq n} = \varnothing)$である。
 
@@ -1060,7 +1060,7 @@
 
   $\exists a \in X \forall k \in \N \qty(a \in \bar{F_k})$であるので、\lemref{第一可算空間における基本近傍系の単調列}の点列$\qty(B_n)_{n \in \N}$を用いて$\forall j \in \N \qty(F_k \cap B_j(a) \neq \varnothing)$である。
 
-  ここで、以下の写像$\varphi : \N \rightarrow \N$を考える。
+  ここで、以下の写像$\varphi \in \N^\N$を考える。
   \eqg*{
     x_{\varphi(0)} \in B_0(a) \\*
     x_{\varphi(s(n))} \in F_{s(\varphi(n))} \cap B_n(a)
@@ -1070,7 +1070,7 @@
 }
 
 \thm{第一可算空間における点連続と収束}{
-  第一可算な位相空間$X$、位相空間$X'$、点$x \in X$、写像$f \colon X \rightarrow X'$について、以下の２つは同値である。
+  第一可算な位相空間$X$、位相空間$X'$、点$x \in X$、写像$f \in \qty(X')^X$について、以下の２つは同値である。
   \begin{enumerate}
     \item $f$が$x$で連続
     \item $x$に収束する任意の点列$\qty(x_n)_{n \in \N}$について、点列$\qty(f(x_n))_{n \in \N}$は$f(x)$に収束する。
@@ -1080,9 +1080,9 @@
 
   $2. \rightarrow 1.$を示す。\lemref{第一可算空間における基本近傍系の単調列}の与える基本近傍系を$\qty(B_n)_{n \in \N}$とする。
   \eq*{
-    \exists N' \in \mathcal{N}(f(x)) \forall n \in \N \exists y \in B_n(x) \qty(y \notin N')
+    \exists N' \in \mathcal{N}(f(x)) \forall n \in \N \exists y \in B_n(x) \qty(f(y) \notin N')
   }
-  \thmref{選択公理が与える写像}より、写像$g \colon \N \ni n \rightarrow B_n(x) \in X, f(B_n(x)) = y \notin N'$が存在する。
+  \thmref{選択公理が与える写像}より、写像$g \in X^\N, g(n) \in B_n(x) \setminus f^{-1}(N')$が存在する。
 
   今、$g$から構成される点列は$x$に収束するが、$f \circ g$から構成される点列は$f(x)$に収束しない。
 }
@@ -1149,7 +1149,7 @@
     \mathcal{B} \coloneqq \qty{\sqty{a, b} \mid \qty(a, b) \in \hat{X} \times \hat{X}}
   }
 }{
-  $\forall B \in \mathcal{B} \qty(-\infty \notin B \land \infty \notin B)$であるので、$\mathcal{B} \in 2^{2^X}$である。\\*
+  $\forall B \in \mathcal{B} \qty(-\infty \notin B \land \infty \notin B)$であるので、$\mathcal{B} \in \P \qty(\P(X))$である。\\*
 
   第一式を示す。$\forall x \in X \qty(x \in \sqty{-\infty, \infty})$である。\\*
 

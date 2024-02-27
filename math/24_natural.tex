@@ -18,7 +18,7 @@
 }
 
 \dfn{後者関数}{
-  無限系譜$X$について、以下のように定める写像$s \colon X \rightarrow X$を後者関数（successor）と呼ぶ。
+  無限系譜$X$について、以下のように定める写像$s \in X^X$を後者関数（successor）と呼ぶ。
   \eq*{
     s(x) \coloneqq x \cup \qty{x}
   }
@@ -48,37 +48,37 @@
 
 \lem*{
   \eq*{
-    \forall X \qty(M(X) \rightarrow \exists Y \qty(M(Y) \land Y = \bigcap \qty{Z \in 2^X \mid M(Z)}))
+    \forall X \qty(M(X) \rightarrow \exists Y \qty(M(Y) \land Y = \bigcap \qty{Z \in \P(X) \mid M(Z)}))
   }
 }{
   \axiref{冪集合の公理}、および\thmref{分出の公理図式}より、
   \eq*{
-    \exists Y \qty(Y = \bigcap \qty{Z \in 2^X \mid M(Z)})
+    \exists Y \qty(Y = \bigcap \qty{Z \in \P(X) \mid M(Z)})
   }
-  ここで$X \in \qty{Z \in 2^X \mid M(Z)}$より、$\qty{Z \in 2^X \mid M(Z)} \neq \varnothing$
+  ここで$X \in \qty{Z \in \P(X) \mid M(Z)}$より、$\qty{Z \in \P(X) \mid M(Z)} \neq \varnothing$
 
   \mlemref{-1}より、$Y$は無限系譜である。
 }
 
 \lem*{
   \eq*{
-    \forall X \forall Y \qty(M(X) \land M(Y) \rightarrow \bigcap \qty{Z \in 2^X \mid M(Z)} = \bigcap \qty{Z \in 2^Y \mid M(Z)})
+    \forall X \forall Y \qty(M(X) \land M(Y) \rightarrow \bigcap \qty{Z \in \P(X) \mid M(Z)} = \bigcap \qty{Z \in \P(Y) \mid M(Z)})
   }
 }{
-  $\omega(X) \coloneqq \bigcap \qty{Z \in 2^X \mid M(Z)}$とする。
+  $\omega(X) \coloneqq \bigcap \qty{Z \in \P(X) \mid M(Z)}$とする。
 
   \mlemref{-2}より、$M(X \cap Y)$で、$\omega(X) \subset \omega(X \cap Y)$
 
   今、
   \eqg*{
-    \forall Z \qty(Z \in \qty{Z \in 2^X \mid M(Z)}) \\*
+    \forall Z \qty(Z \in \qty{Z \in \P(X) \mid M(Z)}) \\*
     \forall Z \qty(M(Z) \land Z \subset X) \\*
     \forall Z \qty(M(Z \cap Y) \land Z \cap Y \subset X \cap Y) \\*
-    \forall Z \qty(Z \cap Y \in \qty{Z \in 2^{X \cap Y} \mid M(Z)})
+    \forall Z \qty(Z \cap Y \in \qty{Z \in \P \qty(X \cap Y) \mid M(Z)})
   }
   ゆえに、
   \eqg*{
-    \forall z \forall Z \qty(z \in \omega(X \cap Y) \land Z \in \qty{Z \in 2^X \mid M(Z)}) \\*
+    \forall z \forall Z \qty(z \in \omega(X \cap Y) \land Z \in \qty{Z \in \P(X) \mid M(Z)}) \\*
     \forall z \forall Z \qty(z \in Z \cap Y) \\*
     \forall z \forall Z \qty(z \in Z)
   }
@@ -95,7 +95,7 @@
 }
 
 \dfn{自然数}{
-  \mlemref{0}より、無限系譜$X$の取り方によらず$\bigcap \qty{Z \in 2^X \mid M(Z)}$が一意に定まり、これを自然数$\N$（または$\omega$）と呼ぶ。誤解のない範囲で、自然数$\N$の要素も自然数と呼ぶ。
+  \mlemref{0}より、無限系譜$X$の取り方によらず$\bigcap \qty{Z \in \P(X) \mid M(Z)}$が一意に定まり、これを自然数$\N$（または$\omega$）と呼ぶ。誤解のない範囲で、自然数$\N$の要素も自然数と呼ぶ。
 }
 
 \dfn{数字}{
@@ -131,9 +131,9 @@
 
   $0 \in E \land \forall n \qty(n \in E \rightarrow s(n) \in E)$より、$E$は無限系譜である。
 
-  定理より、$\N = \bigcap \qty{Z \in 2^E \mid M(Z)}$
+  定理より、$\N = \bigcap \qty{Z \in \P(E) \mid M(Z)}$
 
-  $\forall n \qty(n \in \N \rightarrow n \in \bigcap \qty{Z \in 2^E \mid M(Z)})$
+  $\forall n \qty(n \in \N \rightarrow n \in \bigcap \qty{Z \in \P(E) \mid M(Z)})$
 
   すなわち、$\forall n \qty(n \in \N \rightarrow n \in E)$
 
@@ -152,7 +152,7 @@
 }
 
 \dfn{前者関数}{
-  後者関数$s$は、\thmref{Peanoの公理}の第四式より単射であるため、左逆写像を持つ。これを前者関数$p \colon \N \setminus \qty{0} \rightarrow \N$と呼ぶ。
+  後者関数$s$は、\thmref{Peanoの公理}の第四式より単射であるため、左逆写像を持つ。これを前者関数$p \in \N^{\N \setminus \qty{0}}$と呼ぶ。
 }
 
 \lem*{
@@ -183,7 +183,7 @@
 \lsubsection{自然数の順序}
 
 \dfn{自然数の順序}{
-  \lemref{包含は順序}より、自然数$\N$上で半順序$\leq$を以下のように定める。
+  自然数$\N$上で二項関係$\leq$を以下のように定める。{包含の半順序性}より、$\leq$は半順序である。
   \eq*{
     n \leq m \defiff n \subset m
   }
@@ -328,7 +328,7 @@
 \lsubsection{自然数の加法}
 
 \lem*{
-  以下で定める部分写像$+ \colon \N \times \N \nrightarrow \N$は左全域的である。
+  以下で定める部分写像$+$は$\N \times \N$について左全域的である。
   \eqg*{
     \forall n \in \N \qty(+(\qty(n, 0)) \coloneqq n) \\*
     \forall n, m \in \N \qty(+(\qty(n, s(m))) \coloneqq s(n + m))
@@ -344,7 +344,7 @@
 }
 
 \dfn{自然数の加法}{
-  \mlemref{0}より定まる$\N$上の二項演算を加法と呼び、$+$で表す。
+  \mlemref{0}より定まる写像を加法と呼び、$+$で表す。
 
   書き直して再掲する。
   \eqg*{
@@ -486,7 +486,7 @@
 \lsubsection{自然数の乗法}
 
 \lem*{
-  以下で定める部分写像$\times \colon \N \times \N \nrightarrow \N$は左全域的である。
+  以下で定める部分写像$\times$は$\N \times \N$について左全域的である。
   \eqg*{
     \forall n \in \N \qty(\times(\qty(n, 0)) \coloneqq 0) \\*
     \forall n, m \in \N \qty(\times(\qty(n, s(m))) \coloneqq n + \times(\qty(n, m)))
@@ -706,7 +706,7 @@
 }
 
 \dfn{自然数の除法}{
-  \mlemref{-1}、\mlemref{0}より、以下の写像$\divisionsymbol \colon \N \times \N \setminus \qty{0} \rightarrow \N \times \N$を定義できる。
+  \mlemref{-1}、\mlemref{0}より、以下の写像$\divisionsymbol \in \qty(\N \times \N)^{\N \times \qty(\N \setminus \qty{0})}$を定義できる。
   \eq*{
     a \divisionsymbol b = q \cdots r \defiff a = b q + r
   }

@@ -3,7 +3,7 @@
 \lsubsection{近縁}
 
 \dfn{集合算}{
-  集合$X$と、集合$A, B \in 2^{X \times X}$について、以下で定める略記$A \circ B, A^{-1}$を考える。
+  集合$X$と、集合$A, B \in \P \qty(X \times X)$について、以下で定める略記$A \circ B, A^{-1}$を考える。
   \eqg*{
     A \circ B \coloneqq \qty{\qty(x, z) \in X \times X \mid \exists y \in X \qty(\qty(x, y) \in A \land \qty(y, z) \in B)} \\*
     A^{-1} \coloneqq \qty{\qty(x, y) \in X \times X \mid \qty(y, x) \in A}
@@ -11,7 +11,7 @@
 }
 
 \dfn{基本近縁系}{
-  空でない集合$X$について、以下を満たす集合系$\mathcal{V} \in 2^{2^{X \times X}}$を基本近縁系と呼ぶ。
+  空でない集合$X$について、以下を満たす集合系$\mathcal{V} \in \P \qty(\P \qty(X \times X))$を基本近縁系と呼ぶ。
   \eqg*{
     \mathcal{V} \neq \varnothing \\*
     \forall V \in \mathcal{V} \forall x \in X \qty(\qty(x, x) \in V) \\*
@@ -41,12 +41,12 @@
 \dfn{近縁系}{
   空でない集合$X$の基本近縁系$\mathcal{V}$について、以下で与える集合系$\mathcal{U}$を近縁系と呼ぶ。
   \eq*{
-    \mathcal{U} \coloneqq \qty{U \in 2^{X \times X} \mid \exists V \in \mathcal{V} \qty(V \subset U)}
+    \mathcal{U} \coloneqq \qty{U \in \P \qty(X \times X) \mid \exists V \in \mathcal{V} \qty(V \subset U)}
   }
 }
 
 \lem{近縁系の一意性}{
-  空でない集合$X$の基本近縁系$\mathcal{V}$と集合系$\mathcal{V'} \in 2^{2^X}$について、以下を満たすとき、$\mathcal{V'}$は基本近縁系である。
+  空でない集合$X$の基本近縁系$\mathcal{V}$と集合系$\mathcal{V'} \in \P \qty(\P \qty(X \times X))$について、以下を満たすとき、$\mathcal{V'}$は基本近縁系である。
   \eqg*{
     \forall V' \in \mathcal{V'} \exists V \in \mathcal{V} \qty(V \subset V') \\*
     \forall V \in \mathcal{V} \exists V' \in \mathcal{V'} \qty(V' \subset V)
@@ -115,6 +115,8 @@
   }
 
   さらに、$\mathcal{B}(x)$の与える近傍系$\mathcal{N}(x)$は、近縁系$\mathcal{U}$の与える基本近傍系$\mathcal{N'}(x)$に一致する。
+
+  この意味で、一様空間は位相空間である。
 }{
   第一式を示す。\dfnref{基本近縁系}第一式から、$\exists V \in \mathcal{V} \qty(V[x] \in \mathcal{B}(x))$である。\\*
 
@@ -135,7 +137,7 @@
 
   $\forall N \in \mathcal{N}(x)$について$\exists V \in \mathcal{V} \qty(V[x] \subset N)$であり、$U = V \cup \qty{\qty(x, y) \mid y \in N} \in \mathcal{U}$かつ$N = U[x]$であるので、$N \in \mathcal{N'}(x)$
 
-  $\forall N' \in \mathcal{N'}(x)$について$\exists U \in 2^{X \times X} \exists V \in \mathcal{V} \qty(V \subset U \land U[x] = N')$であり、$V[x] \subset U[x] = N' \in \mathcal{N}(x)$
+  $\forall N' \in \mathcal{N'}(x)$について$\exists U \in \P \qty(X \times X) \exists V \in \mathcal{V} \qty(V \subset U \land U[x] = N')$であり、$V[x] \subset U[x] = N' \in \mathcal{N}(x)$
 }
 
 \thmf{一様空間は$T_3$}{一様空間はT_3}{
@@ -161,14 +163,14 @@
 }
 
 \dfn{一様連続}{
-  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$と写像$f \colon X \rightarrow X'$について、$f$が以下を満たすとき、$f$は一様連続であると呼ぶ。
+  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$と写像$f \in \qty(X')^X$について、$f$が以下を満たすとき、$f$は一様連続であると呼ぶ。
   \eq*{
     \forall U' \in \mathcal{U'} \exists U \in \mathcal{U} \qty(\qty(x, y) \in U \rightarrow \qty(f(x), f(y)) \in U')
   }
 }
 
 \lem{基本近縁系と一様連続}{
-  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$と写像$f \colon X \rightarrow X'$と、$\mathcal{U}, \mathcal{U'}$を与える基本近縁系$\mathcal{V}, \mathcal{V'}$を考える。
+  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$と写像$f \in \qty(X')^X$と、$\mathcal{U}, \mathcal{U'}$を与える基本近縁系$\mathcal{V}, \mathcal{V'}$を考える。
   このとき、以下の２つは同値である。
   \begin{enumerate}
     \item $f$は一様連続
@@ -185,13 +187,13 @@
 }
 
 \dfn{一様同型}{
-  一様空間$X, X'$と写像$f \colon X \rightarrow X'$について、$f$が全単射かつ$f$と$f^{-1}$がともに一様連続であるとき、$f$を一様同型写像と呼ぶ。
+  一様空間$X, X'$と写像$f \in \qty(X')^X$について、$f$が全単射かつ$f$と$f^{-1}$がともに一様連続であるとき、$f$を一様同型写像と呼ぶ。
 
-  また、一様同型写像$f \colon X \rightarrow Y$が存在するとき、$X$と$Y$は一様同型であると呼ぶ。
+  また、一様同型写像$f \in Y^X$が存在するとき、$X$と$Y$は一様同型であると呼ぶ。
 }
 
 \thm{一様連続は連続}{
-  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$について、一様連続な写像$f \colon X \rightarrow X'$は連続である。
+  一様空間$\qty(X, \mathcal{U}), \qty(X', \mathcal{U'})$について、一様連続な写像$f \in \qty(X')^X$は連続である。
 }{
   $\forall x \in X \forall N' \in \mathcal{N}(f(x))$について、定義より$\exists U' \in \mathcal{U'} \qty(N' = U'[f(x)])$である。
 
@@ -283,7 +285,7 @@
 \dfn{全有界}{
   一様空間$\qty(X, \mathcal{U})$が以下を満たすとき、全有界であると呼ぶ。
   \eq*{
-    \forall U \in \mathcal{U} \exists A \in 2^X \qty(\abs{A} < \infty \land \bigcup \qty{U[x] \mid x \in A} = X)
+    \forall U \in \mathcal{U} \exists A \in \P(X) \qty(\abs{A} < \infty \land \bigcup \qty{U[x] \mid x \in A} = X)
   }
 }
 
@@ -295,7 +297,7 @@
   一様空間$\qty(X, \mathcal{U})$と、近縁系$\mathcal{U}$を与える基本近縁系$\mathcal{V}$について、以下の４つは同値である。
   \begin{enumerate}
     \item $X$は全有界
-    \item $\forall V \in \mathcal{V} \exists A \in 2^X \qty(\abs{A} < \infty \land \bigcup \qty{V[x] \mid x \in A} = X)$
+    \item $\forall V \in \mathcal{V} \exists A \in \P(X) \qty(\abs{A} < \infty \land \bigcup \qty{V[x] \mid x \in A} = X)$
     \item $X$上の任意の普遍ネットは\textit{Cauchy}である。
     \item $X$上の任意のネットは\textit{Cauchy}な部分ネットを持つ。
   \end{enumerate}
@@ -330,7 +332,7 @@
 
   全有界でないと仮定する。$X$の任意の有限部分$A$について、$\bigcup \qty{U[x] \mid x \in A} \neq X$となる近縁$U$が存在する。
 
-  $P \coloneqq \qty{A \in 2^X \mid \abs{A} < \infty \land A \neq \varnothing}$について、$\qty(P, \subset)$は有向集合であり、
+  $P \coloneqq \qty{A \in \P(X) \mid \abs{A} < \infty \land A \neq \varnothing}$について、$\qty(P, \subset)$は有向集合であり、
 
   全有界でないことから$\forall A \in P \exists x \in X \setminus \bigcup \qty{U[x] \mid x \in A}$である。このようなネット$\qty(x_A)_{A \in P}$を考える。\\*
 
@@ -368,7 +370,7 @@
 }
 
 \thmf{\textit{Heine-Cantor}の定理}{Heine-Cantorの定理}{
-  全有界な一様空間$\qty(X, \mathcal{U})$と、一様空間$\qty(X', \mathcal{U'})$について、連続写像$f : X \rightarrow X'$は一様連続である。
+  全有界な一様空間$\qty(X, \mathcal{U})$と、一様空間$\qty(X', \mathcal{U'})$について、連続写像$f \in \qty(X')^X$は一様連続である。
 }{
   $\forall V' \in \mathcal{V'}$について、\lemref{基本近縁系の三角性}より$\exists W' \in \mathcal{V'} \qty(W'^{-1} \circ W' \subset V')$
 

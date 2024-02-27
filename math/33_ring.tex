@@ -1,4 +1,4 @@
-\lsection{環}
+\lsection{環論}
 
 \lsubsection{環}
 
@@ -65,10 +65,10 @@
 \lsubsection{環と準同型}
 
 \dfn{環準同型}{
-  環$R, R'$について以下を満たす写像$\varphi \colon R \rightarrow R'$が存在するとき、$\varphi$を環準同型写像、または単に環準同型と呼ぶ。
+  環$R_1, R_2$について以下を満たす写像$\varphi \in R_2^{R_1}$が存在するとき、$\varphi$を環準同型写像、または単に環準同型と呼ぶ。
   \begin{itemize}
-    \item 群$\qty(R, +), \qty(R', +)$について、群準同型。
-    \item モノイド$\qty(R, \times), \qty(R', \times)$について、モノイド準同型。
+    \item 群$\qty(R_1, +), \qty(R_2, +)$について、群準同型。
+    \item モノイド$\qty(R_1, \times), \qty(R_2, \times)$について、モノイド準同型。
   \end{itemize}
 }
 
@@ -141,7 +141,7 @@
 \thm{極大左イデアルの存在}{
   環$R$と左イデアル$I$について、$I \neq R$ならば、極大左イデアル$J$が存在して、$I \subset J$である。
 }{
-  $T = \qty{J \in 2^R \mid J \text{は左イデアル} \land I \subset J \land J \neq R}$を考える。
+  $T = \qty{J \in \P(R) \mid J \text{は左イデアル} \land I \subset J \land J \neq R}$を考える。
 
   $I \in T$である。
 
@@ -188,13 +188,11 @@
 }
 
 \thm{環準同型定理}{
-  環$R, R'$と、環準同型$f \colon R \rightarrow R'$、$f$に付随する同値関係$\sim_{f}$について、環同型$\bar{f} \colon R / \sim_{f} \rightarrow \Im(f)$が存在する。
+  環$R_1, R_2$と、環準同型$f \in R_2^{R_1}$、$f$に付随する同値関係$\sim_{f}$について、環同型$\bar{f} \in \Im(f)^{R_1 / \sim_{f}}$が存在する。
 }{
-  $\Im(f)$は$R'$の部分環である。
+  $\Im(f)$は$R_2$の部分環である。
 
   \thmref{群準同型定理}より、得る$\bar{f}$は加法群同型。
 
   \thmref{モノイド準同型定理}より、得る$\bar{f}$は乗法モノイド同型。\\*
 }
-
-$R / \sim_f = R / \Ker (f)$であるため、$R / \Ker (f) \rightarrow \Im (f)$の形で書かれることが多い。

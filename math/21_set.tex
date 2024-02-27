@@ -58,7 +58,7 @@
 }
 
 \cor{包含の半順序性}{
-  包含は半順序的である。すなわち以下を全て満たす。
+  以下を全て満たす。
   \eqg*{
     \forall X \qty(X \subset X) \\*
     \forall X \forall Y \qty(X \subset Y \land Y \subset X \rightarrow X = Y) \\*
@@ -69,7 +69,7 @@
 \rem{集合の外延的定義}{
   \axiref{外延性の公理}より、全ての要素を書き下せば集合は一意に定まる。
   全ての要素を書き下す集合の定義方法を、外延的定義と呼ぶ。
-  具体的には、要素が$a, b, c$でありそれのみである集合$A$に対して以下のような定義をする。
+  具体的には、要素が$a, b, c$であり、かつそれのみである集合$A$に対して以下のような定義をする。
   \eq*{
     A = \qty{a, b, c}
   }
@@ -104,7 +104,7 @@
 }
 
 \dfn{単集合}{
-  $x = y$を考えることで、集合$\qty{x, x}$が存在することが言える。\axiref{外延性の公理}から一意に定まるので、$\qty{x}$と表記して良い。\\*
+  $x = y$を考えることで、集合$\qty{x, x}$が存在することが言える。\axiref{外延性の公理}から、$\qty{x}$と表記して良い。\\*
   このような単一の元からなる集合を単集合（singleton）と呼ぶ。
 }
 
@@ -190,43 +190,43 @@
 
 \dfn{冪集合}{
   集合$X$について、\axiref{冪集合の公理}の主張する集合$A$が存在して、これは\axiref{外延性の公理}から一意に定まる。\\*
-  このような集合Aを、冪集合$2^X$と呼ぶ。
+  このような集合Aを、冪集合$\P(X)$と呼ぶ。
 }
 
 \cor*{
   \eq*{
-    \forall X \qty(\varnothing \in 2^X \land X \in 2^X)
+    \forall X \qty(\varnothing \in \P(X) \land X \in \P(X))
   }
 }
 
 \cor*{
   \eq*{
-    \forall X \forall Y \qty(X \subset Y \rightarrow 2^X \subset 2^Y)
+    \forall X \forall Y \qty(X \subset Y \rightarrow \P(X) \subset \P(Y))
   }
 }
 
 \cor*{
   \eq*{
-    2^\varnothing = \qty{\varnothing}
+    \P(\varnothing) = \qty{\varnothing}
   }
 }
 
 \cor*{
   \eq*{
-    \forall x \qty(2^\qty{x} = \qty{\varnothing, \qty{x}})
+    \forall x \qty(\P(\qty{x}) = \qty{\varnothing, \qty{x}})
   }
 }
 
 \cor*{
   \eq*{
-    \forall X \qty(\bigcup 2^X = X)
+    \forall X \qty(\bigcup \P(X) = X)
   }
 }
 
 \dfn{被覆}{
   集合$A$について、以下を満たす集合$X$を$A$の被覆と呼ぶ。
   \eq*{
-    X \subset 2^A \land A = \bigcup X
+    X \subset \P(A) \land A = \bigcup X
   }
 }
 
@@ -241,9 +241,9 @@
 }
 
 \rem{集合の内包的定義１}{
-  \axiref{外延性の公理}より、\axiref{置換の公理図式}より主張される集合は一意に定まる。\axiref{置換の公理図式}に基づく定義方法を、内包的定義と呼び以下のように表す。
+  \axiref{外延性の公理}より、\axiref{置換の公理図式}より主張される集合$A$は一意に定まる。\axiref{置換の公理図式}に基づく定義方法を、内包的定義と呼び以下のように表す。
 
-  \axiref{置換の公理図式}の前件を満たす述語記号$\psi$について、
+  \axiref{置換の公理図式}の前件を満たすアリティ2の述語記号$\psi$について、以下のように表す。
   \eq*{
     A = \qty{y \mid \exists x \in X \qty(\psi(x, y))}
   }
@@ -287,8 +287,6 @@
 
   $\forall a \lnot \qty(a \in X \land P(a))$のとき、$A = \varnothing$で示される。
 }
-
-分出の公理図式は今回は定理として証明したが、公理系によっては公理図式として採用される。
 
 \rem{集合の内包的定義２}{
   \axiref{外延性の公理}より、\thmref{分出の公理図式}より主張される集合は一意に定まる。
@@ -375,7 +373,7 @@
 
 \cor*{
   \eq*{
-    \forall X \forall Y \qty(2^X \cap 2^Y = 2^{X \cap Y})
+    \forall X \forall Y \qty(\P(X) \cap \P(Y) = \P \qty(X \cap Y))
   }
 }
 
@@ -388,7 +386,7 @@
 
 \cor*{
   \eq*{
-    \forall X \forall Y \qty(X \setminus Y \subset X \land X \setminus Y \in 2^X)
+    \forall X \forall Y \qty(X \setminus Y \subset X \land X \setminus Y \in \P(X))
   }
 }
 
@@ -447,13 +445,13 @@
 
 \lem*{
   \eq*{
-    \forall X \forall Y \forall x \forall y \qty(x \in X \land y \in Y \rightarrow \qty(x, y) \in 2^{2^{X \cup Y}})
+    \forall X \forall Y \forall x \forall y \qty(x \in X \land y \in Y \rightarrow \qty(x, y) \in \P \qty(\P \qty(X \cup Y)))
   }
 }{
   \eqg*{
     x \in X \land y \in Y \\*
-    \qty{x} \in 2^{X \cup Y} \land \qty{x, y} \in 2^{X \cup Y} \\*
-    \qty(x, y) \in 2^{2^{X \cup Y}}
+    \qty{x} \in \P \qty(X \cup Y) \land \qty{x, y} \in \P \qty(X \cup Y) \\*
+    \qty(x, y) \in \P \qty(\P \qty(X \cup Y))
   }
   よって従う。
 }
@@ -461,7 +459,7 @@
 \dfn{直積集合}{
   集合$X, Y$について、以下を満たす集合を$X$と$Y$の直積集合と呼ぶ。
   \eq*{
-    X \times Y \coloneqq \qty{z \in 2^{2^{X \cup Y}} \mid \exists x \exists y \qty(x \in X \land y \in Y \land z = \qty(x, y))}
+    X \times Y \coloneqq \qty{z \in \P \qty(\P \qty(X \cup Y)) \mid \exists x \exists y \qty(x \in X \land y \in Y \land z = \qty(x, y))}
   }
 }
 
@@ -471,9 +469,11 @@
   }
 }
 
-\cor{共通と直積}{
-  \eq*{
-    \forall X_1, X_2, Y_1, Y_2 \qty(\qty(X_1 \times X_2) \cap \qty(Y_1 \times Y_2) = \qty(X_1 \cap X_2) \times \qty(Y_1 \cap Y_2))
+\cor*{
+  \eqg*{
+    \forall X_1, X_2, Y \qty(\qty(X_1 \cup X_2) \times Y = \qty(X_1 \times Y) \cup \qty(X_2 \times Y)) \\*
+    \forall X_1, X_2, Y_1, Y_2 \qty(\qty(X_1 \cap X_2) \times \qty(Y_1 \cap Y_2) = \qty(X_1 \times Y_1) \cap \qty(X_2 \times Y_2)) \\*
+    \forall X_1, X_2, Y \qty(\qty(X_1 \setminus X_2) \times Y = \qty(X_1 \times Y) \setminus \qty(X_2 \times Y))
   }
 }
 

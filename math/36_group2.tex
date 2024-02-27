@@ -1,4 +1,4 @@
-\lsection{有限群と置換}
+\lsection{群論の補足}
 
 \lsubsection{有限群}
 
@@ -15,7 +15,7 @@
 }{
   $\forall g \in G$について考える。
 
-  写像$f \colon H \ni h \rightarrow g h \in \qty[g]$は全単射である。
+  写像$f \in \qty[g]^H, f(h) \coloneqq g h$は全単射である。
 
   $H$は有限より、$\abs{\qty[g]} = \abs{H}$
 
@@ -39,7 +39,7 @@
 		\qty{n \in \N \mid g^n = e}
 	}
 }{
-	\thmref{鳩の巣原理}より、写像$s(\abs{G}) \ni n \rightarrow g^n \in G$は単射でない。
+	\thmref{鳩の巣原理}より、写像$\tau \in G^s(\abs{G}), \tau(n) = g^n$は単射でない。
 
 	よって、$\exists i, j \in s(\abs{G}) \qty(i < j \land g^i = g^j)$
 
@@ -58,7 +58,7 @@
 		\ord(g) = \abs{\aqty{g}}
 	}
 }{
-	写像$\ord(g) \ni n \rightarrow g^n \in \aqty{g}$を考える。
+	写像$\tau \in \aqty{g}^{\ord(g)}, \tau(n) = g^n$を考える。
 
 	$\exists i, j \in \N \qty(i < j \land g^i = g^j)$ならば$g^{j - i} = e$より位数の最小性に反する。ゆえに単射。
 
@@ -81,7 +81,7 @@
 }
 
 \dfn{置換}{
-	$n \in \N_{\geq 1}$について、全単射$n \rightarrow n$を置換と呼ぶ。
+	$n \in \N_{\geq 1}$について、全単射$\sigma \in n^n$を置換と呼ぶ。
 }
 
 \dfn{対称群}{
@@ -96,7 +96,7 @@
 		\begin{cases}
 			j & \qty(m = i) \\*
 			i & \qty(m = j) \\*
-			m & \qty(\text{otherwise})
+			m & \qty(\otherwise)
 		\end{cases}
 		)
 	}
@@ -117,7 +117,7 @@
 \thm{置換は互換の積}{
 	$n \in \N_{\geq 1}$について、以下が成り立つ。
 	\eq*{
-		\forall \sigma \in \S_n \exists l \in \N \exists \tau \in \Map(l, T_n) \qty(\sigma = \prod_{m \in l} \tau(m))
+		\forall \sigma \in \S_n \exists l \in \N \exists \tau \in T_n^l \qty(\sigma = \prod_{m \in l} \tau(m))
 	}
 }{
 	$n = 1$のとき、$\S_1 = \qty{\id_1}$より成り立つ。
@@ -181,7 +181,7 @@
 \dfn{置換の符号}{
 	$\forall \sigma \in \S_n$について、\lemref{置換の符号}より定まる偶奇が存在する。
 
-	このとき、以下の写像$\sign \colon \S_n \rightarrow \Z$を定義する。
+	このとき、以下の写像$\sign \in \Z^{\S_n}$を定義する。
 	\eq*{
 		\sign(\sigma) =
 		\begin{cases}
@@ -192,7 +192,7 @@
 }
 
 \cor*{
-	$\sign \colon \S_n \rightarrow \qty(\Z, \times)$は群準同型である。
+	$\sign \in \qty(\Z, \times)^{\S_n}$は群準同型である。
 }
 
 \dfn{交代群}{
@@ -231,9 +231,9 @@
 
 	有限列$Y_m \coloneqq Z_m \cap H$を考える。ただちに$Y_{s(m)}$は$Y_m$の正規部分群。
 
-	埋め込み$Y_m \rightarrow Z_m$と、商写像$Z_m \rightarrow Z_m / Z_{s(m)}$から、準同型$Y_m \rightarrow Z_m / Z_{s(m)}$を得る。
+	埋め込み$f \in Z_m^{Y_m}$と、商写像$\qty[] \in \qty(Z_m / Z_{s(m)})^{Z_m}$から、準同型$\qty[] \circ f \in \qty(Z_m / Z_{s(m)})^{Y_m}$を得る。
 
-	\thmref{群準同型定理}より、埋め込み$Y_m / Y_{s(m)} \rightarrow Z_m / Z_{s(m)}$が存在する。
+	\thmref{群準同型定理}より、埋め込み$\bar{f} \in \qty(Z_m / Z_{s(m)})^{Y_m / Y_{s(m)}}$が存在する。
 
 	$Z_m / Z_{s(m)}$は可換群より、$Y_m / Y_{s(m)}$も可換群。したがって可解群。
 }
@@ -247,7 +247,7 @@
 
 	$H_m$上の\lemref{正規部分群の定める同値関係}の定める同値関係について、$a \sim_N b \rightarrow a \sim_{H_{s(m)}} b$である。
 
-	ゆえに自明な埋め込み$H_m / H_{s(m)} \rightarrow H_m / N$が存在する。
+	ゆえに自明な埋め込み$f \in \qty(H_m / N)^{H_m / H_{s(m)}}$が存在する。
 
 	$H_m / N$は可換群より、$H_m / H_{s(m)}$も可換群である。\\*
 
@@ -304,98 +304,4 @@
 	\lemref{可解群の部分}より$A_n$も可解群となり、さらに$A_5$が可解群となる。これは\mlemref{-1}に反する。
 
 	背理法より成り立つ。
-}
-
-
-\lsubsection{体と多項式}
-
-\thmf{体上の多項式環は\textit{Euclid}整域}{体上の多項式環はEuclid整域}{
-  体$F$上の多項式環$F[X]$は\textit{Euclid}整域である。
-}{
-  $F$が整域であることから、\corref{整域上の多項式の次数}より$F[X]$は整域である。\\*
-
-  $f \in F[X], g \in F[X] \setminus \qty{0_{F[X]}}$を考える。
-
-  $f = 0_{F[X]}$について、$f = 0_{F[X]} \times g + 0_{F[X]}$である。\\*
-
-  $f \neq 0_{F[X]}$とする。
-
-  $\deg(f) < \deg(g)$について、$f = 0_{F[X]} \times g + f$が成り立つ。\\*
-
-  $\deg(f) \geq \deg(g)$とする。
-
-  $\deg(f) = 0$のとき$\deg(g) = 0$より、以下の$q$について、$f = q \times g + 0_{F[X]}$である。
-  \eq*{
-    q(n) = f(n) g(0)^{-1}
-  }
-
-  $n \geq \deg(f)$について成り立つとき、$s(n) = \deg(f)$でも成り立つことを示す。
-
-  以下の$h \in F[X]$を考える。
-  \eq*{
-    h(m) =
-    \begin{cases}
-      f(m) - f(\deg(f)) g(\deg(g))^{-1} g(m - \deg(f) + \deg(g)) & \qty(m \geq \deg(f) - \deg(g)) \\*
-      f(m) & \qty(m < \deg(f) - \deg(g))
-    \end{cases}
-  }
-
-  $h = 0_{F[X]}$のとき、以下の$q$について、$f = d g + 0_{F[X]}$で成り立つ。
-  \eq*{
-    d(m) =
-    \begin{cases}
-      f(\deg(f)) g(\deg(g))^{-1} & \qty(m = \deg(f) - \deg(g)) \\*
-      0_R & \qty(m \neq \deg(f) - \deg(g))
-    \end{cases}
-  }
-
-  $h \neq 0_{F[X]}$のとき、$\deg(h) \leq n$となる。帰納法の仮定より、$h = q g + r \land \deg(r) < \deg(g)$
-
-  ゆえに、$f = d g + h = \qty(d + q) g + r \land \deg(r) < \deg(g)$
-
-  \thmref{数学的帰納法}より成り立つ。\\*
-
-  \corref{整域上の多項式の次数}より、$\forall f, g \in F[X] \setminus \qty{0_{F[X]}} \qty(\deg(f) \leq \deg(f g))$より成り立つ。
-}
-
-\thm{剰余の定理}{
-  \thmref{体上の多項式環はEuclid整域}より、体$F$上の多項式環$F[X]$には除法が定義される。この除法は一意である。
-}{
-  体$F$と、$g \in F[X] \setminus \qty{0_{F[X]}}$を考える。
-
-  $q_1 g + r_1 = q_2 g + r_2 \land \qty(r_1 = 0_{F[X]} \lor \deg(r_1) < \deg(g)) \land \qty(r_2 = 0_{F[X]} \lor \deg(r_2) < \deg(g))$とする。
-
-  $\qty(q_1 - q_2) g = r_2 - r_1$である。
-
-  $r_2 \neq r_1$のとき、$deg(g) > \deg(r_2 - r_1) = \deg(q_1 - q_2) + \deg(g) \geq \deg(g)$より矛盾。
-
-  したがって$r_1 = r_2$である。整域より$q_1 = q_2$
-}
-
-\dfn{代数的}{
-  体$E$と、$E$の部分体$F$、元$x \in E$について、以下を満たすとき、元$x$が$F$上代数的と呼ぶ。
-  \eq*{
-    \exists f \in F[X] \setminus \qty{0_{F[X]}} \qty(f(x) = 0_E)
-  }
-}
-
-\thm{最小多項式}{
-  体$E$と、$E$の部分体$F$、$F$上代数的な元$x \in E$について、$x$を根に持つ次数既約な多項式$f$が存在する。
-}{
-  以下を満たす環準同型$\varphi \colon F[X] \rightarrow E$を考える。
-  \eq*{
-    \varphi(g) = g(x)
-  }
-
-  ここで、$E$は体すなわち整域より、$\Ker(\varphi)$は素イデアルである。
-
-  \thmref{体はED}と\thmref{EDはPID}より、$\aqty{f} = \Ker(\varphi)$なる多項式$f \in F[X]$が存在する。
-
-  定義より、$\Ker(\varphi) \neq \qty{0_{F[X]}}$であるので、$f$は素元。
-}
-
-\dfn{代数的閉体}{
-  体$F$上の多項式環$F[X]$を考える。
-
-  $F[X]$の任意の次数既約な多項式$f$について、$\deg(f) = 1$であるとき、$F$を代数的閉体と呼ぶ。
 }

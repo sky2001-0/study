@@ -3,65 +3,58 @@
 \lsubsection{関係}
 
 \dfn{二項関係}{
-  集合$X, Y$について、集合系$G \in 2^{X \times Y}$を考える。
-  以下のように定義されるアリティ2の述語記号を、順序対$\qty(\qty(X, Y), G)$によって特徴づけられた二項関係$R$と呼ぶ。
+  集合系$G$について、以下のように定義されるアリティ2の述語記号$R_G$を、集合系$G$によって特徴づけられた二項関係と呼ぶ。
   \eq*{
-    R(x, y) \defiff \qty(x, y) \in G
+    \forall x, y \qty(R_G(x, y) \defiff \qty(x, y) \in G)
   }
-  $R(x, y)$は誤解のない範囲において、$x R y$とも表す。
+  $R_G(x, y)$は誤解のない範囲において、$x R_G y$とも表す。
 
   また、二項関係は単に関係とも呼ぶ。
 }
 
-\cor{関係全体の集合}{
-  集合$X, Y$間の関係の全体は集合をなす。具体的には\thmref{分出の公理図式}から以下のように書ける。
+\dfn{集合間の関係}{
+  集合$X, Y, G$について、関係$R_G$が以下を満たすとき、$R_G$を$X$と$Y$の間の関係と呼ぶ。
   \eq*{
-    \qty{\qty(\qty(X, Y), G) \in \qty(\qty{X} \times \qty{Y}) \times 2^{X \times Y}}
+    G \in \P \qty(X, Y)
   }
 }
 
-\dfn{始集合}{
-  関係$R$について、定義より与えられる$X$を始集合または始域と呼ぶ。
-}
-
-\dfn{終集合}{
-  関係$R$について、定義より与えられる$Y$を終集合または終域と呼ぶ。
-}
-
 \dfn{定義域}{
-  \thmref{分出の公理図式}より定まる以下の集合を定義域$\dom(R)$と呼ぶ。
+  \axiref{置換の公理図式}より定まる以下の集合を定義域$\dom(R_G)$と呼ぶ。
   \eq*{
-    \dom(R) \coloneqq \qty{x \in X \mid \exists y \in Y \qty(R(x, y))}
+    \dom(R_G) \coloneqq \qty{x \mid \qty(x, y) \in G}
   }
 }
 
 \dfn{値域}{
-  関係$R$について、\thmref{分出の公理図式}より定まる以下の集合を値域$\ran(R)$と呼ぶ。
+  関係$R$について、\axiref{置換の公理図式}より定まる以下の集合を値域$\ran(R_G)$と呼ぶ。
   \eq*{
-    \ran(R) \coloneqq \qty{y \in Y \mid \exists x \in X \qty(R(x, y))}
+    \ran(R_G) \coloneqq \qty{y \mid \qty(x, y) \in G}
   }
 }
 
-\dfn{逆}{
-  関係$R$について、以下で定まる集合$G'$が一意に存在する。
-  \eq*{
-    G' = \qty{\qty(y, x) \in Y \times X \mid \qty(x, y) \in G}
-  }
+\cor*{
+  任意の関係$R$は、$\dom(R)$と$\ran(R)$の間の関係である。
+}
 
-  $G'$を用いて定義される順序対$\qty(\qty(Y, X), G')$により特徴づけられる関係を、関係$R$の逆と呼び、$R^{-1}$と表す。
+\dfn{逆}{
+  関係$R_G$について、以下で定まる関係$R_\qty{G^{-1}}$が一意に存在する。
+  \eq*{
+    G^{-1} = \qty{\qty(y, x) \mid \qty(x, y) \in G}
+  }
 }
 
 \dfn{左一意的}{
   関係$R$が左一意的であるとは、以下を満たすことである。
   \eq*{
-    \forall w, x \in X \qty(\exists y \in Y \qty(R(w, y) \land R(x, y)) \rightarrow w = x)
+    \forall w, x \qty(\exists y \qty(R(w, y) \land R(x, y)) \rightarrow w = x)
   }
 }
 
 \dfn{右一意的}{
   関係$R$が右一意的であるとは、以下を満たすことである。
   \eq*{
-    \forall y, z \in Y \qty(\exists x \in X \qty(R(x, y) \land R(x, z)) \rightarrow y = z)
+    \forall y, z \qty(\exists x \qty(R(x, y) \land R(x, z)) \rightarrow y = z)
   }
 }
 
@@ -70,114 +63,105 @@
 }
 
 \dfn{左全域的}{
-  関係$R$が左全域的であるとは、以下を満たすことである。すなわち始集合と定義域が一致すことである。
+  関係$R$が、集合$X$について左全域的であるとは、以下を満たすことである。
   \eq*{
-    \forall x \in X \exists y \in Y \qty(R(x, y))
+    \forall x \in X \exists y \qty(R(x, y))
   }
 }
 
 \dfn{右全域的}{
-  関係$R$が右全域的であるとは、以下を満たすことである。すなわち終集合と値域が一致すことである。
+  関係$R$が、集合$Y$について右全域的であるとは、以下を満たすことである。
   \eq*{
-    \forall y \in Y \exists x \in X \qty(R(x, y))
+    \forall y \in Y \exists x \qty(R(x, y))
   }
-}
-
-\dfn{対応}{
-  関係$R$が左全域的かつ右全域的であるとき、$R$は対応であると言う。
-}
-
-\dfn{一対一対応}{
-  関係$R$が一対一かつ対応であるとき、$R$は一対一対応であると言う。
 }
 
 
 \lsubsection{写像}
 
 \dfn{部分写像}{
-  右一意的な関係$R$について、以下の略記$f$を考える。
+  集合$X, Y$について、$X$と$Y$の間の右一意的な関係$R_G$を考える。
+
+  $x \in X$について$\qty{y \in Y \mid R_G(x, y)} \neq \varnothing$であるとき、以下の略記$f$を考える。
   \eq*{
-    f(x) \coloneqq \bigcup \qty{y \in Y \mid R(x, y)}
+    f(x) \coloneqq \bigcup \qty{y \in Y \mid R_G(x, y)}
   }
 
   右一意的であることから以下を満たす。
   \eq*{
-    f(x) = y \leftarrow R(x, y)
+    f(x) = y \leftrightarrow R_G(x, y)
   }
 
-  この略記$f$を、関係$R$によって特徴づけられた部分写像と呼ぶ。
-
-  始集合と終集合を明示したい場合、$f \colon X \nrightarrow Y$とも表す。
-}
-
-\dfn{写像}{
-  右一意的かつ左全域的な関係$R$について、以下の略記$f$を考える。
-  \eq*{
-    f(x) \coloneqq \bigcup \qty{y \in Y \mid R(x, y)}
-  }
-
-  右一意的かつ左全域的であることから以下を満たす。
-  \eq*{
-    f(x) = y \leftrightarrow R(x, y)
-  }
-
-  この略記$f$を、関係$R$によって特徴づけられた写像と呼ぶ。
-
-  始集合（すなわち定義域）と終集合を明示したい場合、$f \colon X \rightarrow Y$とも表す。
-
-  関係を具体的に示したい場合、$f \colon X \ni x \mapsto f(x) \in Y$とも表す。
+  この略記$f$を、順序対$\qty(\qty(X, Y), G)$によって特徴づけられた部分写像と呼ぶ。
 
   また、$f(x)$を$x$での$f$の値と呼ぶ。
 }
 
-\cor{写像と空集合}{
-  写像$f \colon X \rightarrow Y$について、左全域性より以下が成り立つ。
+\dfn{写像}{
+  集合$X, Y$と、$X$と$Y$の間の右一意的な関係$R_G$について、$R_G$が$X$について左全域的であるとする。
+
+  このとき、順序対$\qty(\qty(X, Y), G)$によって特徴づけられた部分写像$f$を写像と呼ぶ。
+}
+
+\dfn{写像の全体}{
+  集合$X, Y$について、集合$Y^X$を以下のように定める。
   \eq*{
-    Y = \varnothing \rightarrow X = \varnothing
+    Y^X \coloneqq \qty{\text{$\qty(\qty(X, Y), G)$の特徴づける写像} \mid G \in \P \qty(X \times Y) \land \text{$G$の特徴づける関係は、右一意的かつ$X$について左全域的}}
+  }
+}
+
+\cor*{
+  \eqg*{
+    \forall Y \qty(Y^\varnothing = \qty{\varnothing}) \\*
+    \forall X \qty(X \neq \varnothing \rightarrow \varnothing^X = \varnothing)
   }
 }
 
 \dfn{制限写像}{
-  写像$f \colon X \rightarrow Y$と、$X$の部分集合$A$について以下の写像$\tilde{f}$を$f$の$A$への制限写像、または単に制限と呼ぶ。
+  写像$f \in Y^X$と、$X$の部分集合$A$を考える。
+
+  $f$を特徴づける集合系$G$について、以下の集合系$G_A$を考える。
   \eq*{
-    f \rvert_A \colon A \ni x \mapsto f(x) \in Y
+    G_A \coloneqq \qty{\qty(x, y) \in G \mid x \in A}
   }
+
+  $\qty(\qty(A, Y), G_A)$に特徴づけられた写像$f \rvert_A$を$f$の$A$への制限写像、または単に制限と呼ぶ。
 
   誤解のない限り、制限$f \rvert_A$を同様に$f$で表記する。
 }
 
-\dfn{写像全体の集合}{
-  集合$X, Y$について、$X$を定義域、$Y$を終集合とする写像全体の集合が\corref{関係全体の集合}より存在して、$\Map(X, Y)$と表す。
-}
-
 \rem{集合の内包的定義３}{
-  \axiref{置換の公理図式}の主張する$\psi(x, y)$について、関係$\qty(\qty(X, Y), \qty{\qty(x, y) \in X \times Y \mid \psi(x, y)})$より特徴づけられる関係$R$を考える。
+  写像$f \in Y^X$について、以下を満たすアリティ2の述語記号$\psi(x, y)$を考える。
+  \eq*{
+    \forall x, y \qty(\psi(x, y) \defiff y = f(x))
+  }
 
-  $R$は定義より右一意的である。$R$が左全域的であるとき、$R$により特徴づけられる写像$f$が存在して、\axiref{置換の公理図式}を満たす集合を以下のように定義する。
-
+  $f$が写像であることから\axiref{置換の公理図式}の主張する集合$A$が存在する。これをより簡潔に以下のように表すものとする。
   \eq*{
     A = \qty{f(x) \mid x \in X}
   }
 }
 
 \dfn{恒等写像}{
-  写像$f \colon X \ni \rightarrow x \in X$を恒等写像と呼ぶ。恒等写像であることを明示的に、$\id_{X}$と表す。
+  集合$X$について、以下で定める集合系$\Delta$を考える。$\qty(\qty(X, X), \Delta)$により特徴づけられる写像$\id_X$を恒等写像と呼ぶ。
+  \eq*{
+    \Delta \coloneqq \qty{\qty(x, x) \mid x \in X}
+  }
 }
 
 \dfn{合成写像}{
-  写像$f \colon X \rightarrow Y, g \colon Y \rightarrow Z$について、以下で定める関係$R$を考える。
-  \eqg*{
-    G \coloneqq \qty{\qty(x, z) \in X \times Z \mid \exists y \in Y \qty(y = f(x) \land z = g(y))} \\*
-    R \coloneqq \qty(\qty(X, Z), G)
+  写像$f \in Y^X, g \in Z^Y$について、以下で定める集合系$G$を考える。
+  \eq*{
+    G \coloneqq \qty{\qty(x, z) \mid \exists y \in Y \qty(y = f(x) \land z = g(y))}
   }
 
-  この関係$R$は、右一意的かつ左全域的であるので、$R$によって特徴づけられる写像$h$が定まる。
+  $\qty(\qty(X, Z), G)$によって特徴づけられる写像$h$が存在する。
 
   この写像$h$を$f$と$g$の合成写像と呼び、$g \circ f$と表す。
 }
 
 \cor{写像の合成の結合法則}{
-  写像$f \colon X \rightarrow Y, g \colon Y \rightarrow Z, h \colon Z \rightarrow W$について、以下が成り立つ。
+  写像$f \in Y^X, g \in Z^Y, h \in W^Z$について、以下が成り立つ。
   \eq*{
     \qty(h \circ g) \circ f = h \circ \qty(g \circ f)
   }
@@ -186,37 +170,37 @@
 \thm{選択公理が与える写像}{
   アリティ２の述語記号$\psi$について、$\forall x \in X \exists y \in Y \qty(\psi(x, y))$が成り立つとする。
 
-  このとき、以下を満たす写像$f \colon X \rightarrow Y$が存在する。
+  このとき、以下を満たす写像$f \in Y^X$が存在する。
   \eq*{
     \forall x \in X \forall y \in Y \qty(f(x) = y \rightarrow \psi(x, y))
   }
 }{
-  \axiref{置換の公理図式}より、以下の集合$Z$が存在する。
+  以下の集合$Z$を考える。
   \eq*{
     Z \coloneqq \qty{\qty{\qty(x, y) \mid y \in Y \land \psi(x, y)} \mid x \in X}
   }
 
-  $Z$について\axiref{選択公理}の主張する集合$A$が存在する。順序対$\qty(\qty(X, Y), A)$の特徴づける関係は、仮定より左全域的で、$A$の定義より右一意的である。
+  $Z$について\axiref{選択公理}の主張する集合$A$が存在する。$A$の特徴づける関係は、仮定より$X$について左全域的で、$A$の定義より右一意的である。
 
-  このような関係により特徴づけられる写像が存在する。
+  $\qty(\qty(X, Y), A)$により特徴づけられる写像$f$が存在する。
 }
 
 \dfn{像}{
-  写像$f$の値域を、$f$の像と呼び、$\Im(f)$と表す。
+  写像$f \in Y^X$の値域を、$f$の像と呼び、$\Im(f)$と表す。
 
-  また、写像$f$の定義域$X$の部分集合$A$について、$A$の$f$による像$f(A)$を以下のように定める。
+  また、$X$の部分集合$A$について、$A$の$f$による像$f(A)$を以下のように定める。
   \eq*{
     f(A) \coloneqq \qty{f(x) \mid x \in A}
   }
 }
 
 \thm{像の性質}{
-  写像$f \colon X \rightarrow Y$について、
+  写像$f \in Y^X$について、以下が成り立つ。
   \eqg*{
-    \forall A_1, A_2 \qty(A_1 \subset A_2 \land A_2 \subset X \rightarrow f(A_1) \subset f(A_2)) \\*
-    \forall B \in 2^X \qty(f(\bigcup B) = \bigcup \qty{f(A) \mid A \in B}) \\*
-    \forall B \in 2^X \qty(f(\bigcap B) \subset \bigcap \qty{f(A) \mid A \in B}) \\*
-    \forall A_1, A_2 \in 2^X \qty(f(A_1) \setminus f(A_2) \subset f(A_1 \setminus A_2))
+    \forall A_1, A_2 \in \P(X) \qty(A_1 \subset A_2 \rightarrow f(A_1) \subset f(A_2)) \\*
+    \forall B \in \P \qty(\P(X)) \qty(f \qty(\bigcup B) = \bigcup \qty{f(A) \mid A \in B}) \\*
+    \forall B \in \P \qty(\P(X)) \qty(f \qty(\bigcap B) \subset \bigcap \qty{f(A) \mid A \in B}) \\*
+    \forall A_1, A_2 \in \P(X) \qty(f(A_1) \setminus f(A_2) \subset f(A_1 \setminus A_2))
   }
 }{
   第一式について、
@@ -253,14 +237,14 @@
 }
 
 \dfn{原像}{
-  写像$f \colon X \rightarrow Y$について、$Y$の部分集合$A$の原像とは、以下を満たす集合$f^{-1}(A)$である。
+  写像$f$について、集合$A$の原像とは、以下を満たす集合$f^{-1}(A)$である。
   \eq*{
     f^{-1}(A) = \qty{x \in X \mid f(x) \in A}
   }
 }
 
 \cor{像と原像}{
-  写像$f \colon X \rightarrow Y$と$X$の部分集合$A$と$Y$の部分集合$B$について、
+  写像$f \in Y^X$、$X$の部分集合$A$、集合$B$について、
   \eqg*{
     f^{-1} \qty(f(A)) \supset A \\*
     f \qty(f^{-1}(B)) \subset B
@@ -268,12 +252,12 @@
 }
 
 \thm{原像の性質}{
-  写像$f \colon X \rightarrow Y$について、
+  写像$f \in Y^X$について、以下が成り立つ。
   \eqg*{
-    \forall A_1, A_2 \in 2^Y \qty(A_1 \subset A_2 \rightarrow f^{-1}(A_1) \subset f^{-1}(A_2)) \\*
-    \forall B \in 2^Y \qty(f^{-1}(\bigcup B) = \bigcup \qty{f^{-1}(A) \mid A \in B}) \\*
-    \forall B \in 2^Y \qty(f^{-1}(\bigcap B) = \bigcap \qty{f^{-1}(A) \mid A \in B}) \\*
-    \forall A_1, A_2 \in 2^Y \qty(f^{-1}(A_1) \setminus f^{-1}(A_2) = f^{-1}(A_1 \setminus A_2))
+    \forall A_1, A_2 \in \P(Y) \qty(A_1 \subset A_2 \rightarrow f^{-1}(A_1) \subset f^{-1}(A_2)) \\*
+    \forall B \in \P \qty(\P(Y)) \qty(f^{-1}(\bigcup B) = \bigcup \qty{f^{-1}(A) \mid A \in B}) \\*
+    \forall B \in \P \qty(\P(Y)) \qty(f^{-1}(\bigcap B) = \bigcap \qty{f^{-1}(A) \mid A \in B}) \\*
+    \forall A_1, A_2 \in \P(Y) \qty(f^{-1}(A_1) \setminus f^{-1}(A_2) = f^{-1}(A_1 \setminus A_2))
   }
 }{
   第一式について、
@@ -310,57 +294,56 @@
   上からも下からも成り立つので、\axiref{外延性の公理}より成り立つ。
 }
 
+\dfn{一般の直積集合}{
+  写像$A \in Z^\Lambda$について、以下を満たす集合を写像$A$の直積集合と呼ぶ。
+
+  \eq*{
+    \prod A \coloneqq \qty{f \in \qty(\bigcup \qty{A(\lambda) \mid \lambda \in \Lambda})^\Lambda \mid \forall \lambda \in \Lambda \qty(f(\lambda) \in A(\lambda))}
+  }
+}
+
+\cor*{
+  集合$X, Y$について、写像$A \in \qty{Y}^X, \forall x \in X \qty(A(x) \coloneqq Y)$を考える。
+
+  このとき、$\prod A = Y^X$である。
+}
+
 
 \lsubsection{単射と全射}
 
-\dfn{単射、全射}{
-  写像$f$が左一意的であるとき、$f$は単射であると言う。単射な写像を、誤解のない範囲で単射と呼ぶ。
+\dfn{単射}{
+  写像$f$が左一意的であるとき、$f$は単射であると言う。
+  単射な写像を、誤解のない範囲で単射と呼ぶ。
+}
 
-  写像$f$が右全域的であるとき、$f$は全射であると言う。全射な写像を、誤解のない範囲で全射と呼ぶ。
+\cor*{
+  単射$f \in Y^X, g \in Z^Y$について、$g \circ f$は単射である。
+}
 
-  写像$f$が単射かつ全射であるとき、$f$は全単射であると言う。全単射な写像を、誤解のない範囲で全単射と呼ぶ。
+\cor*{
+  集合$X, Y$について、単射$f \in Y^X$が存在するならば、単射$g \in \P(Y)^{\P(X)}$が存在する。
+}
+
+\dfn{全射}{
+  写像$f$が右全域的であるとき、$f$は全射であると言う。
+  全射な写像を、誤解のない範囲で全射と呼ぶ。
+}
+
+\cor*{
+  全射$f \in Y^X, g \in Z^Y$について、$g \circ f$は全射である。
+}
+
+\dfn{全単射}{
+  写像$f$が単射かつ全射であるとき、$f$は全単射であると言う。
+  全単射な写像を、誤解のない範囲で全単射と呼ぶ。
 }
 
 \cor*{
   恒等写像は全単射である。
 }
 
-\thmf{\textit{Cantor}の対角線論法}{Cantorの対角線論法}{
-  集合$A$について、単射$f \colon 2^A \rightarrow A$は存在しない。
-}{
-  存在するとする。
-
-  以下の集合$Y$を考える。
-  \eq*{
-    Y \coloneqq \qty{f(X) \mid X \in 2^A \land f(X) \notin X}
-  }
-  このとき$Y \in 2^A$である。
-
-  $f(Y) \notin Y$とすると、定義より$f(Y) \in Y$。ゆえに矛盾。
-
-  $f(Y) \in Y$とすると、$f$の単射性より$Y \in 2^A \land f(Y) \notin Y$。ゆえに矛盾。
-
-  背理法より示される。
-}
-
-\cor*{
-  単射$f \colon X \rightarrow Y, g \colon Y \rightarrow Z$について、$g \circ f$は単射である。
-}
-
-\cor*{
-  全射$f \colon X \rightarrow Y, g \colon Y \rightarrow Z$について、$g \circ f$は全射である。
-}
-
-\cor*{
-  集合$X, Y$について、単射$X \rightarrow Y$が存在するならば、単射$2^X \rightarrow 2^Y$が存在する。
-}
-
-\cor*{
-  集合$X, Y$について、全単射$2^{X \times Y} \rightarrow 2^X \times 2^Y$が存在する。
-}
-
 \dfn{左逆写像}{
-  写像$f \colon X \rightarrow Y$について、以下を満たす写像$g \colon Y \rightarrow X$を左逆写像と呼ぶ。
+  写像$f \in Y^X$について、以下を満たす写像$g \in X^Y$を左逆写像と呼ぶ。
   \eq*{
     g \circ f = \id_{X}
   }
@@ -371,17 +354,16 @@
 }
 
 \thm{単射と左逆写像}{
-  空でない集合$X$と集合$Y$、写像$f \colon X \rightarrow Y$について、$f$が単射であることは、写像$f$が左逆写像$g$を持つことと同値である。
+  空でない集合$X$と集合$Y$、写像$f \in Y^X$について、$f$が単射であることは、写像$f$が左逆写像$g$を持つことと同値である。
 }{
   必要性を示す。
 
-  空でないので$\exists x_0 \in X$より、以下のような関係$R$ができる。この$R$は、右一意的かつ対応である。
-  \eqg*{
-    G \coloneqq \qty{\qty(y, x) \in Y \times X \mid y = f(x)} \cup \qty{\qty(y, x_0) \mid y \in Y \setminus \Im(f)} \\*
-    R \coloneqq \qty(\qty(Y, X), G)
+  空でないので$\exists x_0 \in X$より、以下で定める集合$G$が存在する。
+  \eq*{
+    G \coloneqq \qty{\qty(y, x) \in Y \times X \mid y = f(x)} \cup \qty{\qty(y, x_0) \mid y \in Y \setminus \Im(f)}
   }
 
-  関係$R$により特徴づけられる全射$g$は、定義より$f$の左逆写像となる。\\*
+  $\qty(\qty(X, Y), G)$により特徴づけられる全射$g$は、定義より$f$の左逆写像となる。\\*
 
   十分性を示す。
 
@@ -389,7 +371,7 @@
 }
 
 \dfn{右逆写像}{
-  写像$f \colon X \rightarrow Y$について、以下を満たす写像$g \colon Y \rightarrow X$を右逆写像と呼ぶ。
+  写像$f \in Y^X$について、以下を満たす写像$g \in X^Y$を右逆写像と呼ぶ。
   \eq*{
     f \circ g = \id_{Y}
   }
@@ -400,7 +382,7 @@
 }
 
 \thm{全射と右逆写像}{
-  集合$X, Y$、写像$f \colon X \rightarrow Y$について、$f$が全射であることは、写像$f$が右逆写像$g$を持つことと同値である。
+  集合$X, Y$、写像$f \in Y^X$について、$f$が全射であることは、写像$f$が右逆写像$g$を持つことと同値である。
 }{
   必要性を示す。\thmref{選択公理が与える写像}の与える写像は、右逆写像である。\\*
 
@@ -410,7 +392,7 @@
 }
 
 \dfn{逆写像}{
-  写像$f \colon X \rightarrow Y$について、写像$g \colon Y \rightarrow X$が$f$の左逆写像かつ右逆写像であるとき、逆写像と呼ぶ。
+  写像$f \in Y^X$について、写像$g \in X^Y$が$f$の左逆写像かつ右逆写像であるとき、逆写像と呼ぶ。
 }
 
 \cor*{
@@ -418,17 +400,16 @@
 }
 
 \thm{全単射と逆写像}{
-  集合$X, Y$、写像$f \colon X \rightarrow Y$について、$f$が全単射であることは、写像$f$が逆写像$g$を持つことと同値である。
+  集合$X, Y$、写像$f \in Y^X$について、$f$が全単射であることは、写像$f$が逆写像$g$を持つことと同値である。
 }{
   必要性を示す。$f$は全射より、$\Im(f) = Y$
 
-  以下のような一対一対応$R$が存在する。
-  \eqg*{
-    G \coloneqq \qty{\qty(y, x) \in Y \times X \mid y = f(x)} \\*
-    R \coloneqq \qty(\qty(Y, X), G)
+  以下のような集合系$G$が存在する。
+  \eq*{
+    G \coloneqq \qty{\qty(y, x) \in Y \times X \mid y = f(x)}
   }
 
-  関係$R$により、ある全単射$g$が特徴づけられ、定義より$f$の逆写像となる。\\*
+  $\qty(\qty(X, Y), G)$により特徴づけられる写像$g$は定義より$f$の逆写像となる。\\*
 
   十分性を示す。
 
@@ -438,7 +419,7 @@
 }
 
 \lem*{
-  写像$f \colon X \rightarrow Y$について、$f$の逆写像が存在するならば、一意に定まる。
+  写像$f \in Y^X$について、$f$の逆写像が存在するならば、一意に定まる。
 
   ここから、$f$の逆写像を$f^{-1}$と表す。
 }{
@@ -446,14 +427,32 @@
 }
 
 \cor*{
-  全単射$f \colon X \rightarrow Y$について、
+  全単射$f \in Y^X$について、
   \eq*{
     \qty(f^{-1})^{-1} = f
   }
 }
 
 \lem*{
-  全単射$f \colon X \rightarrow Y$と$Y$の部分集合$A$について、原像$f^{-1}(A)$と逆写像の像$f^{-1}(A)$は一致する。
+  全単射$f \in Y^X$と$Y$の部分集合$A$について、原像$f^{-1}(A)$と逆写像の像$f^{-1}(A)$は一致する。
 }{
   全単射より、$\forall y \in A \exists x \in A \qty(y = f(x))$。ゆえに定義より明らか。
+}
+
+\thmf{\textit{Cantor}の対角線論法}{Cantorの対角線論法}{
+  集合$A$について、単射$f \in A^{\P(A)}$は存在しない。
+}{
+  存在するとする。
+
+  以下の集合$Y$を考える。
+  \eq*{
+    Y \coloneqq \qty{f(X) \mid X \in \P(A) \land f(X) \notin X}
+  }
+  このとき$Y \in \P(A)$である。
+
+  $f(Y) \notin Y$とすると、定義より$f(Y) \in Y$。ゆえに矛盾。
+
+  $f(Y) \in Y$とすると、$f$の単射性より$Y \in \P(A) \land f(Y) \notin Y$。ゆえに矛盾。
+
+  背理法より示される。
 }

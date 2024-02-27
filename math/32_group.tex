@@ -1,4 +1,4 @@
-\lsection{群}
+\lsection{群論}
 
 \lsubsection{群}
 
@@ -45,14 +45,14 @@
 \lsubsection{群と準同型}
 
 \dfn{群準同型}{
-  群$G, G'$について以下を満たすモノイド準同型$\varphi \colon G \rightarrow G'$が存在するとき、$\varphi$を群準同型写像、または単に群準同型と呼ぶ。
+  群$G_1, G_2$について以下を満たすモノイド準同型$\varphi \in G_2^{G_1}$が存在するとき、$\varphi$を群準同型写像、または単に群準同型と呼ぶ。
   \eq*{
-    \forall x \in G \qty(\varphi(x)^{-1} = \varphi(x^{-1}))
+    \forall x \in G_1 \qty(\varphi(x)^{-1} = \varphi(x^{-1}))
   }
 }
 
 \lem{マグマ準同型は群準同型}{
-  群$G, G'$について、マグマ準同型$\varphi \colon G \rightarrow G'$は群準同型である。
+  群$G_1, G_2$について、マグマ準同型$\varphi \in G_2^{G_1}$は群準同型である。
 }{
   モノイド準同型であることを示す。
   \eqg*{
@@ -66,14 +66,14 @@
 }
 
 \thm{群準同型の単射性}{
-  群準同型$\varphi \colon G \rightarrow G'$が単射であることは、以下と必要十分である。
+  群準同型$\varphi \in G_2^{G_1}$が単射であることは、以下と必要十分である。
   \eq*{
     \Ker(\varphi) = \qty{e}
   }
 }{
   十分性は、単射性より示される。
 
-  必要性を示す。$\forall x, y \in G \land \varphi(x) = \varphi(y)$について、
+  必要性を示す。$\forall x, y \in G_1 \land \varphi(x) = \varphi(y)$について、
   \eq*{
     e' = \varphi(e) = \varphi(x) \varphi(x^{-1}) = \varphi(y) \varphi(x^{-1}) = \varphi(y x^{-1})
   }
@@ -82,9 +82,9 @@
 }
 
 \dfn{群同型}{
-  群準同型$\varphi \colon G \rightarrow G'$が全単射であるとき、これを群同型写像、または単に群同型と呼ぶ。
+  群準同型$\varphi \in G_2^{G_1}$が全単射であるとき、これを群同型写像、または単に群同型と呼ぶ。
 
-  また、$G$から$G'$への群同型写像が存在するとき、$G \cong G'$と表す。
+  また、$G_1$から$G_2$への群同型写像が存在するとき、$G_1 \cong G_2$と表す。
 }
 
 \dfn{自己同型群}{
@@ -99,9 +99,9 @@
 }{
   $H$が可換マグマであることから、$\Hom(G, H)$は可換マグマである。
 
-  写像$0_{\Hom(G, H)} \colon G \ni x \mapsto 0_H \in H$は群準同型であるので、単位元。
+  写像$0_{\Hom(G, H)} \in H^G, 0_{\Hom(G, H)}(x) = 0_H$は群準同型であるので、単位元。
 
-  写像$-f \colon G \ni x \mapsto -f(x) \in H$は群準同型であるので、逆元。
+  写像$f_{\text{minus}} \in H^G, f_{\text{minus}}(x) = -f(x)$は群準同型であるので、逆元。
 }
 
 
@@ -191,15 +191,15 @@
 }
 
 \thm{群準同型定理}{
-  群$G, G'$と、群準同型$f \colon G \rightarrow G'$、$f$に付随する同値関係$\sim_{f}$について、群同型$\bar{f} \colon G / \sim_{f} \rightarrow \Im(f)$が存在する。
+  群$G_1, G_2$と、群準同型$f \in G_2^{G_1}$、$f$に付随する同値関係$\sim_{f}$について、群同型$\bar{f} \in \Im(f)^{G_1 / \sim_{f}}$が存在する。
 }{
-  $\Im(f)$は$G'$の部分群である。
+  $\Im(f)$は$G_2$の部分群である。
 
   \thmref{マグマ準同型定理}より、得る$\bar{f}$はマグマ同型。
   \lemref{マグマ準同型は群準同型}より、群同型。
 }
 
-$G / \sim_f = G / \Ker (f)$であるため、$G / \Ker (f) \rightarrow \Im (f)$の形で書かれることが多い。
+$G_1 / \sim_f = G_1 / \Ker(f)$であるため、$\bar{f} \in \Im(f)^{G_1 / \Ker(f)}$の形で書かれることが多い。
 
 \lem{剰余群の正規部分群は剰余群}{
   群$G$、$G$の正規部分群$N$、$G / N$の正規部分群$Z$について、$G$の正規部分群$H$が存在して、$H / N = Z$である。
@@ -215,31 +215,17 @@ $G / \sim_f = G / \Ker (f)$であるため、$G / \Ker (f) \rightarrow \Im (f)$�
 \lsubsection{群と作用}
 
 \dfn{作用}{
-  集合$S, X$について、写像$\varphi \colon S \rightarrow \Map(X, X)$を$S$の$X$への作用と呼ぶ。
+  集合$S, X$について、写像$\varphi \in \qty(X^X)^S$を$S$の$X$への作用と呼ぶ。
 }
-
-\thm{作用の表現}{
-  集合$S, X$について、自明な全単射$\varphi \colon \Map(S \times X, X) \rightarrow \Map(S, \Map(X, X))$が存在する。
-}{
-  $\varphi \in \Map(S \times X, X)$を特徴づける集合$G \in \qty(\qty(S \times X) \times X)$に対して、集合$G' \in \qty(S \times \qty(X \times X))$を対応づける自明な一対一対応が存在する。
-
-  $G$による関係は、左全域的かつ右一意的である。
-
-  $G' = (s, \psi), \psi \in X \times X$について、$\psi$による関係は、左全域的かつ右一意的である。
-
-  また、$G'$による関係は、左全域的かつ右一意的である。
-}
-
-この定理を用いて、$s \in S, x \in X$について、作用の$s$での値の$x$での値$\varphi(s)(x)$は、$\varphi(s, x)$と書ける。
 
 \dfn{群と作用}{
   集合$X$を考える。
 
-  マグマ$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X), \circ)$がマグマ準同型であるとき、マグマ作用と呼ぶ。
+  マグマ$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \in \qty(X^X, \circ)^\qty(S, \cdot)$がマグマ準同型であるとき、マグマ作用と呼ぶ。
 
-  モノイド$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X), \circ)$がモノイド準同型であるとき、モノイド作用と呼ぶ。
+  モノイド$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \in \qty(X^X, \circ)^\qty(S, \cdot)$がモノイド準同型であるとき、モノイド作用と呼ぶ。
 
-  群$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \colon \qty(S, \cdot) \rightarrow \qty(\Map(X, X)^\times, \circ)$が群準同型であるとき、群作用と呼ぶ。
+  群$\qty(S, \cdot)$について、$S$の$X$への作用$\varphi \in \qty(\qty(X^X)^\times, \circ)^\qty(S, \cdot)$が群準同型であるとき、群作用と呼ぶ。
 }
 
 \dfn{軌道}{
@@ -278,9 +264,9 @@ $G / \sim_f = G / \Ker (f)$であるため、$G / \Ker (f) \rightarrow \Im (f)$�
 }
 
 \thm{軌道・安定化部分群定理}{
-  群$G$の$X$への群作用$\varphi$と元$x \in X$について、全単射$f \colon G / \sim_{\Stab(G, x)} \rightarrow \varphi(G, x)$が存在する。
+  群$G$の$X$への群作用$\varphi$と元$x \in X$について、全単射$f \in \varphi(G, x)^{G / \sim_{\Stab(G, x)}}$が存在する。
 }{
-  写像$\hat{f}_{x} \colon G \ni g \rightarrow \varphi(g, x) \in \varphi(G, x)$を考える。
+  写像$\hat{f}_{x} \in \varphi(G, x)^G, \hat{f}_x(g) = \varphi(g, x)$を考える。
 
   今、$\sim_{\hat{f}_{x}} = \sim_{\Stab(G, x)}$であり、$\Im(\hat{f}_{x}) = \varphi(G, x)$であるので、\thmref{標準分解}より存在する。
 }
